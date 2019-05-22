@@ -1,30 +1,19 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Smartmoney());
+import './theme/darkTheme.dart';
+import './theme/lightTheme.dart';
+
+import './onboarding/onboarding.dart';
+
+void main() => runApp(Smartmoney()); //entry point for smartmoney
 
 class Smartmoney extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Onboarding()
+    return MaterialApp( //todo: add blocprovider, and add bloc package to pubspec.
+      title: 'Smartmoney',
+      home: Onboarding() 
     );
   }
 }
 
-class Onboarding extends StatefulWidget {
-  @override
-  _OnboardingState createState() => _OnboardingState();
-}
-
-class _OnboardingState extends State<Onboarding> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      
-    ); 
-  }
-}
