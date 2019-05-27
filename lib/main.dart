@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import './theme/darkTheme.dart';
-import './theme/lightTheme.dart';
-
+import './logic/themebloc.dart';
 import './onboarding/onboarding.dart';
 
-void main() => runApp(Smartmoney()); //entry point for smartmoney
+void main() => runApp(Smartmoney()); 
 
 class Smartmoney extends StatelessWidget {
+
+  final ThemeBloc _themeBloc = ThemeBloc();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( //todo: add blocprovider, and add bloc package to pubspec.
-      title: 'Smartmoney',
-      home: Onboarding() 
+    return BlocProvider(
+      bloc: _themeBloc,
+      child: BlocBuilder(
+        bloc: _themeBloc,
+        builder: (BuildContext context,ThemeData theme) {
+          return MaterialApp( 
+          title: "Smartmoney",
+          home: Onboarding()
+          );
+        },
+      )
     );
   }
 }
