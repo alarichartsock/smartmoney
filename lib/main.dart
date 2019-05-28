@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './logic/themebloc.dart';
-import './onboarding/onboarding.dart';
+import './android/onboarding/onboarding.dart';
 
 void main() => runApp(Smartmoney()); 
 

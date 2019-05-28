@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../logic/themebloc.dart';
-import 'dart:async';
+import '../../logic/themebloc.dart';
 
 /*
 Align our 3 OnboaringPages and one PromptPage in a Pageview, recieve when a user taps next and turn the page.
@@ -270,7 +269,7 @@ class _PromptScreenState extends State<PromptScreen> {
               elevation: 5.0,
               child: Container(
                 width: _containerWidth,
-                height: 6 / 5 * _containerWidth,
+                height: 53/48 * _containerWidth,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(const Radius.circular(8.0)),
                   color: BlocProvider.of<ThemeBloc>(context)
@@ -287,7 +286,7 @@ class _PromptScreenState extends State<PromptScreen> {
                 child: Container(
                     // Aspect ratio is 1:1.
                     width: _containerWidth,
-                    height: 1 / 2 * (_containerWidth),
+                    height: 24/48 * (_containerWidth),
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.all(const Radius.circular(8.0)),
