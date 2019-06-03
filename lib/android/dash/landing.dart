@@ -5,6 +5,8 @@ import '../components/styled_text_field.dart';
 import '../../logic/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../components/styled_container.dart';
+
 class Landing extends StatefulWidget {
   @override
   _LandingState createState() => _LandingState();
@@ -75,25 +77,18 @@ class _LandingState extends State<Landing> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Material(
-                  borderRadius: BorderRadius.all(const Radius.circular(8.0)),
-                  elevation: 5.0,
-                  child: Container(
-                    width: _containerWidth,
-                    height: _containerWidth - (_margin * 2.5),
-                    decoration: BoxDecoration(
-                        color: blocData.canvasColor,
-                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: <Widget>[
-                          
-                        ],
-                      ),
+                  StyledContainer(
+                    width: 100,
+                    height: 100,
+                    verticalPadding: 8.0,
+                    horizontalPadding: 8.0,
+                    child: IconButton(
+                      icon: Icon(Icons.menu),
+                      onPressed: () {
+                        print("I'm doing something!");                        
+                      },
                     ),
-                  ),
-                ),
+                  )
                 ],
               ),
             ),

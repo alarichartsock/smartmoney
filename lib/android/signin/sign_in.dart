@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../components/styled_text_field.dart';
+import '../components/styled_container.dart';
 
 import '../../logic/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 
 class SignIn extends StatefulWidget {
   @override
@@ -64,82 +66,74 @@ class _SignInState extends State<SignIn> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Material(
-                  borderRadius: BorderRadius.all(const Radius.circular(8.0)),
-                  elevation: 5.0,
-                  child: Container(
+                  StyledContainer(
+                    verticalPadding: 16.0,
+                    horizontalPadding: 16.0,
                     width: _containerWidth,
-                    height: _containerWidth - (_margin * 2.5),
-                    decoration: BoxDecoration(
-                        color: blocData.canvasColor,
-                        borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                    height: _containerWidth - (_margin  * 2.5),
                       child: Column(
-                        children: <Widget>[
-                          Text("Welcome back.",
-                              style: blocData.textTheme.display2),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 4.0),
-                            child: Text("Enter your information to log in.",
-                                style: blocData.textTheme.subtitle),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: _margin),
-                            child: StyledTextField(null,"Email",1),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: _margin),
-                            child: StyledTextField(null, "Password", 1)),
-                          Padding(
-                            padding: const EdgeInsets.only(top: _margin),
-                            child: RaisedButton(
-                              shape: new RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(30.0)),
-                              onPressed: () {
-                                print("todo: route to next page");},
-                              color: blocData.primaryColor,
-                              child: Container(
-                                width: _containerWidth - _margin,
-                                height: 48.0,
-                                child: Center(
-                                    child: Text("SIGN IN",
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 16))),
+                            children: <Widget>[
+                              Text("Welcome back.",
+                                  style: blocData.textTheme.display2),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4.0),
+                                child: Text("Enter your information to log in.",
+                                    style: blocData.textTheme.subtitle),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: _margin),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text(
-                                  "Don't have an account?",
-                                  style: TextStyle(
-                                    color: blocData.textTheme.display1.color,
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w700)
+                              Padding(
+                                padding: const EdgeInsets.only(top: _margin),
+                                child: StyledTextField(null,"Email",1),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: _margin),
+                                child: StyledTextField(null, "Password", 1)),
+                              Padding(
+                                padding: const EdgeInsets.only(top: _margin),
+                                child: RaisedButton(
+                                  shape: new RoundedRectangleBorder(
+                                      borderRadius: new BorderRadius.circular(30.0)),
+                                  onPressed: () {
+                                    print("todo: route to next page");},
+                                  color: blocData.primaryColor,
+                                  child: Container(
+                                    width: _containerWidth - _margin,
+                                    height: 48.0,
+                                    child: Center(
+                                        child: Text("SIGN IN",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 16))),
+                                  ),
                                 ),
-                                GestureDetector(
-                                  onTap: () {
-                                    print("todo: move to next page.");
-                                  },
-                                  child: Text(
-                                  " Sign Up",
-                                  style: blocData.textTheme.button),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: _margin),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Text(
+                                      "Don't have an account?",
+                                      style: TextStyle(
+                                        color: blocData.textTheme.display1.color,
+                                        fontSize: 18.0,
+                                        fontWeight: FontWeight.w700)
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        print("todo: move to next page.");
+                                      },
+                                      child: Text(
+                                      " Sign Up",
+                                      style: blocData.textTheme.button),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        ],
+                              ),
+                            ],
                       ),
                     ),
-                  ),
-                ),
                 ],
               ),
             ),
