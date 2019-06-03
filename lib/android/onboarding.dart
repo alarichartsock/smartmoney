@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/themebloc.dart';
+import '.././logic/themebloc.dart';
 
 /*
-Align our 3 OnboaringPages and one PromptPage in a Pageview, recieve when a user taps next and turn the page.
+Align our 3 OnboardingPages and one PromptPage in a Pageview, recieve when a user taps next and turn the page.
 */
 class Onboarding extends StatefulWidget {
   @override
@@ -80,11 +80,11 @@ class _OnboardingPageState extends State<OnboardingPage>
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context)
-        .size
-        .height; //fetching width and height values of device
+     //Fetching width and height values of device.
+    double screenHeight = MediaQuery.of(context).size.height;
     double _screenWidth = MediaQuery.of(context).size.width;
-    const double _margin = 16.0; //left and right margins
+    //Left and right margins of the screen.
+    const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
     const double _padding = 8.0;
 
@@ -96,7 +96,7 @@ class _OnboardingPageState extends State<OnboardingPage>
       backgroundColor: Colors.transparent,
       body: Container(
         //background
-        color: BlocProvider.of<ThemeBloc>(context).currentState.backgroundColor,
+        color: blocData.backgroundColor,
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -113,9 +113,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                 height: _containerWidth - _margin,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(const Radius.circular(8.0)),
-                  color: BlocProvider.of<ThemeBloc>(context)
-                      .currentState
-                      .canvasColor,
+                  color: blocData.canvasColor
                 ),
               ),
             ),
@@ -166,7 +164,6 @@ class _OnboardingPageState extends State<OnboardingPage>
                               padding: EdgeInsets.only(top: 32, bottom: 40.0),
                               child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  //mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Padding(
                                       padding: EdgeInsets.only(left: (_containerWidth / 2) - 32),
@@ -314,27 +311,8 @@ class _PromptScreenState extends State<PromptScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              RaisedButton(
-                                shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(30.0)),
-                                onPressed: () {
-                                  print("todo: route to next page");
-                                },
-                                color: blocData.primaryColor,
-                                child: Container(
-                                  width: 1 / 3 * _screenWidth,
-                                  height: 48.0,
-                                  child: Center(
-                                      child: Text("SIGN IN",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 16))),
-                                ),
-                              ),
                               Padding(
-                                padding: EdgeInsets.only(left: _padding * 3),
+                                padding: const EdgeInsets.only(left: _margin),
                                 child: RaisedButton(
                                   shape: new RoundedRectangleBorder(
                                       borderRadius:
@@ -344,7 +322,29 @@ class _PromptScreenState extends State<PromptScreen> {
                                   },
                                   color: blocData.primaryColor,
                                   child: Container(
-                                    width: 1 / 3 * _screenWidth,
+                                    width: 2 / 7 * _screenWidth,
+                                    height: 48.0,
+                                    child: Center(
+                                        child: Text("SIGN IN",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 16))),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: _padding * 3, right: _margin),
+                                child: RaisedButton(
+                                  shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(30.0)),
+                                  onPressed: () {
+                                    print("todo: route to next page");
+                                  },
+                                  color: blocData.primaryColor,
+                                  child: Container(
+                                    width: 2 / 7 * _screenWidth,
                                     height: 48.0,
                                     child: Center(
                                         child: Text("SIGN UP",

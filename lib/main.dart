@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import './logic/themebloc.dart';
-import './android/onboarding/onboarding.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'android/dash/landing.dart';
 
-void main() => runApp(Smartmoney()); 
+void main() => runApp(SmartMoneyAndroid()); 
 
-class Smartmoney extends StatelessWidget {
+class SmartMoneyAndroid extends StatelessWidget {
 
-  final ThemeBloc _themeBloc = ThemeBloc();
+  final ThemeBloc themeBloc = ThemeBloc();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      bloc: _themeBloc,
+      bloc: themeBloc,
       child: BlocBuilder(
-        bloc: _themeBloc,
-        builder: (BuildContext context,ThemeData theme) {
+        bloc: themeBloc,
+        builder: (context,ThemeData theme) {
           return MaterialApp( 
           title: "Smartmoney",
-          home: Onboarding()
+          home: Landing()
           );
         },
       )
     );
   }
 }
-
