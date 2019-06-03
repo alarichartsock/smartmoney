@@ -7,8 +7,9 @@ Install Color Highlight for VSCode for easier viewing.
 
 ThemeData lightTheme = new ThemeData(
   backgroundColor: Color(0xFFE6EAEF), //#e6eaef
+  dividerColor: Color(0xFFBEC0C0), //#BEC0C0
   canvasColor: Color(0xFFFFFFFF), //#ffffff
-  primaryColor: Color(0xFF21CE99), //#21ce99
+  primaryColor: Color(0xFF00D594), //#00d594
   accentColor: Color(0xFFF45531), //#f45531
   textTheme: TextTheme(
     headline: TextStyle( //h2, unused
@@ -47,7 +48,7 @@ ThemeData lightTheme = new ThemeData(
       fontSize: 12.0,
     ),
     button: TextStyle( // For text buttons. Not for use on buttons.
-      color: Color(0xFF00D585), //#00d585
+      color: Color(0xFF00D594), //#00d594
       fontWeight: FontWeight.w700,
       fontSize: 18.0,
     ),
@@ -55,6 +56,11 @@ ThemeData lightTheme = new ThemeData(
       color: Color(0xFF8D8D8D), //#8d8d8d
       fontWeight: FontWeight.w400,
       fontSize: 16.0,
+    ),
+    caption: TextStyle(
+      color: Color(0xFF8D8D8D), //#8d8d8d
+      fontWeight: FontWeight.w300,
+      fontSize: 14.0
     ),
     title: TextStyle( //unused. 
       color: Color(0xFF676767), //#676767
