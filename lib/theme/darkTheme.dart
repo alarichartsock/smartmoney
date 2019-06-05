@@ -53,12 +53,12 @@ ThemeData darkTheme = new ThemeData(
       fontWeight: FontWeight.w700,
       fontSize: 18.0,
     ),
-    subtitle: TextStyle( //subtitle
+    subtitle: TextStyle( //unused, do not delete.
       color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 14.0,
     ),
-    title: TextStyle(
+    title: TextStyle( //unused, do not delete.
       color: Color(0xFFE6EAEF), //#e6eaef
       fontWeight: FontWeight.w400,
       fontSize: 24.0,

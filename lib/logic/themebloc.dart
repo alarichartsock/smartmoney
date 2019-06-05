@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
-
 import 'dart:async';
 
 import '../theme/darkTheme.dart';

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartmoney/android/components/styled_button.dart';
+
 import '.././logic/themebloc.dart';
 import './components/styled_container.dart';
 
@@ -301,48 +304,25 @@ class _PromptScreenState extends State<PromptScreen> {
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(left: _margin),
-                              child: RaisedButton(
-                                shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(30.0)),
+                              child: StyledButton(
+                                text: "SIGN IN",
+                                width: 2 / 7 * _screenWidth,
+                                height: 48.0,
                                 onPressed: () {
-                                  print("todo: route to next page");
+                                  print("I'm a placeholder!");
                                 },
-                                color: blocData.primaryColor,
-                                child: Container(
-                                  width: 2 / 7 * _screenWidth,
-                                  height: 48.0,
-                                  child: Center(
-                                      child: Text("SIGN IN",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 16))),
-                                ),
-                              ),
+                              )
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                  left: _padding * 3, right: _margin),
-                              child: RaisedButton(
-                                shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(30.0)),
+                              padding: const EdgeInsets.only(left: _padding * 3,right: _margin),
+                              child: StyledButton(
+                                text: "SIGN IN",
+                                width: 2 / 7 * _screenWidth,
+                                height: 48.0,
                                 onPressed: () {
-                                  print("todo: route to next page");
+                                  print("I'm a placeholder!");
                                 },
-                                color: blocData.primaryColor,
-                                child: Container(
-                                  width: 2 / 7 * _screenWidth,
-                                  height: 48.0,
-                                  child: Center(
-                                      child: Text("SIGN UP",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 16))),
-                                ),
-                              ),
+                              )
                             ),
                           ],
                         ),

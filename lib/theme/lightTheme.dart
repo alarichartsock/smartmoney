@@ -57,14 +57,14 @@ ThemeData lightTheme = new ThemeData(
       fontWeight: FontWeight.w400,
       fontSize: 16.0,
     ),
-    caption: TextStyle(
+    caption: TextStyle( //unused currently. do not delete
       color: Color(0xFF8D8D8D), //#8d8d8d
       fontWeight: FontWeight.w300,
       fontSize: 14.0
     ),
-    title: TextStyle( //unused. 
+    title: TextStyle( //unused currently. do not delete.
       color: Color(0xFF676767), //#676767
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
       fontSize: 21.0,
     ),
   ),

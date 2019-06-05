@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartmoney/android/components/styled_button.dart';
 
 import '../components/styled_text_field.dart';
 import '../components/styled_container.dart';
@@ -104,23 +105,14 @@ class _SignUpState extends State<SignUp> {
                         //Checkbox(),
                         Padding(
                           padding: const EdgeInsets.only(top: _padding),
-                          child: RaisedButton(
-                            shape: new RoundedRectangleBorder(
-                                borderRadius: new BorderRadius.circular(30.0)),
+                          child: StyledButton(
+                            text: "SIGN UP",
+                            height: 48.0,
+                            width: _containerWidth - _margin,
                             onPressed: () {
-                              print("todo: route to next page");},
-                            color: blocData.primaryColor,
-                            child: Container(
-                              width: _containerWidth - _margin,
-                              height: 48.0,
-                              child: Center(
-                                  child: Text("SIGN UP",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 16))),
-                            ),
-                          ),
+                              print("I'm a placeholder!");
+                            },
+                          )
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: _padding),

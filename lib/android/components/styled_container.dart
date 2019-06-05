@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../components/styled_text_field.dart';
-
 import '../../logic/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../components/styled_text_field.dart';
+
+
 
 /*
 StyledMaterial returns a styled Container with a color of BlocData.canvas, 

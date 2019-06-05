@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../components/styled_text_field.dart';
-
 import '../../logic/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../components/styled_text_field.dart';
 import '../components/styled_container.dart';
 
 class Landing extends StatefulWidget {
@@ -78,16 +77,24 @@ class _LandingState extends State<Landing> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   StyledContainer(
-                    width: 100,
-                    height: 100,
-                    verticalPadding: 8.0,
-                    horizontalPadding: 8.0,
-                    child: IconButton(
-                      icon: Icon(Icons.menu),
-                      onPressed: () {
-                        print("I'm doing something!");                        
-                      },
-                    ),
+                    width: _containerWidth,
+                    height: 9/41 * _containerWidth, //todo: modify value to a less grizzly number to scale dimensions better
+                    verticalPadding: _margin,
+                    horizontalPadding: _margin,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(top: 0.0),
+                          child: Text("Browse Trades.", style: blocData.textTheme.display1,),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: _padding / 2),
+                          child: Text("View largest trades made on the stock market.", style: blocData.textTheme.subtitle),
+                        ),
+                      ],
+                    )
                   )
                 ],
               ),

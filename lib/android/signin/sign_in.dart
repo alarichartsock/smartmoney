@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../components/styled_text_field.dart';
-import '../components/styled_container.dart';
-
 import '../../logic/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:smartmoney/android/components/styled_button.dart';
+import '../components/styled_text_field.dart';
+import '../components/styled_container.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -89,23 +89,14 @@ class _SignInState extends State<SignIn> {
                                 child: StyledTextField(null, "Password", 1)),
                               Padding(
                                 padding: const EdgeInsets.only(top: _margin),
-                                child: RaisedButton(
-                                  shape: new RoundedRectangleBorder(
-                                      borderRadius: new BorderRadius.circular(30.0)),
+                                child: StyledButton(
+                                  text: "SIGN IN",
+                                  width: _containerWidth - _margin,
+                                  height: 48.0,
                                   onPressed: () {
-                                    print("todo: route to next page");},
-                                  color: blocData.primaryColor,
-                                  child: Container(
-                                    width: _containerWidth - _margin,
-                                    height: 48.0,
-                                    child: Center(
-                                        child: Text("SIGN IN",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 16))),
-                                  ),
-                                ),
+                                    print("I'm a placeholder!");
+                                  },
+                                )
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: _margin),
