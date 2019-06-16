@@ -32,7 +32,7 @@ class _SignUpState extends State<SignUp> {
     const double _padding = 8.0;
 
     //Storing theme as a variable to prevent long lines. This may or may not work. If theme doesn't work, change this first.
-    ThemeData blocData = BlocProvider.of<ThemeBloc>(context).currentState;
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -40,19 +40,19 @@ class _SignUpState extends State<SignUp> {
             bottomRight: Radius.circular(8.0)));
 
     return Container(
-      color: blocData.backgroundColor,
+      color: themeData.backgroundColor,
       width: double.infinity,
       height: double.infinity,
       child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 56.0),
             child: AppBar(
-              backgroundColor: blocData.canvasColor,
+              backgroundColor: themeData.canvasColor,
               shape: appBarBorder,
               leading: IconButton(
                 iconSize: 24.0,
                 icon: Icon(Icons.arrow_back),
-                color: blocData.primaryColor,
+                color: themeData.primaryColor,
                 onPressed: () {
                   print("todo: pop stack");},
               ),
@@ -70,11 +70,11 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                       children: <Widget>[
                         Text("Let's get started.",
-                            style: blocData.textTheme.display2),
+                            style: themeData.textTheme.display2),
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: Text("Enter your information to create an account.",
-                              style: blocData.textTheme.subtitle),
+                              style: themeData.textTheme.subtitle),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: _margin),
@@ -100,7 +100,7 @@ class _SignUpState extends State<SignUp> {
                           padding: const EdgeInsets.only(top: _padding),
                           child: Text(
                             "Nonprofessional subscribers will use this information not in connection with any trade or business activities and not for the benefit of any other person. All Subscribers other than Nonprofessional Subscribers are classified as Professional Subscribers",
-                            style: blocData.textTheme.caption),
+                            style: themeData.textTheme.caption),
                         ),
                         //Checkbox(),
                         Padding(
@@ -123,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                               Text(
                                 "Already have an account?",
                                 style: TextStyle(
-                                  color: blocData.textTheme.display1.color,
+                                  color: themeData.textTheme.display1.color,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w700)
                               ),
@@ -133,7 +133,7 @@ class _SignUpState extends State<SignUp> {
                                 },
                                 child: Text(
                                 " Sign In",
-                                style: blocData.textTheme.button),
+                                style: themeData.textTheme.button),
                               ),
                             ],
                           ),

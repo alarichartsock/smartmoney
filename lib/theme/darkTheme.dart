@@ -6,6 +6,7 @@ Install Color Highlight for VSCode for easier viewing.
 */
 
 ThemeData darkTheme = new ThemeData(
+  primaryColorDark: Color(0xFF676767),//#676767
   backgroundColor: Color(0xFF676767), //#676767
   canvasColor: Color(0xFF8D8D8D), //#8d8d8d
   dividerColor: Color(0xFFBEC0C0), //#BEC0C0
@@ -56,7 +57,7 @@ ThemeData darkTheme = new ThemeData(
     subtitle: TextStyle( //unused, do not delete.
       color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
-      fontSize: 14.0,
+      fontSize: 16.0,
     ),
     title: TextStyle( //unused, do not delete.
       color: Color(0xFFE6EAEF), //#e6eaef

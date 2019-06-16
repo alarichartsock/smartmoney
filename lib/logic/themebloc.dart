@@ -5,40 +5,48 @@ import 'dart:async';
 import '../theme/darkTheme.dart';
 import '../theme/lightTheme.dart';
 
+enum ThemeEvent { lightEvent, darkEvent, switchEvent }
 
-abstract class ThemeEvent{}
+// abstract class ThemeEvent {}
 
-class LightEvent extends ThemeEvent {} // Event signifying a theme change to light.
+// class LightEvent extends ThemeEvent {
+// } // Event signifying a theme change to light.
 
-class DarkEvent extends ThemeEvent {} // Event signifying a theme change to dark.
+// class DarkEvent extends ThemeEvent {
+// } // Event signifying a theme change to dark.
 
-class SwitchEvent extends ThemeEvent {} // Event signifying a change to the opposite of whatever theme there currently is. 
+// class SwitchEvent extends ThemeEvent {
+// } // Event signifying a change to the opposite of whatever theme there currently is.
 
 /*
 Our ThemeBloc takes in incoming ThemeEvents and returns a stream of ThemeData 
 (in this case, our predefined darkTheme and lightTheme in ../theme/darkTheme and ../theme/lightTheme respectively.).
 */
 
-class ThemeBloc extends Bloc<ThemeEvent,ThemeData> {
+class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
 
   @override
   ThemeData get initialState => lightTheme;
 
   @override
   Stream<ThemeData> mapEventToState(ThemeEvent event) async* {
-    switch(ThemeEvent) {
-      case LightEvent:
+    switch (event) {
+      case ThemeEvent.lightEvent:
         yield lightTheme;
+        print("lighEvent called");
         break;
-      case DarkEvent:
+      case ThemeEvent.darkEvent:
+        print("darkEvent called");
         yield darkTheme;
         break;
-      case SwitchEvent:
-        if(currentState == darkTheme) {
+      case ThemeEvent.switchEvent:
+        if (currentState == darkTheme) {
           yield lightTheme;
+          print("lighEvent called");
           break;
-        } else if(currentState == lightTheme) {
+        } else if (currentState == lightTheme) {
           yield darkTheme;
+          print("darkEvent called");
           break;
         }
     }
@@ -58,5 +66,4 @@ class ThemeBloc extends Bloc<ThemeEvent,ThemeData> {
   void onError(Object error, StackTrace stackTrace) {
     print('$error, $stackTrace');
   }
-
 }

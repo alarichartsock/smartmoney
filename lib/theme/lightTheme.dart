@@ -5,7 +5,8 @@ ThemeData for lightTheme.
 Install Color Highlight for VSCode for easier viewing.
 */
 
-ThemeData lightTheme = new ThemeData(
+ThemeData lightTheme = ThemeData(
+  primaryColorDark: Color(0xFF676767),//#676767
   backgroundColor: Color(0xFFE6EAEF), //#e6eaef
   dividerColor: Color(0xFFBEC0C0), //#BEC0C0
   canvasColor: Color(0xFFFFFFFF), //#ffffff
@@ -55,7 +56,7 @@ ThemeData lightTheme = new ThemeData(
     subtitle: TextStyle( //subtitle
       color: Color(0xFF8D8D8D), //#8d8d8d
       fontWeight: FontWeight.w400,
-      fontSize: 16.0,
+      fontSize: 17.0,
     ),
     caption: TextStyle( //unused currently. do not delete
       color: Color(0xFF8D8D8D), //#8d8d8d

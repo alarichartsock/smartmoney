@@ -49,7 +49,7 @@ class _StyledButtonState extends State<StyledButton> {
   @override
   Widget build(BuildContext context) {
 
-    ThemeData blocData = BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
 
     return RaisedButton(
       elevation: 8.0,
@@ -57,7 +57,7 @@ class _StyledButtonState extends State<StyledButton> {
         shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(30.0)),
         onPressed: onPressed,
-        color: blocData.primaryColor,
+        color: themeData.primaryColor,
         child: Container(
           width: width,
           height: height,

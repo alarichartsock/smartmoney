@@ -56,6 +56,8 @@ class _StyledTextFieldState extends State<StyledTextField> {
   Widget build(BuildContext context) {
     bool isGreen = false; //todo: change border color to green onsubmitted.
 
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
+
     OutlineInputBorder currentBorder = (isGreen) ? greenBorder : greyBorder;
 
     return TextField(
@@ -67,10 +69,10 @@ class _StyledTextFieldState extends State<StyledTextField> {
         });
       },
       decoration: InputDecoration(
-        fillColor: Color(0xFFFFFFFF),
+        fillColor: themeData.canvasColor,
         enabled: true,
         labelStyle:
-            BlocProvider.of<ThemeBloc>(context).currentState.textTheme.subtitle,
+            themeData.textTheme.subtitle,
         helperStyle: TextStyle(),
         labelText: "$labelText",
         helperText: (helperText == null) ? null : "$helperText",

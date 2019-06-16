@@ -5,10 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/styled_text_field.dart';
 
-
-
 /*
-StyledMaterial returns a styled Container with a color of BlocData.canvas, 
+StyledMaterial returns a styled Container with a color of themeData.canvas, 
 a height & width of the height and width provided, and a elevation of 7.0.
 It also includes padding of the amount specified, and takes a child.
 */
@@ -54,14 +52,14 @@ class _StyledContainerState extends State<StyledContainer> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData blocData = BlocProvider.of<ThemeBloc>(context).currentState;
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return Material(
       borderRadius: BorderRadius.all(const Radius.circular(8.0)),
       elevation: 5.0,
       child: Container(
           decoration: BoxDecoration(
-              color: blocData.canvasColor,
+              color: themeData.canvasColor,
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           width: width,
           height: height,

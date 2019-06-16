@@ -91,7 +91,7 @@ class _OnboardingPageState extends State<OnboardingPage>
     double _containerWidth = _screenWidth - (_margin * 2);
     const double _padding = 8.0;
 
-    ThemeData blocData = BlocProvider.of<ThemeBloc>(context)
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context)
         .currentState; //storing as a variable to prevent long lines. cut down if not needed.
 
     return Scaffold(
@@ -99,7 +99,7 @@ class _OnboardingPageState extends State<OnboardingPage>
       backgroundColor: Colors.transparent,
       body: Container(
         //background
-        color: blocData.backgroundColor,
+        color: themeData.backgroundColor,
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -116,7 +116,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                 height: _containerWidth - _margin,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(const Radius.circular(8.0)),
-                    color: blocData.canvasColor),
+                    color: themeData.canvasColor),
               ),
             ),
             Padding(
@@ -131,7 +131,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.all(const Radius.circular(8.0)),
-                      color: blocData.canvasColor,
+                      color: themeData.canvasColor,
                     ),
                     child: Stack(
                         alignment: AlignmentDirectional.bottomCenter,
@@ -145,7 +145,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                     right: _margin),
                                 child: Text(
                                   "$title",
-                                  style: blocData.textTheme.display3,
+                                  style: themeData.textTheme.display3,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -156,7 +156,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                     right: _margin),
                                 child: Text(
                                   "$description",
-                                  style: blocData.textTheme.title,
+                                  style: themeData.textTheme.title,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -179,7 +179,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: blocData.primaryColor,
+                                            color: themeData.primaryColor,
                                           ),
                                         ),
                                       ),
@@ -191,7 +191,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: blocData.primaryColor,
+                                            color: themeData.primaryColor,
                                           ),
                                         ),
                                       ),
@@ -203,7 +203,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: blocData.primaryColor,
+                                            color: themeData.primaryColor,
                                           ),
                                         ),
                                       ),
@@ -212,7 +212,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                             const EdgeInsets.only(left: 16.0),
                                         child: GestureDetector(
                                           child: Text("NEXT",
-                                              style: blocData.textTheme.button),
+                                              style: themeData.textTheme.button),
                                           onTap: () {
                                             nextPressed();
                                           },
@@ -251,7 +251,7 @@ class _PromptScreenState extends State<PromptScreen> {
     double _containerWidth = _screenWidth - (_margin * 2);
     const double _padding = 8.0;
 
-    ThemeData blocData = BlocProvider.of<ThemeBloc>(context)
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context)
         .currentState; //storing as a variable to prevent long lines. cut down if not needed.
 
     return Scaffold(
@@ -287,14 +287,14 @@ class _PromptScreenState extends State<PromptScreen> {
                         padding: const EdgeInsets.only(top: _margin),
                         child: Text(
                           "Smartmoney",
-                          style: blocData.textTheme.display3,
+                          style: themeData.textTheme.display3,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: _padding),
                         child: Text(
                           "Elevate your trading.",
-                          style: blocData.textTheme.title,
+                          style: themeData.textTheme.title,
                         ),
                       ),
                       Padding(
@@ -310,6 +310,7 @@ class _PromptScreenState extends State<PromptScreen> {
                                 height: 48.0,
                                 onPressed: () {
                                   print("I'm a placeholder!");
+                                  
                                 },
                               )
                             ),
@@ -321,6 +322,7 @@ class _PromptScreenState extends State<PromptScreen> {
                                 height: 48.0,
                                 onPressed: () {
                                   print("I'm a placeholder!");
+                                  //BlocProvider.of<ThemeBloc>(context).dispatch(ThemeEvent.darkEvent);
                                 },
                               )
                             ),

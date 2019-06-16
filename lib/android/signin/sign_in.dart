@@ -27,7 +27,7 @@ class _SignInState extends State<SignIn> {
     const double _padding = 8.0;
 
     //Storing theme as a variable to prevent long lines. This may or may not work. If theme doesn't work, change this first.
-    ThemeData blocData = BlocProvider.of<ThemeBloc>(context).currentState;
+    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -35,19 +35,19 @@ class _SignInState extends State<SignIn> {
             bottomRight: Radius.circular(8.0)));
 
     return Container(
-      color: blocData.backgroundColor,
+      color: themeData.backgroundColor,
       width: double.infinity,
       height: double.infinity,
       child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 56.0),
             child: AppBar(
-              backgroundColor: blocData.canvasColor,
+              backgroundColor: themeData.canvasColor,
               shape: appBarBorder,
               leading: IconButton(
                 iconSize: 24.0,
                 icon: Icon(Icons.arrow_back),
-                color: blocData.primaryColor,
+                color: themeData.primaryColor,
                 onPressed: () {
                   print("todo: pop stack");},
               ),
@@ -74,11 +74,11 @@ class _SignInState extends State<SignIn> {
                       child: Column(
                             children: <Widget>[
                               Text("Welcome back.",
-                                  style: blocData.textTheme.display2),
+                                  style: themeData.textTheme.display2),
                               Padding(
                                 padding: const EdgeInsets.only(top: 4.0),
                                 child: Text("Enter your information to log in.",
-                                    style: blocData.textTheme.subtitle),
+                                    style: themeData.textTheme.subtitle),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: _margin),
@@ -107,7 +107,7 @@ class _SignInState extends State<SignIn> {
                                     Text(
                                       "Don't have an account?",
                                       style: TextStyle(
-                                        color: blocData.textTheme.display1.color,
+                                        color: themeData.textTheme.display1.color,
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.w700)
                                     ),
@@ -117,7 +117,7 @@ class _SignInState extends State<SignIn> {
                                       },
                                       child: Text(
                                       " Sign Up",
-                                      style: blocData.textTheme.button),
+                                      style: themeData.textTheme.button),
                                     ),
                                   ],
                                 ),
