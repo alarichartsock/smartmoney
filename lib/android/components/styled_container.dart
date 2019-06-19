@@ -12,17 +12,19 @@ It also includes padding of the amount specified, and takes a child.
 */
 class StyledContainer extends StatefulWidget {
   Widget child;
-  final double width;
-  final double height;
-  final double verticalPadding;
-  final double horizontalPadding;
+  double width;
+  double height;
+  double verticalInternalPadding;
+  double horizontalInternalPadding;
+  bool hasBorder;
 
   StyledContainer({
     this.child,
     this.width,
     this.height,
-    this.verticalPadding,
-    this.horizontalPadding,
+    this.verticalInternalPadding,
+    this.horizontalInternalPadding,
+    this.hasBorder,
   });
 
   @override
@@ -30,25 +32,28 @@ class StyledContainer extends StatefulWidget {
         child: child,
         width: width,
         height: height,
-        verticalPadding: verticalPadding,
-        horizontalPadding: horizontalPadding,
+        verticalInternalPadding: verticalInternalPadding,
+        horizontalInternalPadding: horizontalInternalPadding,
+        hasBorder: hasBorder
       );
 }
 
 class _StyledContainerState extends State<StyledContainer> {
   Widget child;
-  final double width;
-  final double height;
-  final double verticalPadding;
-  final double horizontalPadding;
+  double width;
+  double height;
+  double verticalInternalPadding;
+  double horizontalInternalPadding;
+  bool hasBorder;
 
-  _StyledContainerState({
-    this.child,
-    this.width,
-    this.height,
-    this.verticalPadding,
-    this.horizontalPadding,
-  });
+  _StyledContainerState({Widget child, double width, double height, double verticalInternalPadding, double horizontalInternalPadding, bool hasBorder}) {
+    this.child = child;
+    this.width = width;
+    this.height = height;
+    (this.verticalInternalPadding != null) ? this.verticalInternalPadding = verticalInternalPadding : this.verticalInternalPadding = 0;
+    (this.horizontalInternalPadding != null) ? this.horizontalInternalPadding = horizontalInternalPadding : this.horizontalInternalPadding = 0;
+    this.hasBorder = hasBorder;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,15 +65,17 @@ class _StyledContainerState extends State<StyledContainer> {
       child: Container(
           decoration: BoxDecoration(
               color: themeData.canvasColor,
-              borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              border: (hasBorder == true) ? Border.all(color: Color(0xFFBEC0C0), width: 1.25, style: BorderStyle.solid) : null
+              ),
           width: width,
           height: height,
           child: Padding(
             padding: EdgeInsets.only(
-                top: horizontalPadding,
-                bottom: horizontalPadding,
-                left: verticalPadding,
-                right: verticalPadding),
+                top: horizontalInternalPadding,
+                bottom: horizontalInternalPadding,
+                left: verticalInternalPadding,
+                right: verticalInternalPadding),
             child: child,
           )),
     );

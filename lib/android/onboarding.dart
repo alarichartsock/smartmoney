@@ -269,8 +269,8 @@ class _PromptScreenState extends State<PromptScreen> {
             StyledContainer(
               width: _containerWidth,
               height: 53 / 48 * _containerWidth,
-              horizontalPadding: 0.0,
-              verticalPadding: 0.0,
+              horizontalInternalPadding: 0.0,
+              verticalInternalPadding: 0.0,
               child: null,
             ),
             Padding(
@@ -278,8 +278,8 @@ class _PromptScreenState extends State<PromptScreen> {
               child: StyledContainer(
                   width: _containerWidth,
                   height: 24 / 48 * (_containerWidth),
-                  verticalPadding: 0.0,
-                  horizontalPadding: 0.0,
+                  verticalInternalPadding: 0.0,
+                  horizontalInternalPadding: 0.0,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[

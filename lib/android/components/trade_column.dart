@@ -2,36 +2,35 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartmoney/android/components/info_card.dart';
+import 'package:smartmoney/android/components/trade_card.dart';
 import '../../logic/themebloc.dart';
 
 /*
-Shows InfoCard's vertically, giving an option to 'see more'.
-Initially shows 3 InfoCards. After "SEE MORE" is pressed, the widget expands and shows 3 more cards.
+Shows TradeCard's vertically, giving an option to 'see more'.
+Initially shows 3 TradeCards. After "SEE MORE" is pressed, the widget expands and shows 3 more cards.
 */
 
-class VerticalInfoDisplay extends StatefulWidget {
+class TradeColumn extends StatefulWidget {
   //todo: stop the collapse from immediately erasing the contents.
   double width;
-  double height;
   String title;
   String subtitle;
 
-  VerticalInfoDisplay({this.height, this.width, this.title, this.subtitle});
+  TradeColumn({ this.width, this.title, this.subtitle});
 
   @override
-  _VerticalInfoDisplayState createState() =>
-      _VerticalInfoDisplayState(width, height, title, subtitle);
+  _TradeColumnState createState() =>
+      _TradeColumnState(width, title, subtitle);
 }
 
-class _VerticalInfoDisplayState extends State<VerticalInfoDisplay>
+class _TradeColumnState extends State<TradeColumn>
     with TickerProviderStateMixin {
   double width;
   double height;
   double expandedHeight;
 
-  _VerticalInfoDisplayState(
-      double width, double height, String title, String subtitle) {
+  _TradeColumnState(
+      double width, String title, String subtitle) {
     this.width = width;
     this.height = width * 19 / 20;
     this.title = title;
@@ -97,12 +96,12 @@ class _VerticalInfoDisplayState extends State<VerticalInfoDisplay>
       Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 8),
-          child: InfoCard(
+          child: TradeCard(
             company: "Apple",
             companyName: "Apple Incorporated",
-            type: "Put",
-            size: "5.2M",
-            time: "6/13/2019 8:31PM",
+            orderType: "Put",
+            orderSize: "5.2M",
+            orderTime: "6/13/2019 8:31PM",
             internalPadding: 18,
             width: width - 32,
           ),

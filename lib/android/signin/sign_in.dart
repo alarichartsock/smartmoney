@@ -67,8 +67,8 @@ class _SignInState extends State<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   StyledContainer(
-                    verticalPadding: 16.0,
-                    horizontalPadding: 16.0,
+                    verticalInternalPadding: 16.0,
+                    horizontalInternalPadding: 16.0,
                     width: _containerWidth,
                     height: _containerWidth - (_margin  * 2.5),
                       child: Column(

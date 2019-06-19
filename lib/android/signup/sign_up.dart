@@ -65,8 +65,8 @@ class _SignUpState extends State<SignUp> {
             child: StyledContainer(
               width: _containerWidth,
               height: _containerHeight,
-              horizontalPadding: 16.0,
-              verticalPadding: 16.0,
+              horizontalInternalPadding: 16.0,
+              verticalInternalPadding: 16.0,
                 child: Column(
                       children: <Widget>[
                         Text("Let's get started.",

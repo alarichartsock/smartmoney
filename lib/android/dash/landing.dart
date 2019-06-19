@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/industry_card.dart';
+import 'package:smartmoney/android/components/industry_row.dart';
 
 import '../../logic/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/styled_container.dart';
-import '../components/info_card.dart';
-import '../components/vertical_info_display.dart';
-import '../components/old_animated_card.dart';
+import '../components/trade_card.dart';
+import '../components/trade_column.dart';
 
 class Landing extends StatefulWidget {
   @override
@@ -74,17 +74,14 @@ class _LandingState extends State<Landing> {
         body: ListView(
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(18.0),
+              padding: EdgeInsets.only(top: 8.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                      IndustryCard(
-                        size: 29/100 * _screenWidth,
-                        padding: 18.0,
-                        industryName: "Robotics",
-                        icon: Icon(Icons.receipt),
-                        isGreen: true,
-                        iconSize: 21/250 * _screenWidth,
-                      ),
+                  IndustryRow(
+                    width: _screenWidth,
+                    height: _screenWidth * 11/20,
+                  )
                 ],
               ),
             ),

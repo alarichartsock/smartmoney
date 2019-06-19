@@ -31,8 +31,8 @@ class StyledHeader extends StatelessWidget {
         height: 9 /
             41 *
             _width, //todo: modify value to a less grizzly number to scale dimensions better
-        verticalPadding: _padding,
-        horizontalPadding: _padding,
+        verticalInternalPadding: _padding,
+        horizontalInternalPadding: _padding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
