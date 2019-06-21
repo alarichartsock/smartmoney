@@ -9,8 +9,9 @@ ThemeData lightTheme = ThemeData(
   primaryColorDark: Color(0xFF676767),//#676767
   backgroundColor: Color(0xFFE6EAEF), //#e6eaef
   dividerColor: Color(0xFFBEC0C0), //#BEC0C0
+  splashColor: Color(0xFF8D8D8D), //#8d8d8d
   canvasColor: Color(0xFFFFFFFF), //#ffffff
-  primaryColor: Color(0xFF00D594), //#00d594
+  primaryColor: Color(0xFF21CE99), //#21ce99
   accentColor: Color(0xFFF45531), //#f45531
   textTheme: TextTheme(
     headline: TextStyle( //h2, unused

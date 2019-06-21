@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 
-import '../components/styled_text_field.dart';
+import '.././components/styled_text_field.dart';
 import '../components/styled_container.dart';
 
-import '../../logic/themebloc.dart';
+import '../././logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /*

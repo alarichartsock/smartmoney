@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'dart:async';
 
-import '../theme/darkTheme.dart';
-import '../theme/lightTheme.dart';
+import './darkTheme.dart';
+import './lightTheme.dart';
 
 enum ThemeEvent { lightEvent, darkEvent, switchEvent }
 

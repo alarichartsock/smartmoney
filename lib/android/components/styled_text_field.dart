@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../logic/themebloc.dart';
+import '.././logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StyledTextField extends StatefulWidget {

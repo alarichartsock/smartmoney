@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/themebloc.dart';
+import '.././logic/theme/themebloc.dart';
 import '../components/styled_container.dart';
 
 /*

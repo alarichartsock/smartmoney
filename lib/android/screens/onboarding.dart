@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 
-import '.././logic/themebloc.dart';
-import './components/styled_container.dart';
+import '.././logic/theme/themebloc.dart';
+import '../components/styled_container.dart';
 
 /*
 Align our 3 OnboardingPages and one PromptPage in a Pageview, recieve when a user taps next and turn the page.

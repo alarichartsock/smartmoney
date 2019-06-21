@@ -3,7 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
-import '../../logic/themebloc.dart';
+import '.././logic/theme/themebloc.dart';
 import './industry_card.dart';
 
 class IndustryRow extends StatefulWidget {
@@ -77,7 +77,7 @@ class _IndustryRowState extends State<IndustryRow> {
       child: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(left:16.0, bottom: 8.0, top: 8.0),
+            padding: const EdgeInsets.only(left: 16.0, bottom: 8.0, top: 8.0),
             child: StyledContainer(
               width: width - 32,
               height: height,

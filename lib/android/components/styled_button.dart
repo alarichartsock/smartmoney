@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../logic/themebloc.dart';
+import '.././logic/theme/themebloc.dart';
 
 /*
  * Returns a Raised Button with the specifications that we want for Smartmoney.

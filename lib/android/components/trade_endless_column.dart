@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
 import 'package:smartmoney/android/components/trade_card.dart';
-import '../../logic/themebloc.dart';
+import '.././logic/theme/themebloc.dart';
 
 /*
 EndlessTradeColumn is a styled container with TradeCards arranged horizontally. 

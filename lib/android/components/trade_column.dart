@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/trade_card.dart';
-import '../../logic/themebloc.dart';
+import '.././logic/theme/themebloc.dart';
 
 /*
 Shows TradeCard's vertically, giving an option to 'see more'.
