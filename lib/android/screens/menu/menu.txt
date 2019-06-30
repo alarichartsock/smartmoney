@@ -1,0 +1,1 @@
+This folder contains all of the pages that open up from the menu.

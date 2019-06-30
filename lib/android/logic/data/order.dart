@@ -3,32 +3,48 @@
 * Order class has fields for time, volume, type, purchaser, and price.
 */
 class Order {
+
+  String _ticker; // Four letter ticker as listed on NYSE.
+  String _company; // Company name.
   String _time; // Time the trade was executed.
-  String
+  int
       _volume; // #Of contracts, or shares purchased // Specifies whether the trades are puts or calls if options, and buy or sells if stocks.
   String
       _purchaser; // Usually unknown, set to null if case. Set to insider if applicable.
-  int _price; // In $Million1.
+  double _price; // In $Million1.
   bool _alertUser; // If true then send push notification to user.
+  
 
   Order(
       {String time,
-      String volume,
+      int volume,
       String purchaser,
-      int price,
+      String ticker,
+      String company,
+      double price,
       bool alertUser}) {
     this._time = time;
     this._volume = volume;
-    this._purchaser = purchaser;
     this._price = price;
+    this._purchaser = purchaser;
     this._alertUser = alertUser;
+    this._ticker = ticker;
+    this._company = company;
+  }
+
+  String getCompany() {
+    return _company;
+  }
+
+  String getTicker() {
+    return _ticker;
   }
 
   String getTime() {
     return _time;
   }
 
-  String getVolume() {
+  int getVolume() {
     return _volume;
   }
 
@@ -36,7 +52,7 @@ class Order {
     return _purchaser;
   }
 
-  int getPrice() {
+  double getPrice() {
     return _price;
   }
 
@@ -56,10 +72,10 @@ class Order {
 class Option extends Order {
   bool _call; // True if the option order is a call.
   bool _buy; // True if this was a option buy order.
-  int _strikePrice;
+  double _strikePrice;
 
-  Option(String time, String volume, String purchaser, int price,
-      bool alertUser, bool call, bool buy, int strikePrice)
+  Option(String time, int volume, String purchaser, double price,
+      bool alertUser, bool call, bool buy, double strikePrice)
       : super(
             time: time,
             volume: volume,
@@ -79,13 +95,13 @@ class Option extends Order {
     return _buy;
   }
 
-  int getStrikePrice() {
+  double getStrikePrice() {
     return _strikePrice;
   }
 }
 
 class Stock extends Order {
-  Stock(String time, String volume, String purchaser, int price, bool alertUser,
+  Stock(String time, int volume, String purchaser, double price, bool alertUser,
       bool call, bool buy, int strikePrice)
       : super(time: time, volume: volume, purchaser: purchaser, price: price) {}
 }

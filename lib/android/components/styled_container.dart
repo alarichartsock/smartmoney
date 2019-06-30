@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
 import '.././logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +58,7 @@ class _StyledContainerState extends State<StyledContainer> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
+    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return Material(
       borderRadius: BorderRadius.all(const Radius.circular(8.0)),
@@ -70,14 +71,8 @@ class _StyledContainerState extends State<StyledContainer> {
               ),
           width: width,
           height: height,
-          child: Padding(
-            padding: EdgeInsets.only(
-                top: horizontalInternalPadding,
-                bottom: horizontalInternalPadding,
-                left: verticalInternalPadding,
-                right: verticalInternalPadding),
-            child: child,
-          )),
+          child: child,
+          ),
     );
   }
 }

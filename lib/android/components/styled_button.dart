@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import '.././logic/theme/themebloc.dart';
 
 /*
@@ -8,6 +9,7 @@ import '.././logic/theme/themebloc.dart';
  * We are using some artistic license with our buttons in that typical Material Design protocol says that when a button is being pressed,
  * it should increase elevation. I've reversed this, so that when the button is pressed its elevation goes down, much like a real button would.
  * In my (Alaric's) opinion, this makes more sense and looks better.
+ * onPressed, width, and height are required.
  */
 class StyledButton extends StatefulWidget {
 
@@ -49,7 +51,7 @@ class _StyledButtonState extends State<StyledButton> {
   @override
   Widget build(BuildContext context) {
 
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
+    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
 
     return RaisedButton(
       elevation: 8.0,

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import '.././logic/theme/themebloc.dart';
 
 /*
-The IndustryCard class contains paramrters relating to size and color.
-Displays a particular industry and on tap it should open a industryScreen.
-Todo: build material routing for industry screen.
+* The IndustryCard class contains parameters relating to size and color.
+* Displays a particular industry and on tap it should open a OrderCardColumnScreen.
+* Todo: build material routing for industry screen.
+* Also, change the color parameters to rely on the current price of the order that has been sent. 
+* This will require fetching the actual price of the stock and running it through the black & scholls formula for options pricing. 
+* Then, aggregating the data and getting the average of the specific industry.
 */
 class IndustryCard extends StatefulWidget {
   final double size;
@@ -46,7 +50,7 @@ class _IndustryCardState extends State<IndustryCard> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
+    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return Padding(
       padding: EdgeInsets.only(left: externalLeftPadding),
@@ -56,12 +60,12 @@ class _IndustryCardState extends State<IndustryCard> {
           elevation: 7.0,
           child: GestureDetector(
             onTap: () {
-              print("todo: use hero to open industryscreen or sum");
+              print("todo: use hero to open OrderCardColumnScreen or sum");
             },
             child: Container(
               decoration: BoxDecoration(
                   border: Border.all(
-                      color: Color(0xFFBEC0C0),
+                      color: themeData.thirdContrast,
                       width: 1.25,
                       style: BorderStyle.solid),
                   color: themeData.canvasColor,
@@ -74,7 +78,7 @@ class _IndustryCardState extends State<IndustryCard> {
                   children: <Widget>[
                     IconButton(
                       onPressed: () {
-                        print("todo: use hero to open industryscreen or sum");
+                        print("todo: use hero to open OrderCardColumnScreen or sum");
                       },
                       icon: icon,
                       iconSize: iconSize,
@@ -84,12 +88,7 @@ class _IndustryCardState extends State<IndustryCard> {
                     ),
                     Text(
                       "$industryName",
-                      style: TextStyle(
-                        color: themeData.primaryColorDark,
-                        fontSize: 19.0,
-                        fontWeight: FontWeight.w400,
-
-                      ),
+                      style: themeData.textTheme.subtitle1
                     )
                   ],
                 ),

@@ -2,61 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import '.././logic/theme/themebloc.dart';
 import '../components/styled_container.dart';
+import '../logic/data/order.dart';
 
-
-
-class TradeCard extends StatefulWidget {
-  final String company;
-  final String companyName;
-  final String orderType;
-  final String orderSize;
-  final String orderTime;
+/*
+* OrderCard takes an Order object and visualizes a couple of data points on a material design card.
+*/
+class OrderCard extends StatefulWidget {
+  final Order order;
   final double internalPadding;
   final double width;
   final double height;
 
-  TradeCard({
-    this.company,
-    this.companyName,
-    this.orderType,
-    this.orderSize,
-    this.orderTime,
+  OrderCard({
+    this.order,
     this.internalPadding,
     this.width,
     this.height,
   });
 
   @override
-  _TradeCardState createState() => _TradeCardState(
-        company: company,
-        companyName: companyName,
-        orderSize: orderSize,
-        orderTime: orderTime,
+  _OrderCardState createState() => _OrderCardState(
+        order: order,
         internalPadding: internalPadding,
         width: width,
         height: height,
-        orderType: orderType,
       );
 }
 
-class _TradeCardState extends State<TradeCard> {
-  final String company;
-  final String companyName;
-  final String orderSize;
-  final String orderType;
-  final String orderTime;
+class _OrderCardState extends State<OrderCard> {
+
   final double internalPadding;
   final double width;
   final double height;
+  final Order order;
 
-  _TradeCardState({
-    this.company,
-    this.companyName,
-    this.orderType,
-    this.orderSize,
-    this.orderTime,
+  _OrderCardState({
+    this.order,
     this.internalPadding,
     this.width,
     this.height,
@@ -64,7 +48,7 @@ class _TradeCardState extends State<TradeCard> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
+    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return StyledContainer(
       height: height,
@@ -85,13 +69,15 @@ class _TradeCardState extends State<TradeCard> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(bottom: 2.0),
-                    child: Text("$company", style: themeData.textTheme.display1),
+                    child:
+                        Text("$order.getCompany()", style: themeData.textTheme.h5),
                   ),
-                  Text("$companyName",
+                  Text("$order.getCompany()",
                       style: TextStyle(
-                          color: themeData.primaryColorDark,
+                          color: themeData.secondaryContrast,
                           fontSize: 16.0,
-                          fontWeight: FontWeight.w400)),
+                          fontWeight: FontWeight.w400)
+                          ),
                 ],
               ),
             ),
@@ -107,15 +93,15 @@ class _TradeCardState extends State<TradeCard> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.only(bottom: 2.0),
-                    child: Text("$orderSize " + "",
+                    child: Text(order.getVolume().toString() + "",
                         style: TextStyle(
                             color: themeData.primaryColor,
                             fontSize: 20.0,
                             fontWeight: FontWeight.w400)),
                   ),
                   Text(
-                    "$orderTime",
-                    style: themeData.textTheme.caption,
+                    "$order.getTime()",
+                    style: themeData.textTheme.subtitle1,
                   ),
                 ],
               ),

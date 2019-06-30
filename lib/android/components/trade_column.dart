@@ -2,39 +2,54 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartmoney/android/components/trade_card.dart';
+import 'package:smartmoney/android/components/order_card.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import '.././logic/theme/themebloc.dart';
+import '../logic/data/order.dart';
 
 /*
 Shows TradeCard's vertically, giving an option to 'see more'.
 Initially shows 3 TradeCards. After "SEE MORE" is pressed, the widget expands and shows 3 more cards.
 */
 
-class TradeColumn extends StatefulWidget {
+class OrderColumn extends StatefulWidget {
   //todo: stop the collapse from immediately erasing the contents.
   double width;
   String title;
   String subtitle;
+  List<Order> orders;
 
-  TradeColumn({ this.width, this.title, this.subtitle});
+  OrderColumn({ this.width, this.title, this.subtitle, this.orders});
 
   @override
-  _TradeColumnState createState() =>
-      _TradeColumnState(width, title, subtitle);
+  _OrderColumnState createState() =>
+      _OrderColumnState(width, title, subtitle, orders);
 }
 
-class _TradeColumnState extends State<TradeColumn>
+class _OrderColumnState extends State<OrderColumn>
     with TickerProviderStateMixin {
+
+  Order genericOrder = Order( //todo: couple OrderColumn for practical use.
+    time: "June 22 2019",
+    volume: 200000,
+    purchaser: "unknown",
+    ticker: "AAPL",
+    company: "Apple Incorporated",
+    price: 2,
+  );
+
   double width;
   double height;
   double expandedHeight;
+  List<Order> orders;
 
-  _TradeColumnState(
-      double width, String title, String subtitle) {
+  _OrderColumnState(
+      double width, String title, String subtitle, List<Order> orders) {
     this.width = width;
-    this.height = width * 19 / 20;
+    this.height = width * 19 / 20; // Applying aspect ratio.
     this.title = title;
     this.subtitle = subtitle;
+    this.orders = orders;
   }
 
   String title;
@@ -90,18 +105,17 @@ class _TradeColumnState extends State<TradeColumn>
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+
     List<Widget> hi = [
       Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 8),
-          child: TradeCard(
-            company: "Apple",
-            companyName: "Apple Incorporated",
-            orderType: "Put",
-            orderSize: "5.2M",
-            orderTime: "6/13/2019 8:31PM",
+          child: OrderCard(
+            order: genericOrder,
             internalPadding: 18,
             width: width - 32,
           ),
@@ -117,7 +131,7 @@ class _TradeColumnState extends State<TradeColumn>
       }
     }
 
-    ThemeData themeData =
+    CustomThemeData themeData =
         BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
 
     return Card(
@@ -143,14 +157,14 @@ class _TradeColumnState extends State<TradeColumn>
                     padding: const EdgeInsets.only(top: 16, left: 16.0),
                     child: Text(
                       "$title",
-                      style: themeData.textTheme.display2,
+                      style: themeData.textTheme.h5,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0, left: 16.0),
                     child: Text(
                       "$subtitle",
-                      style: themeData.textTheme.subtitle,
+                      style: themeData.textTheme.subtitle1,
                     ),
                   ),
                   Padding(

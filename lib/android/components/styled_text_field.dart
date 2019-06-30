@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
 import '.././logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,11 +9,11 @@ class StyledTextField extends StatefulWidget {
   final String labelText;
   final int maxLines;
 
-  StyledTextField(
+  StyledTextField({
     this.helperText,
     this.labelText,
     this.maxLines,
-  );
+  });
 
   @override
   _StyledTextFieldState createState() =>
@@ -52,34 +53,25 @@ class _StyledTextFieldState extends State<StyledTextField> {
         color: const Color(0xFFBEC0C0), //#f45531
       ));
 
+  //todo: change collor to green on submitted or
   @override
   Widget build(BuildContext context) {
-    bool isGreen = false; //todo: change border color to green onsubmitted.
+    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
-
-    OutlineInputBorder currentBorder = (isGreen) ? greenBorder : greyBorder;
+    String charCount = 0.toString();
 
     return TextField(
-      onSubmitted: (String s) {
-        print("submitted $s");
-        setState(() {
-          currentBorder = greenBorder;
-          isGreen = true;
-        });
-      },
       decoration: InputDecoration(
         fillColor: themeData.canvasColor,
         enabled: true,
-        labelStyle:
-            themeData.textTheme.subtitle,
-        helperStyle: TextStyle(),
+        labelStyle: themeData.textTheme.subtitle1,
+        helperStyle: themeData.textTheme.subtitle1,
         labelText: "$labelText",
-        helperText: (helperText == null) ? null : "$helperText",
+        //helperText: (helperText != null) ? helperText : "",
         focusedErrorBorder: redBorder,
         errorBorder: redBorder,
-        enabledBorder: currentBorder,
-        focusedBorder: currentBorder,
+        enabledBorder: greyBorder,
+        focusedBorder: greyBorder,
       ),
     );
   }

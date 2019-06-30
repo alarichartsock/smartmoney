@@ -2,30 +2,46 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
+import 'package:smartmoney/android/screens/signin/sign_in_screen.dart';
+import 'package:smartmoney/android/screens/signup/sign_up_screen.dart';
 
 import '.././logic/theme/themebloc.dart';
 import '../components/styled_container.dart';
 
 /*
-Align our 3 OnboardingPages and one PromptPage in a Pageview, recieve when a user taps next and turn the page.
+Onboarding aligns our 3 OnboardingPages & one PromptPage in a Pageview, and recieves when a user taps next and turn the page.
 */
 class Onboarding extends StatefulWidget {
+  final bool showImages;
+
+  Onboarding({this.showImages});
+
   @override
-  _OnboardingState createState() => _OnboardingState();
+  _OnboardingState createState() => _OnboardingState(showImages: showImages);
 }
 
 class _OnboardingState extends State<Onboarding>
     with SingleTickerProviderStateMixin {
-  PageController _pageController = new PageController();
-  int currentpage = 0;
+  final bool showImages;
 
-  void jumpForward() {
-    _pageController.nextPage(
-        curve: Curves.easeIn, duration: Duration(milliseconds: 200));
-  }
+  _OnboardingState({
+    this.showImages,
+  });
+
+  int currentpage = 0;
 
   @override
   Widget build(BuildContext context) {
+    PageController _pageController = PageController(
+      initialPage: (showImages == true) ? 0 : 3,
+    );
+
+    void jumpForward() {
+      _pageController.nextPage(
+          curve: Curves.easeIn, duration: Duration(milliseconds: 200));
+    }
+
     return PageView(
       controller: _pageController,
       children: <Widget>[
@@ -54,17 +70,17 @@ class _OnboardingState extends State<Onboarding>
   Returns an OnboardingPage with tile, description, and image fields. 
 */
 class OnboardingPage extends StatefulWidget {
-  String title;
-  String description;
-  int id;
-  VoidCallback nextPressed;
+  final String title;
+  final String description;
+  final int id;
+  final VoidCallback nextPressed;
 
   OnboardingPage(
     this.title,
     this.description,
     this.id,
     this.nextPressed,
-  ) {}
+  );
 
   @override
   _OnboardingPageState createState() => _OnboardingPageState(
@@ -91,7 +107,7 @@ class _OnboardingPageState extends State<OnboardingPage>
     double _containerWidth = _screenWidth - (_margin * 2);
     const double _padding = 8.0;
 
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context)
+    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context)
         .currentState; //storing as a variable to prevent long lines. cut down if not needed.
 
     return Scaffold(
@@ -99,7 +115,7 @@ class _OnboardingPageState extends State<OnboardingPage>
       backgroundColor: Colors.transparent,
       body: Container(
         //background
-        color: themeData.backgroundColor,
+        color: customThemeData.backgroundColor,
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -116,7 +132,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                 height: _containerWidth - _margin,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(const Radius.circular(8.0)),
-                    color: themeData.canvasColor),
+                    color: customThemeData.canvasColor),
               ),
             ),
             Padding(
@@ -131,7 +147,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.all(const Radius.circular(8.0)),
-                      color: themeData.canvasColor,
+                      color: customThemeData.canvasColor,
                     ),
                     child: Stack(
                         alignment: AlignmentDirectional.bottomCenter,
@@ -145,7 +161,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                     right: _margin),
                                 child: Text(
                                   "$title",
-                                  style: themeData.textTheme.display3,
+                                  style: customThemeData.textTheme.h4,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -156,7 +172,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                     right: _margin),
                                 child: Text(
                                   "$description",
-                                  style: themeData.textTheme.title,
+                                  style: customThemeData.textTheme.h6,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -179,7 +195,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: themeData.primaryColor,
+                                            color: customThemeData.primaryColor,
                                           ),
                                         ),
                                       ),
@@ -191,7 +207,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: themeData.primaryColor,
+                                            color: customThemeData.primaryColor,
                                           ),
                                         ),
                                       ),
@@ -203,7 +219,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: themeData.primaryColor,
+                                            color: customThemeData.primaryColor,
                                           ),
                                         ),
                                       ),
@@ -212,7 +228,8 @@ class _OnboardingPageState extends State<OnboardingPage>
                                             const EdgeInsets.only(left: 16.0),
                                         child: GestureDetector(
                                           child: Text("NEXT",
-                                              style: themeData.textTheme.button),
+                                              style: customThemeData
+                                                  .textTheme.button),
                                           onTap: () {
                                             nextPressed();
                                           },
@@ -251,7 +268,7 @@ class _PromptScreenState extends State<PromptScreen> {
     double _containerWidth = _screenWidth - (_margin * 2);
     const double _padding = 8.0;
 
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context)
+    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context)
         .currentState; //storing as a variable to prevent long lines. cut down if not needed.
 
     return Scaffold(
@@ -287,14 +304,14 @@ class _PromptScreenState extends State<PromptScreen> {
                         padding: const EdgeInsets.only(top: _margin),
                         child: Text(
                           "Smartmoney",
-                          style: themeData.textTheme.display3,
+                          style: customThemeData.textTheme.h4,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: _padding),
                         child: Text(
                           "Elevate your trading.",
-                          style: themeData.textTheme.title,
+                          style: customThemeData.textTheme.h6,
                         ),
                       ),
                       Padding(
@@ -303,29 +320,35 @@ class _PromptScreenState extends State<PromptScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Padding(
-                              padding: const EdgeInsets.only(left: _margin),
-                              child: StyledButton(
-                                text: "SIGN IN",
-                                width: 2 / 7 * _screenWidth,
-                                height: 48.0,
-                                onPressed: () {
-                                  print("I'm a placeholder!");
-                                  
-                                },
-                              )
-                            ),
+                                padding: const EdgeInsets.only(left: _margin),
+                                child: StyledButton(
+                                  text: "SIGN IN",
+                                  width: 2 / 7 * _screenWidth,
+                                  height: 48.0,
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => SignIn()
+                                      )
+                                    );
+
+                                  },
+                                )),
                             Padding(
-                              padding: const EdgeInsets.only(left: _padding * 3,right: _margin),
-                              child: StyledButton(
-                                text: "SIGN IN",
-                                width: 2 / 7 * _screenWidth,
-                                height: 48.0,
-                                onPressed: () {
-                                  print("I'm a placeholder!");
-                                  //BlocProvider.of<ThemeBloc>(context).dispatch(ThemeEvent.darkEvent);
-                                },
-                              )
-                            ),
+                                padding: const EdgeInsets.only(
+                                    left: _padding * 3, right: _margin),
+                                child: StyledButton(
+                                  text: "SIGN UP",
+                                  width: 2 / 7 * _screenWidth,
+                                  height: 48.0,
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => SignUp()
+                                      )
+                                    );
+                                  },
+                                )),
                           ],
                         ),
                       )

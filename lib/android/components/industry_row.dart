@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import '.././logic/theme/themebloc.dart';
 import './industry_card.dart';
 
@@ -68,7 +69,7 @@ class _IndustryRowState extends State<IndustryRow> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
+    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return Container(
       color: Colors.transparent,
@@ -96,7 +97,7 @@ class _IndustryRowState extends State<IndustryRow> {
                         padding: const EdgeInsets.only(left: 16.0, top: 16.0),
                         child: Text(
                           "By sector",
-                          style: themeData.textTheme.display1,
+                          style: themeData.textTheme.h5,
                         ),
                       ),
                       GestureDetector(
@@ -131,7 +132,7 @@ class _IndustryRowState extends State<IndustryRow> {
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Text(
                       "Trades on specific stocks and indexes.",
-                      style: themeData.textTheme.subtitle,
+                      style: themeData.textTheme.subtitle1,
                     ),
                   ),
                 ],

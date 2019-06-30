@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import 'dart:async';
 
 import './darkTheme.dart';
@@ -7,29 +8,13 @@ import './lightTheme.dart';
 
 enum ThemeEvent { lightEvent, darkEvent, switchEvent }
 
-// abstract class ThemeEvent {}
-
-// class LightEvent extends ThemeEvent {
-// } // Event signifying a theme change to light.
-
-// class DarkEvent extends ThemeEvent {
-// } // Event signifying a theme change to dark.
-
-// class SwitchEvent extends ThemeEvent {
-// } // Event signifying a change to the opposite of whatever theme there currently is.
-
-/*
-Our ThemeBloc takes in incoming ThemeEvents and returns a stream of ThemeData 
-(in this case, our predefined darkTheme and lightTheme in ../theme/darkTheme and ../theme/lightTheme respectively.).
-*/
-
-class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
+class ThemeBloc extends Bloc<ThemeEvent, CustomThemeData> {
 
   @override
-  ThemeData get initialState => lightTheme;
+  CustomThemeData get initialState => lightTheme;
 
   @override
-  Stream<ThemeData> mapEventToState(ThemeEvent event) async* {
+  Stream<CustomThemeData> mapEventToState(ThemeEvent event) async* {
     switch (event) {
       case ThemeEvent.lightEvent:
         yield lightTheme;
@@ -58,7 +43,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeData> {
   */
 
   @override
-  void onTransition(Transition<ThemeEvent, ThemeData> transition) {
+  void onTransition(Transition<ThemeEvent, CustomThemeData> transition) {
     print("Changing theme to" + '$currentState');
   }
 

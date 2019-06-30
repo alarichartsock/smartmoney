@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import '.././logic/theme/themebloc.dart';
 
 class MenuButton extends StatefulWidget {
@@ -47,14 +48,12 @@ class _MenuButtonState extends State<MenuButton> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
+
+    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return GestureDetector(
       onTap: () {
         onPressed();
-        setState(() {
-          selected = true;
-        });
       },
       child: Container(
         height: size,
@@ -67,13 +66,10 @@ class _MenuButtonState extends State<MenuButton> {
                 iconSize: 40.0,
                 icon: icon,
                 color: (selected == true)
-                    ? themeData.primaryColor
-                    : themeData.splashColor,
+                    ? customThemeData.primaryColor
+                    : customThemeData.secondaryContrast,
                 onPressed: () {
                   onPressed();
-                  setState(() {
-                    selected = true;
-                  });
                 },
               ),
             ),
@@ -82,12 +78,12 @@ class _MenuButtonState extends State<MenuButton> {
               key: _textKey,
               style: TextStyle(
                 fontSize: 18.0,
-                color: (selected == true) ? themeData.primaryColorDark : themeData.splashColor,
+                color: (selected == true) ? customThemeData.secondaryContrast : customThemeData.thirdContrast,
                 fontWeight: FontWeight.w700,
               ),
             ),
             Container(
-              color: (selected == true) ? themeData.primaryColor : Colors.transparent,
+              color: (selected == true) ? customThemeData.primaryColor : Colors.transparent,
               width: 45,
               height: 2,
             )

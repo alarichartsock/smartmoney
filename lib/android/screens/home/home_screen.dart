@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/industry_row.dart';
+import 'package:smartmoney/android/logic/theme/custom_theme.dart';
+import 'package:smartmoney/android/screens/menu/settings_screen.dart';
+import 'package:smartmoney/android/screens/onboarding_screen.dart';
+import 'package:smartmoney/android/screens/transitions/slide_right.dart';
+import '../menu/feedback_screen.dart' as feedback;
+import '../menu/help_screen.dart';
 
-import '../././logic/theme/themebloc.dart';
+import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '.././components/menu_button.dart';
+import '../../components/menu_button.dart';
 
-class Landing extends StatefulWidget {
+/*
+Home is the "main" screen that users will see.
+Includes a scaffold and TabBarView.
+*/
+
+class Home extends StatefulWidget {
   @override
-  _LandingState createState() => _LandingState();
+  _HomeState createState() => _HomeState();
 }
 
-class _LandingState extends State<Landing> with TickerProviderStateMixin {
-  
+class _HomeState extends State<Home> with TickerProviderStateMixin {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   @override
@@ -24,7 +34,8 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
     double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
     const double _padding = 8.0;
 
-    ThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
+    CustomThemeData customThemeData =
+        BlocProvider.of<ThemeBloc>(context).currentState;
 
     TabController topController = TabController(length: 2, vsync: this);
     TabController bottomController = TabController(length: 3, vsync: this);
@@ -34,13 +45,64 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
             bottomLeft: Radius.circular(8.0),
             bottomRight: Radius.circular(8.0)));
 
+    Future<void> _signoutDialogue() async {
+      return showDialog<void>(
+        context: context,
+        barrierDismissible: false, // user must tap button!
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              'Sign out?',
+              style: customThemeData.textTheme.h5,
+            ),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text(
+                    'Are you sure that you want to sign out?',
+                    style: customThemeData.textTheme.subtitle1,
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                textColor: customThemeData.primaryColor,
+                child: Text(
+                  'Cancel',
+                  style: customThemeData.textTheme.button,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              FlatButton(
+                textColor: customThemeData.thirdContrast,
+                child: Text('Sign out',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: customThemeData.thirdContrast,
+                        fontSize: 18.0)),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => Onboarding(showImages: false,)
+                    )
+                  );
+                  print(Navigator.of(context).toString());
+                },
+              )
+            ],
+          );
+        },
+      );
+    }
 
     return Container(
-      color: themeData.backgroundColor,
+      color: customThemeData.backgroundColor,
       width: double.infinity,
       height: double.infinity,
       child: DefaultTabController(
-        
         length: 2,
         child: Scaffold(
           key: _scaffoldKey,
@@ -54,7 +116,7 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
               child: Drawer(
                 child: Container(
                   decoration: BoxDecoration(
-                      color: themeData.canvasColor,
+                      color: customThemeData.canvasColor,
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8.0),
                           bottomRight: Radius.circular(8.0))),
@@ -71,14 +133,14 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                               IconButton(
                                 icon: Icon(Icons.arrow_left),
                                 iconSize: 24.0,
-                                color: themeData.primaryColor,
+                                color: customThemeData.primaryColor,
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
                               ),
                               Text(
                                 "BACK",
-                                style: themeData.textTheme.button,
+                                style: customThemeData.textTheme.button,
                               )
                             ],
                           ),
@@ -97,7 +159,7 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                                 icon: Icon(Icons.home),
                                 title: "HOME",
                                 onPressed: () {
-                                  print("opened");
+                                  Navigator.pop(context);
                                 },
                                 selected: true,
                               ),
@@ -106,7 +168,8 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                                 icon: Icon(Icons.settings),
                                 title: "SETTINGS",
                                 onPressed: () {
-                                  print("opened");
+                                  Navigator.push(context,
+                                      SlideRightRoute(widget: Settings()));
                                 },
                                 selected: false,
                               ),
@@ -115,7 +178,10 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                                 icon: Icon(Icons.feedback),
                                 title: "FEEDBACK",
                                 onPressed: () {
-                                  print("opened");
+                                  Navigator.push(
+                                      context,
+                                      SlideRightRoute(
+                                          widget: feedback.Feedback()));
                                 },
                                 selected: false,
                               ),
@@ -124,7 +190,10 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                                 icon: Icon(Icons.help),
                                 title: "HELP",
                                 onPressed: () {
-                                  print("opened");
+                                  Navigator.push(
+                                      context,
+                                      SlideRightRoute(
+                                          widget: Help()));
                                 },
                                 selected: false,
                               ),
@@ -133,7 +202,8 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                                 icon: Icon(Icons.exit_to_app),
                                 title: "SIGN OUT",
                                 onPressed: () {
-                                  print("opened");
+                                  print("signing out");
+                                  _signoutDialogue();
                                 },
                                 selected: false,
                               ),
@@ -152,13 +222,13 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
             child: AppBar(
                 centerTitle: true,
                 shape: appBarBorder,
-                backgroundColor: themeData.canvasColor,
-                title: Text("smartmoney", style: themeData.textTheme.display1),
+                backgroundColor: customThemeData.canvasColor,
+                title: Text("smartmoney", style: customThemeData.textTheme.h6),
                 actions: <Widget>[
                   IconButton(
                     iconSize: 24.0,
                     icon: Icon(Icons.search), //todo: add icon from icons8
-                    color: themeData.primaryColor,
+                    color: customThemeData.primaryColor,
                     onPressed: () {
                       print("todo: open search");
                       print("$_screenWidth");
@@ -168,7 +238,7 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                 leading: IconButton(
                   iconSize: 24.0,
                   icon: Icon(Icons.menu), //todo: add icon from icons8
-                  color: themeData.primaryColor,
+                  color: customThemeData.primaryColor,
                   onPressed: () {
                     _scaffoldKey.currentState.openDrawer();
                   },
@@ -179,19 +249,19 @@ class _LandingState extends State<Landing> with TickerProviderStateMixin {
                     children: <Widget>[
                       TabBar(
                         controller: topController,
-                        labelColor: themeData.primaryColorDark,
+                        labelColor: customThemeData.thirdContrast,
                         tabs: <Widget>[
                           Tab(
-                              text: "BROWSE",
-                            ),
+                            text: "BROWSE",
+                          ),
                           Tab(
-                              text: "WATCHLIST",
-                            ),
+                            text: "WATCHLIST",
+                          ),
                         ],
                       ),
                       TabBar(
                         controller: bottomController,
-                        labelColor: themeData.primaryColorDark,
+                        labelColor: customThemeData.thirdContrast,
                         tabs: <Widget>[
                           Tab(
                             text: "TRADES",
