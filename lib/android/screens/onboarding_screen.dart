@@ -232,6 +232,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                                   .textTheme.button),
                                           onTap: () {
                                             nextPressed();
+                                            print(Navigator.of(context).toString());
                                           },
                                         ),
                                       ),
@@ -326,12 +327,8 @@ class _PromptScreenState extends State<PromptScreen> {
                                   width: 2 / 7 * _screenWidth,
                                   height: 48.0,
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => SignIn()
-                                      )
-                                    );
-
+                                    print(Navigator.of(context).toString());
+                                    Navigator.of(context).pushNamed("/signin");
                                   },
                                 )),
                             Padding(
@@ -342,11 +339,8 @@ class _PromptScreenState extends State<PromptScreen> {
                                   width: 2 / 7 * _screenWidth,
                                   height: 48.0,
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => SignUp()
-                                      )
-                                    );
+                                    print(Navigator.of(context).toString());
+                                    Navigator.of(context).pushNamed('/signup');                          
                                   },
                                 )),
                           ],

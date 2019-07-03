@@ -70,9 +70,9 @@ class _OrderCardState extends State<OrderCard> {
                   Padding(
                     padding: EdgeInsets.only(bottom: 2.0),
                     child:
-                        Text("$order.getCompany()", style: themeData.textTheme.h5),
+                        Text(order.getTicker(), style: themeData.textTheme.h6),
                   ),
-                  Text("$order.getCompany()",
+                  Text(order.getCompany(),
                       style: TextStyle(
                           color: themeData.secondaryContrast,
                           fontSize: 16.0,
@@ -100,7 +100,7 @@ class _OrderCardState extends State<OrderCard> {
                             fontWeight: FontWeight.w400)),
                   ),
                   Text(
-                    "$order.getTime()",
+                    order.getTime(),
                     style: themeData.textTheme.subtitle1,
                   ),
                 ],

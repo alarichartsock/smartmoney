@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/industry_row.dart';
+import 'package:smartmoney/android/components/order_column.dart';
+import 'package:smartmoney/android/components/title_card.dart';
+import 'package:smartmoney/android/components/trade_endless_column.dart';
+import 'package:smartmoney/android/logic/data/order.dart';
 import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
 import 'package:smartmoney/android/screens/onboarding_screen.dart';
@@ -84,12 +88,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         color: customThemeData.thirdContrast,
                         fontSize: 18.0)),
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => Onboarding(showImages: false,)
-                    )
-                  );
                   print(Navigator.of(context).toString());
+                  Navigator.of(context).popUntil(ModalRoute.withName("/"));
+                  Navigator.of(context).pushNamed('/onboardingprompt');
                 },
               )
             ],
@@ -135,6 +136,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 iconSize: 24.0,
                                 color: customThemeData.primaryColor,
                                 onPressed: () {
+                                  print(Navigator.of(context).toString());
                                   Navigator.pop(context);
                                 },
                               ),
@@ -159,6 +161,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 icon: Icon(Icons.home),
                                 title: "HOME",
                                 onPressed: () {
+                                  print(Navigator.of(context).toString());
                                   Navigator.pop(context);
                                 },
                                 selected: true,
@@ -168,6 +171,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 icon: Icon(Icons.settings),
                                 title: "SETTINGS",
                                 onPressed: () {
+                                  print(Navigator.of(context).toString());
                                   Navigator.push(context,
                                       SlideRightRoute(widget: Settings()));
                                 },
@@ -178,6 +182,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 icon: Icon(Icons.feedback),
                                 title: "FEEDBACK",
                                 onPressed: () {
+                                  print(Navigator.of(context).toString());
                                   Navigator.push(
                                       context,
                                       SlideRightRoute(
@@ -190,10 +195,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 icon: Icon(Icons.help),
                                 title: "HELP",
                                 onPressed: () {
+                                  print(Navigator.of(context).toString());
                                   Navigator.push(
-                                      context,
-                                      SlideRightRoute(
-                                          widget: Help()));
+                                      context, SlideRightRoute(widget: Help()));
                                 },
                                 selected: false,
                               ),
@@ -202,6 +206,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 icon: Icon(Icons.exit_to_app),
                                 title: "SIGN OUT",
                                 onPressed: () {
+                                  print(Navigator.of(context).toString());
                                   print("signing out");
                                   _signoutDialogue();
                                 },
@@ -282,16 +287,42 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           extendBody: false,
           backgroundColor: Colors.transparent,
           body: ListView(
+            
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(top: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    IndustryRow(
-                      width: _screenWidth,
-                      height: _screenWidth * 11 / 20,
-                    )
+                    TitleCard(
+                      width: _containerWidth,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: OrderColumn(
+                        width: _containerWidth,
+                        title: "For you",
+                        subtitle: "Trades based on what you've saved.",
+                        orders: <Order>[],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: IndustryRow(
+                        width: _screenWidth,
+                        height: _screenWidth * 11 / 20,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: OrderColumn(
+                        width: _containerWidth,
+                        title: "Largest trades",
+                        subtitle: "Trades ordered on volume.",
+                        orders: <Order>[],
+                      ),
+                    ),
+                    EndlessOrderColumn()
                   ],
                 ),
               ),

@@ -7,11 +7,9 @@ import 'package:smartmoney/android/screens/menu/help_screen.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
 import 'package:smartmoney/android/screens/signup/sign_up_screen.dart';
 
-import 'android/screens/info/industry_screen.dart';
 import 'android/logic/theme/themebloc.dart'; //import global classes.
 import 'android/screens/home/home_screen.dart'; //import Android specific classes.
 import 'android/screens/onboarding_screen.dart';
-import 'android/logic/theme/darkTheme.dart';
 import 'android/screens/menu/feedback_screen.dart'
     as FeedBackScreen;
 import 'android/screens/signin/sign_in_screen.dart'; // Material has a class called Feedback, so importing as feedBackScreen
@@ -58,18 +56,23 @@ class SmartMoneyAndroid extends StatelessWidget {
           bloc: themeBloc,
           builder: (context, CustomThemeData theme) {
             return MaterialApp(
-              home: Onboarding(showImages: true),
+              //home: Onboarding(showImages: true),
+              home: Home(),
               theme: ThemeData(
                 accentColor: Color(0xFF21CE99), //#21ce99
               ),
               title: "Smartmoney Android",
+              initialRoute: '/',
               routes: <String, WidgetBuilder> {
-
-                //menu routes
                 '/settings': (BuildContext context) => Settings(),
                 '/feedback' : (BuildContext context) => FeedBackScreen.Feedback(),
                 '/help' :  (BuildContext context) => Help(),
-              }
+                '/onboarding' : (BuildContext context) => Onboarding(showImages: true),
+                '/onboardingprompt' : (BuildContext context) => Onboarding(showImages: false),
+                '/signin' : (BuildContext context) => SignIn(),
+                '/signup' : (BuildContext context) => SignUp(),
+                '/home' : (BuildContext context) => Home(),
+                }
             );
           },
         ));

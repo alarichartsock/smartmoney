@@ -57,6 +57,7 @@ class _SignUpState extends State<SignUp> {
                 icon: Icon(Icons.arrow_back),
                 color: customThemeData.primaryColor,
                 onPressed: () {
+                  print(Navigator.of(context).toString());
                   Navigator.of(context).pop();
                 }
               ),
@@ -113,11 +114,8 @@ class _SignUpState extends State<SignUp> {
                               height: 48.0,
                               width: _containerWidth - _margin,
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => Home()
-                                  )
-                                );
+                                print(Navigator.of(context).toString());
+                                Navigator.of(context).pushNamed('/home');
                               },
                             )
                           ),
@@ -136,6 +134,7 @@ class _SignUpState extends State<SignUp> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
+                                    print(Navigator.of(context).toString());
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => SignIn()

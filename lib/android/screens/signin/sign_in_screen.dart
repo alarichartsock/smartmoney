@@ -51,6 +51,7 @@ class _SignInState extends State<SignIn> {
                   icon: Icon(Icons.arrow_back),
                   color: customThemeData.primaryColor,
                   onPressed: () {
+                    print(Navigator.of(context).toString());
                     Navigator.of(context).pop();
                   }),
             ),
@@ -98,8 +99,9 @@ class _SignInState extends State<SignIn> {
                                 width: _containerWidth - _margin,
                                 height: 48.0,
                                 onPressed: () {
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                      builder: (context) => Home()));
+                                  print(Navigator.of(context).toString());
+                                  Navigator.of(context).popUntil(ModalRoute.withName('/'));
+                                  Navigator.of(context).pushNamed('/home');
                                 },
                               )),
                           Padding(
@@ -116,10 +118,9 @@ class _SignInState extends State<SignIn> {
                                         fontWeight: FontWeight.w400)),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => SignUp()
-                                      )
+                                    print(Navigator.of(context).toString());
+                                    Navigator.of(context).pushNamed(
+                                      "/signup"
                                     );
                                   },
                                   child: Text(" Sign Up",
