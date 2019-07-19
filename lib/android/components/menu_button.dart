@@ -78,13 +78,13 @@ class _MenuButtonState extends State<MenuButton> {
               key: _textKey,
               style: TextStyle(
                 fontSize: 18.0,
-                color: (selected == true) ? customThemeData.secondaryContrast : customThemeData.thirdContrast,
+                color: (selected == true) ? customThemeData.firstContrast : customThemeData.secondaryContrast,
                 fontWeight: FontWeight.w700,
               ),
             ),
             Container(
               color: (selected == true) ? customThemeData.primaryColor : Colors.transparent,
-              width: 45,
+              width: 50,
               height: 2,
             )
           ],

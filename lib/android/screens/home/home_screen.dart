@@ -6,7 +6,6 @@ import 'package:smartmoney/android/components/trade_endless_column.dart';
 import 'package:smartmoney/android/logic/data/order.dart';
 import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
-import 'package:smartmoney/android/screens/onboarding_screen.dart';
 import 'package:smartmoney/android/screens/transitions/slide_right.dart';
 import '../menu/feedback_screen.dart' as feedback;
 import '../menu/help_screen.dart';
@@ -55,6 +54,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
+            backgroundColor: customThemeData.backgroundColor,
             title: Text(
               'Sign out?',
               style: customThemeData.textTheme.h5,
@@ -254,7 +254,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     children: <Widget>[
                       TabBar(
                         controller: topController,
-                        labelColor: customThemeData.thirdContrast,
+                        labelColor: customThemeData.firstContrast,
                         tabs: <Widget>[
                           Tab(
                             text: "BROWSE",
@@ -266,7 +266,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       ),
                       TabBar(
                         controller: bottomController,
-                        labelColor: customThemeData.thirdContrast,
+                        labelColor: customThemeData.firstContrast,
                         tabs: <Widget>[
                           Tab(
                             text: "TRADES",
@@ -287,7 +287,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           extendBody: false,
           backgroundColor: Colors.transparent,
           body: ListView(
-            
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 16.0),
@@ -314,7 +313,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
+                      padding: const EdgeInsets.only(top: 8.0),
                       child: OrderColumn(
                         width: _containerWidth,
                         title: "Largest trades",

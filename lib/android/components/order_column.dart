@@ -147,7 +147,7 @@ class _OrderColumnState extends State<OrderColumn>
               color: themeData.canvasColor,
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           width: width,
-          height: height,
+          height: height + 8,
           child: Stack(
             children: <Widget>[
               Column(
@@ -176,7 +176,7 @@ class _OrderColumnState extends State<OrderColumn>
                 ],
               ),
               Positioned(
-                top: 292.0,
+                top: 300.0, //
                 left: 14.0,
                 child: Column(
                   children: <Widget>[

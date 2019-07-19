@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 import 'package:smartmoney/android/logic/theme/custom_theme.dart';
-import 'package:smartmoney/android/screens/signin/sign_in_screen.dart';
-import 'package:smartmoney/android/screens/signup/sign_up_screen.dart';
 
 import '.././logic/theme/themebloc.dart';
 import '../components/styled_container.dart';
@@ -193,9 +191,15 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           width: 16.0,
                                           height: 16.0,
                                           decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: customThemeData.primaryColor,
+                                              width: 3.0,
+                                              style: BorderStyle.solid
+                                            ),
                                             borderRadius: BorderRadius.all(
-                                                const Radius.circular(8.0)),
-                                            color: customThemeData.primaryColor,
+                                                const Radius.circular(8.0)
+                                                ),
+                                            color: (id >= 0) ? customThemeData.primaryColor : Colors.transparent,
                                           ),
                                         ),
                                       ),
@@ -205,9 +209,14 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           width: 16.0,
                                           height: 16.0,
                                           decoration: BoxDecoration(
+                                            border: Border.all(
+                                              width: 3.0,
+                                              style: BorderStyle.solid,
+                                              color: customThemeData.primaryColor
+                                            ),
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: customThemeData.primaryColor,
+                                            color: (id >= 1) ? customThemeData.primaryColor : Colors.transparent,
                                           ),
                                         ),
                                       ),
@@ -217,9 +226,14 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           width: 16.0,
                                           height: 16.0,
                                           decoration: BoxDecoration(
+                                            border: Border.all(
+                                              width: 3.0,
+                                              style: BorderStyle.solid,
+                                              color: customThemeData.primaryColor
+                                            ),
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: customThemeData.primaryColor,
+                                            color: (id >= 2) ? customThemeData.primaryColor : Colors.transparent,
                                           ),
                                         ),
                                       ),
@@ -261,9 +275,7 @@ class PromptScreen extends StatefulWidget {
 class _PromptScreenState extends State<PromptScreen> {
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context)
-        .size
-        .height; //fetching width and height values of device
+    double screenHeight = MediaQuery.of(context).size.height; //fetching width and height values of device
     double _screenWidth = MediaQuery.of(context).size.width;
     const double _margin = 16.0; //left and right margins
     double _containerWidth = _screenWidth - (_margin * 2);

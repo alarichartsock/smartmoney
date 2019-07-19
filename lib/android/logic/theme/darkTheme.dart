@@ -72,69 +72,69 @@ import 'custom_theme.dart';
 
 
 CustomThemeData darkTheme = CustomThemeData(
-  backgroundColor: Color(0xFFE6EAEF),
-  canvasColor: Color(0xFFFFFFFF),
-  primaryColor: Color(0xFF2DD8A4),
-  accentColor: Color(0xFFF45531),
-  firstContrast: Color(0xFF343436),
-  secondaryContrast: Color(0xFF676767),
-  thirdContrast: Color(0xFF707070),
-  fourthContrast: Color(0xFF8D8D8D),
+  primaryColor: Color(0xFF2DD8A4), //#2dd8a4
+  accentColor: Color(0xFFF45531), //#f45531
+  backgroundColor: Color(0xFF676767), //#676767
+  firstContrast: Color(0xFFFFFFFF), //#ffffff
+  secondaryContrast: Color(0xFFd4d4d4), //#D4D4D4
+  thirdContrast: Color(0xFFb1b1b1), //##B1B1B1
+  fourthContrast: Color(0xFFafafaf), //##AFAFAF
+  canvasColor: Color(0xFF8D8D8D), //#8d8d8d
   textTheme: CustomTextTheme(
     h1: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 96.0,
     ),
     h2: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 60.0,
     ),
     h3: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 48.0,
     ),
     h4: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 34.0,
     ),
     h5: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 24.0,
     ),
     h6: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 20.0,
     ),
     subtitle1: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 16.0,
     ),
     subtitle2: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 14.0,
     ),
     body1: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 16.0,
     ),
     body2: TextStyle(
-      color: Color(0xFF000000),
+      color: Color(0xFFFFFFFF), //#ffffff
       fontWeight: FontWeight.w400,
       fontSize: 14.0,
     ),
     button: TextStyle(
       color: Color(0xFF21CE99),
-      fontWeight: FontWeight.w400,
-      fontSize: 16.0,
+      fontWeight: FontWeight.w700,
+      fontSize: 18.0,
     ),
   )
 );
