@@ -78,11 +78,11 @@ class _FeedbackState extends State<Feedback> {
           padding: const EdgeInsets.all(18.0),
           child: StyledContainer(
             width: _containerWidth,
-            height: 400,
+            height: 450,
             child: Padding(
               padding: const EdgeInsets.only(left: 18.0, right: 18.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 18.0),
@@ -96,7 +96,7 @@ class _FeedbackState extends State<Feedback> {
                     child: Text(
                       "Any and all feedback is appreciated. Any issues, bugs reports, or feature suggestions will be read.",
                       style: customThemeData.textTheme.subtitle1,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.left,
                     ),
                   ),
                   Padding(
@@ -122,7 +122,7 @@ class _FeedbackState extends State<Feedback> {
                   Padding(
                     padding: const EdgeInsets.only(top: 14.0, bottom: 5.0),
                     child: TextField(
-                      maxLines: 2,
+                      maxLines: 3,
                       minLines: 1,
                       decoration: InputDecoration(
                         fillColor: customThemeData.canvasColor,

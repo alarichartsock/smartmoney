@@ -41,7 +41,7 @@ class _SettingsState extends State<Settings> {
               centerTitle: true,
               shape: appBarBorder,
               backgroundColor: customThemeData.canvasColor,
-              title: Text("yeet", style: customThemeData.textTheme.h6),
+              title: Text("Settings", style: customThemeData.textTheme.h6),
               leading: IconButton(
                 iconSize: 24.0,
                 icon: Icon(Icons.arrow_back), //todo: add icon from icons8
@@ -67,48 +67,29 @@ class _SettingsState extends State<Settings> {
                 ),
                 width: _containerWidth,
                 height: 230,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0, right: 18.0),
-                  child: Column(
+                child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 18.0),
-                        child: Text(
-                          "Settings",
-                          style: customThemeData.textTheme.h6,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Switch(
-                          value: switchValue,
-                          onChanged: (bool value) {
-                            setState(() {
-                              switchValue = value;
-                            });
-                          },
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: _containerWidth - (140), top: 16.0),
-                        child: StyledButton(
-                          height: 56.0,
-                          width: 76.0,
-                          text: "SEARCH",
-                          onPressed: () {
-                            print("hello?");
-                            setState(() {
-                              print("heller");
-                            });
-                          },
-                        ),
-                      )
+                      // Padding(
+                      //   padding: const EdgeInsets.only(top: 4.0),
+                      //   child: SwitchListTile(
+                      //     dense: true,
+                      //     title: Text("Dark theme", style: customThemeData.textTheme.subtitle1),
+                      //     value: switchValue,
+                      //     onChanged: (bool value) {
+                      //       (value == true)
+                      //             ? BlocProvider.of<ThemeBloc>(context)
+                      //                 .dispatch(ThemeEvent.darkEvent)
+                      //             : BlocProvider.of<ThemeBloc>(context)
+                      //                 .dispatch(ThemeEvent.lightEvent);
+                      //       setState(() {
+                      //         switchValue = value;
+                      //       });
+                      //     },
+                      //   ),
+                      // ),
                     ],
-                  ),
                 ),
               ),
             ),

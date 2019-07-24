@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import 'package:smartmoney/android/screens/menu/help_screen.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
-import 'package:smartmoney/android/screens/menu/test_switch.dart';
 import 'package:smartmoney/android/screens/signup/sign_up_screen.dart';
 
 import 'android/logic/theme/themebloc.dart'; //import global classes.
@@ -58,7 +57,7 @@ class SmartMoneyAndroid extends StatelessWidget {
           builder: (context, CustomThemeData theme) {
             return MaterialApp(
               //home: Onboarding(showImages: true),
-              home: Settings(),
+              home: Onboarding(showImages: true),
               theme: ThemeData(
                 accentColor: Color(0xFF21CE99), //#21ce99
               ),

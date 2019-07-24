@@ -12,8 +12,6 @@ class TitleCard extends StatefulWidget {
     this.width,
   });
 
-
-
   @override
   _TitleCardState createState() => _TitleCardState(
     width: width

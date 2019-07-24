@@ -6,7 +6,6 @@ import 'package:smartmoney/android/components/trade_endless_column.dart';
 import 'package:smartmoney/android/logic/data/order.dart';
 import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
-import 'package:smartmoney/android/screens/transitions/slide_right.dart';
 import '../menu/feedback_screen.dart' as feedback;
 import '../menu/help_screen.dart';
 
@@ -14,6 +13,25 @@ import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/menu_button.dart';
+
+class SlideRightRoute extends PageRouteBuilder {
+  final Widget widget;
+  SlideRightRoute({this.widget})
+    : super(
+        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+          return widget;
+        },
+        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+          return new SlideTransition(
+            position: new Tween<Offset>(
+              begin: const Offset(-1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+           );
+         }
+      );
+}
 
 /*
 Home is the "main" screen that users will see.
@@ -26,6 +44,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
+
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   @override
@@ -332,3 +351,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     );
   }
 }
+
+ThemeData theme = ThemeData(
+  textTheme: TextTheme(
+    
+  )
+);
