@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././logic/theme/themebloc.dart';
 import '../components/styled_container.dart';
 
 /*
@@ -105,15 +103,13 @@ class _OnboardingPageState extends State<OnboardingPage>
     double _containerWidth = _screenWidth - (_margin * 2);
     const double _padding = 8.0;
 
-    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context)
-        .currentState; //storing as a variable to prevent long lines. cut down if not needed.
 
     return Scaffold(
       extendBody: false,
       backgroundColor: Colors.transparent,
       body: Container(
         //background
-        color: customThemeData.backgroundColor,
+        color: Theme.of(context).backgroundColor,
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -130,7 +126,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                 height: _containerWidth - _margin,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(const Radius.circular(8.0)),
-                    color: customThemeData.canvasColor),
+                    color: Theme.of(context).canvasColor),
               ),
             ),
             Padding(
@@ -145,7 +141,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                     decoration: BoxDecoration(
                       borderRadius:
                           BorderRadius.all(const Radius.circular(8.0)),
-                      color: customThemeData.canvasColor,
+                      color: Theme.of(context).canvasColor,
                     ),
                     child: Stack(
                         alignment: AlignmentDirectional.bottomCenter,
@@ -159,7 +155,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                     right: _margin),
                                 child: Text(
                                   "$title",
-                                  style: customThemeData.textTheme.h4,
+                                  style: Theme.of(context).textTheme.display2,
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -170,7 +166,10 @@ class _OnboardingPageState extends State<OnboardingPage>
                                     right: _margin),
                                 child: Text(
                                   "$description",
-                                  style: customThemeData.textTheme.h6,
+                                  style: TextStyle(
+                                    fontSize: 22.0,
+                                    color: Theme.of(context).cursorColor,
+                                  ),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -192,14 +191,14 @@ class _OnboardingPageState extends State<OnboardingPage>
                                           height: 16.0,
                                           decoration: BoxDecoration(
                                             border: Border.all(
-                                              color: customThemeData.primaryColor,
+                                              color: Theme.of(context).primaryColor,
                                               width: 3.0,
                                               style: BorderStyle.solid
                                             ),
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)
                                                 ),
-                                            color: (id >= 0) ? customThemeData.primaryColor : Colors.transparent,
+                                            color: (id >= 0) ? Theme.of(context).primaryColor : Colors.transparent,
                                           ),
                                         ),
                                       ),
@@ -212,11 +211,11 @@ class _OnboardingPageState extends State<OnboardingPage>
                                             border: Border.all(
                                               width: 3.0,
                                               style: BorderStyle.solid,
-                                              color: customThemeData.primaryColor
+                                              color: Theme.of(context).primaryColor
                                             ),
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: (id >= 1) ? customThemeData.primaryColor : Colors.transparent,
+                                            color: (id >= 1) ? Theme.of(context).primaryColor : Colors.transparent,
                                           ),
                                         ),
                                       ),
@@ -229,11 +228,11 @@ class _OnboardingPageState extends State<OnboardingPage>
                                             border: Border.all(
                                               width: 3.0,
                                               style: BorderStyle.solid,
-                                              color: customThemeData.primaryColor
+                                              color: Theme.of(context).primaryColor
                                             ),
                                             borderRadius: BorderRadius.all(
                                                 const Radius.circular(8.0)),
-                                            color: (id >= 2) ? customThemeData.primaryColor : Colors.transparent,
+                                            color: (id >= 2) ? Theme.of(context).primaryColor : Colors.transparent,
                                           ),
                                         ),
                                       ),
@@ -242,7 +241,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                                             const EdgeInsets.only(left: 16.0),
                                         child: GestureDetector(
                                           child: Text("NEXT",
-                                              style: customThemeData
+                                              style: Theme.of(context)
                                                   .textTheme.button),
                                           onTap: () {
                                             nextPressed();
@@ -281,15 +280,12 @@ class _PromptScreenState extends State<PromptScreen> {
     double _containerWidth = _screenWidth - (_margin * 2);
     const double _padding = 8.0;
 
-    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context)
-        .currentState; //storing as a variable to prevent long lines. cut down if not needed.
-
     return Scaffold(
       extendBody: false,
       backgroundColor: Colors.transparent,
       body: Container(
         //background
-        color: BlocProvider.of<ThemeBloc>(context).currentState.backgroundColor,
+        color: Theme.of(context).backgroundColor,
         width: double.infinity,
         height: double.infinity,
         child: Column(
@@ -317,14 +313,17 @@ class _PromptScreenState extends State<PromptScreen> {
                         padding: const EdgeInsets.only(top: _margin),
                         child: Text(
                           "Smartmoney",
-                          style: customThemeData.textTheme.h4,
+                          style: Theme.of(context).textTheme.display2,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: _padding),
                         child: Text(
                           "Elevate your trading.",
-                          style: customThemeData.textTheme.h6,
+                          style: TextStyle(
+                            color: Theme.of(context).cursorColor,
+                            fontSize: 24.0,
+                          ),
                         ),
                       ),
                       Padding(

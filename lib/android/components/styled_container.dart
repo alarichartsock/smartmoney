@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/styled_text_field.dart';
@@ -58,14 +56,13 @@ class _StyledContainerState extends State<StyledContainer> {
 
   @override
   Widget build(BuildContext context) {
-    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return Material(
       borderRadius: BorderRadius.all(const Radius.circular(8.0)),
       elevation: 5.0,
       child: Container(
           decoration: BoxDecoration(
-              color: themeData.canvasColor,
+              color: Theme.of(context).canvasColor,
               borderRadius: BorderRadius.all(Radius.circular(8.0)),
               border: (hasBorder == true) ? Border.all(color: Color(0xFFBEC0C0), width: 1.25, style: BorderStyle.solid) : null
               ),

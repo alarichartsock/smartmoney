@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
 import 'package:smartmoney/android/components/styled_text_field.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Feedback extends StatefulWidget {
@@ -15,7 +13,6 @@ class Feedback extends StatefulWidget {
 class _FeedbackState extends State<Feedback> {
   @override
   Widget build(BuildContext context) {
-    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     double _screenHeight = MediaQuery.of(context).size.height;
     double _screenWidth = MediaQuery.of(context).size.width;
@@ -49,7 +46,7 @@ class _FeedbackState extends State<Feedback> {
         ));
 
     return Container(
-      color: customThemeData.backgroundColor,
+      color: Theme.of(context).backgroundColor,
       width: double.infinity,
       height: double.infinity,
       child: Scaffold(
@@ -59,12 +56,12 @@ class _FeedbackState extends State<Feedback> {
           child: AppBar(
             centerTitle: true,
             shape: appBarBorder,
-            backgroundColor: customThemeData.canvasColor,
-            title: Text("smartmoney", style: customThemeData.textTheme.h6),
+            backgroundColor: Theme.of(context).canvasColor,
+            title: Text("smartmoney", style: Theme.of(context).textTheme.display4),
             leading: IconButton(
               iconSize: 24.0,
               icon: Icon(Icons.arrow_back), //todo: add icon from icons8
-              color: customThemeData.primaryColor,
+              color: Theme.of(context).primaryColor,
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -88,14 +85,14 @@ class _FeedbackState extends State<Feedback> {
                     padding: const EdgeInsets.only(top: 18.0),
                     child: Text(
                       "Send Feedback",
-                      style: customThemeData.textTheme.h5,
+                      style: Theme.of(context).textTheme.display3,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
                       "Any and all feedback is appreciated. Any issues, bugs reports, or feature suggestions will be read.",
-                      style: customThemeData.textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.subtitle,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -106,10 +103,10 @@ class _FeedbackState extends State<Feedback> {
                       maxLines: 1,
                       minLines: 1,
                       decoration: InputDecoration(
-                        fillColor: customThemeData.canvasColor,
+                        fillColor: Theme.of(context).canvasColor,
                         enabled: true,
-                        labelStyle: customThemeData.textTheme.subtitle1,
-                        helperStyle: customThemeData.textTheme.subtitle1,
+                        labelStyle: Theme.of(context).textTheme.subtitle,
+                        helperStyle: Theme.of(context).textTheme.subtitle,
                         labelText: "Title",
                         helperText: "Briefly descirbe the issue/suggestion.",
                         focusedErrorBorder: redBorder,
@@ -125,10 +122,10 @@ class _FeedbackState extends State<Feedback> {
                       maxLines: 3,
                       minLines: 1,
                       decoration: InputDecoration(
-                        fillColor: customThemeData.canvasColor,
+                        fillColor: Theme.of(context).canvasColor,
                         enabled: true,
-                        labelStyle: customThemeData.textTheme.subtitle1,
-                        helperStyle: customThemeData.textTheme.subtitle1,
+                        labelStyle: Theme.of(context).textTheme.subtitle,
+                        helperStyle: Theme.of(context).textTheme.subtitle,
                         labelText: "Description",
                         helperText: "Describe the issue in detail.",
                         focusedErrorBorder: redBorder,

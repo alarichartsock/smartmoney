@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
-import '.././logic/theme/themebloc.dart';
 
 /*
  * Returns a Raised Button with the specifications that we want for Smartmoney.
@@ -41,8 +39,6 @@ class _StyledButtonState extends State<StyledButton> {
 
   @override
   Widget build(BuildContext context) {
-    CustomThemeData themeData =
-        BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
 
     return RaisedButton(
       elevation: 8.0,
@@ -50,7 +46,7 @@ class _StyledButtonState extends State<StyledButton> {
       shape: new RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(30.0)),
       onPressed: onPressed,
-      color: themeData.primaryColor,
+      color: Theme.of(context).primaryColor,
       child: Container(
         width: width,
         height: height,

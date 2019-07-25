@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StyledTextField extends StatefulWidget {
@@ -56,16 +54,14 @@ class _StyledTextFieldState extends State<StyledTextField> {
   //todo: change collor to green on submitted or
   @override
   Widget build(BuildContext context) {
-    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     String charCount = 0.toString();
 
     return TextField(
       decoration: InputDecoration(
-        fillColor: themeData.canvasColor,
+        fillColor: Theme.of(context).canvasColor,
         enabled: true,
-        labelStyle: themeData.textTheme.subtitle1,
-        helperStyle: themeData.textTheme.subtitle1,
+        labelStyle: Theme.of(context).textTheme.subtitle,
         labelText: "$labelText",
         //helperText: (helperText != null) ? helperText : "",
         focusedErrorBorder: redBorder,

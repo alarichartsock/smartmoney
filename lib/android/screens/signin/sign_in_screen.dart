@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import 'package:smartmoney/android/screens/home/home_screen.dart';
 import 'package:smartmoney/android/screens/signup/sign_up_screen.dart';
 
-import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:smartmoney/android/components/styled_button.dart';
@@ -27,9 +25,6 @@ class _SignInState extends State<SignIn> {
     double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
     const double _padding = 8.0;
 
-    //Storing theme as a variable to prevent long lines. This may or may not work. If theme doesn't work, change this first.
-    CustomThemeData customThemeData =
-        BlocProvider.of<ThemeBloc>(context).currentState;
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -37,19 +32,19 @@ class _SignInState extends State<SignIn> {
             bottomRight: Radius.circular(8.0)));
 
     return Container(
-      color: customThemeData.backgroundColor,
+      color: Theme.of(context).backgroundColor,
       width: double.infinity,
       height: double.infinity,
       child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 56.0),
             child: AppBar(
-              backgroundColor: customThemeData.canvasColor,
+              backgroundColor: Theme.of(context).canvasColor,
               shape: appBarBorder,
               leading: IconButton(
                   iconSize: 24.0,
                   icon: Icon(Icons.arrow_back),
-                  color: customThemeData.primaryColor,
+                  color: Theme.of(context).primaryColor,
                   onPressed: () {
                     print(Navigator.of(context).toString());
                     Navigator.of(context).pop();
@@ -75,14 +70,15 @@ class _SignInState extends State<SignIn> {
                     child: Padding(
                       padding: const EdgeInsets.all(_margin),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text("Welcome back.",
-                              style: customThemeData.textTheme.h5),
+                              style: Theme.of(context).textTheme.display3),
                           Padding(
                             padding: const EdgeInsets.only(top: 4.0),
                             child: Text("Enter your information to log in.",
-                                style: customThemeData.textTheme.subtitle1),
-                          ),
+                                style: Theme.of(context).textTheme.subtitle,
+                          )),
                           Padding(
                             padding: const EdgeInsets.only(top: _margin),
                             child: StyledTextField(
@@ -113,7 +109,7 @@ class _SignInState extends State<SignIn> {
                                 Text("Don't have an account?",
                                     style: TextStyle(
                                         color:
-                                            customThemeData.textTheme.h4.color,
+                                            Theme.of(context).textTheme.display2.color,
                                         fontSize: 18.0,
                                         fontWeight: FontWeight.w400)),
                                 GestureDetector(
@@ -124,7 +120,7 @@ class _SignInState extends State<SignIn> {
                                     );
                                   },
                                   child: Text(" Sign Up",
-                                      style: customThemeData.textTheme.button),
+                                      style: Theme.of(context).textTheme.button),
                                 ),
                               ],
                             ),

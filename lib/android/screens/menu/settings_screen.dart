@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smartmoney/android/logic/theme/customTheme.dart';
+import 'package:smartmoney/android/logic/theme/themes.dart';
+
 
 class Settings extends StatefulWidget {
   @override
@@ -16,8 +17,6 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
-    CustomThemeData customThemeData =
-        BlocProvider.of<ThemeBloc>(context).currentState;
 
     double _screenWidth = MediaQuery.of(context).size.width;
     const double _margin = 16.0;
@@ -30,7 +29,7 @@ class _SettingsState extends State<Settings> {
 
     return Scaffold(
       body: Container(
-        color: customThemeData.backgroundColor,
+        color: Theme.of(context).backgroundColor,
         width: double.infinity,
         height: double.infinity,
         child: Scaffold(
@@ -40,12 +39,12 @@ class _SettingsState extends State<Settings> {
             child: AppBar(
               centerTitle: true,
               shape: appBarBorder,
-              backgroundColor: customThemeData.canvasColor,
-              title: Text("Settings", style: customThemeData.textTheme.h6),
+              backgroundColor: Theme.of(context).canvasColor,
+              title: Text("Settings", style: Theme.of(context).textTheme.display4),
               leading: IconButton(
                 iconSize: 24.0,
                 icon: Icon(Icons.arrow_back), //todo: add icon from icons8
-                color: customThemeData.primaryColor,
+                color: Theme.of(context).primaryColor,
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -62,7 +61,7 @@ class _SettingsState extends State<Settings> {
               elevation: 5.0,
               child: Container(
                 decoration: BoxDecoration(
-                  color: customThemeData.canvasColor,
+                  color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                 ),
                 width: _containerWidth,
@@ -71,24 +70,18 @@ class _SettingsState extends State<Settings> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 4.0),
-                      //   child: SwitchListTile(
-                      //     dense: true,
-                      //     title: Text("Dark theme", style: customThemeData.textTheme.subtitle1),
-                      //     value: switchValue,
-                      //     onChanged: (bool value) {
-                      //       (value == true)
-                      //             ? BlocProvider.of<ThemeBloc>(context)
-                      //                 .dispatch(ThemeEvent.darkEvent)
-                      //             : BlocProvider.of<ThemeBloc>(context)
-                      //                 .dispatch(ThemeEvent.lightEvent);
-                      //       setState(() {
-                      //         switchValue = value;
-                      //       });
-                      //     },
-                      //   ),
-                      // ),
+                      Switch(
+
+                        activeColor: Theme.of(context).primaryColor,
+                        value: switchValue,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                           switchValue = newValue;
+                           CustomTheme.instanceOf(context).changeTheme(MyThemeKeys.DARK);
+                          });
+                          
+                        },
+                      )
                     ],
                 ),
               ),

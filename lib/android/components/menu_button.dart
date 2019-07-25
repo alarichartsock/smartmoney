@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
-import '.././logic/theme/themebloc.dart';
 
 class MenuButton extends StatefulWidget {
   double size;
@@ -49,8 +47,6 @@ class _MenuButtonState extends State<MenuButton> {
   @override
   Widget build(BuildContext context) {
 
-    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context).currentState;
-
     return GestureDetector(
       onTap: () {
         onPressed();
@@ -66,8 +62,8 @@ class _MenuButtonState extends State<MenuButton> {
                 iconSize: 40.0,
                 icon: icon,
                 color: (selected == true)
-                    ? customThemeData.primaryColor
-                    : customThemeData.secondaryContrast,
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).cursorColor,
                 onPressed: () {
                   onPressed();
                 },
@@ -78,12 +74,12 @@ class _MenuButtonState extends State<MenuButton> {
               key: _textKey,
               style: TextStyle(
                 fontSize: 18.0,
-                color: (selected == true) ? customThemeData.firstContrast : customThemeData.secondaryContrast,
+                color: (selected == true) ? Theme.of(context).dividerColor: Theme.of(context).cursorColor,
                 fontWeight: FontWeight.w700,
               ),
             ),
             Container(
-              color: (selected == true) ? customThemeData.primaryColor : Colors.transparent,
+              color: (selected == true) ? Theme.of(context).primaryColor : Colors.transparent,
               width: 50,
               height: 2,
             )

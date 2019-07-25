@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
 import 'package:smartmoney/android/components/styled_text_field.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Help extends StatefulWidget {
@@ -15,7 +13,6 @@ class Help extends StatefulWidget {
 class _HelpState extends State<Help> {
   @override
   Widget build(BuildContext context) {
-    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     double _screenWidth = MediaQuery.of(context).size.width;
     const double _margin = 16.0;
@@ -46,7 +43,7 @@ class _HelpState extends State<Help> {
         ));
 
     return Container(
-      color: customThemeData.backgroundColor,
+      color: Theme.of(context).backgroundColor,
       width: double.infinity,
       height: double.infinity,
       child: Scaffold(
@@ -56,12 +53,12 @@ class _HelpState extends State<Help> {
           child: AppBar(
             centerTitle: true,
             shape: appBarBorder,
-            backgroundColor: customThemeData.canvasColor,
-            title: Text("smartmoney", style: customThemeData.textTheme.h6),
+            backgroundColor: Theme.of(context).canvasColor,
+            title: Text("smartmoney", style: Theme.of(context).textTheme.display4),
             leading: IconButton(
               iconSize: 24.0,
               icon: Icon(Icons.arrow_back), //todo: add icon from icons8
-              color: customThemeData.primaryColor,
+              color: Theme.of(context).primaryColor,
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -86,7 +83,7 @@ class _HelpState extends State<Help> {
                     padding: const EdgeInsets.only(top: 18.0),
                     child: Text(
                       "Help",
-                      style: customThemeData.textTheme.h6,
+                      style: Theme.of(context).textTheme.display4,
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -94,7 +91,7 @@ class _HelpState extends State<Help> {
                     padding: const EdgeInsets.only(top: 4.0),
                     child: Text(
                       "Enter your question and recieve an answer.",
-                      style: customThemeData.textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.subtitle,
                     ),
                   ),
                   Padding(
@@ -104,10 +101,10 @@ class _HelpState extends State<Help> {
                       maxLines: 1,
                       minLines: 1,
                       decoration: InputDecoration(
-                        fillColor: customThemeData.canvasColor,
+                        fillColor: Theme.of(context).canvasColor,
                         enabled: true,
-                        labelStyle: customThemeData.textTheme.subtitle1,
-                        helperStyle: customThemeData.textTheme.subtitle1,
+                        labelStyle: Theme.of(context).textTheme.subtitle,
+                        helperStyle: Theme.of(context).textTheme.subtitle,
                         labelText: "Search",
                         //helperText: "Search your problem.",
                         focusedErrorBorder: redBorder,

@@ -4,12 +4,10 @@ import 'package:smartmoney/android/components/order_column.dart';
 import 'package:smartmoney/android/components/title_card.dart';
 import 'package:smartmoney/android/components/trade_endless_column.dart';
 import 'package:smartmoney/android/logic/data/order.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
 import '../menu/feedback_screen.dart' as feedback;
 import '../menu/help_screen.dart';
 
-import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/menu_button.dart';
@@ -17,20 +15,21 @@ import '../../components/menu_button.dart';
 class SlideRightRoute extends PageRouteBuilder {
   final Widget widget;
   SlideRightRoute({this.widget})
-    : super(
-        pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+      : super(pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
           return widget;
-        },
-        transitionsBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+        }, transitionsBuilder: (BuildContext context,
+            Animation<double> animation,
+            Animation<double> secondaryAnimation,
+            Widget child) {
           return new SlideTransition(
             position: new Tween<Offset>(
               begin: const Offset(-1.0, 0.0),
               end: Offset.zero,
             ).animate(animation),
             child: child,
-           );
-         }
-      );
+          );
+        });
 }
 
 /*
@@ -44,7 +43,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
-
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   @override
@@ -55,9 +53,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     double _containerWidth = _screenWidth - (_margin * 2);
     double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
     const double _padding = 8.0;
-
-    CustomThemeData customThemeData =
-        BlocProvider.of<ThemeBloc>(context).currentState;
 
     TabController topController = TabController(length: 2, vsync: this);
     TabController bottomController = TabController(length: 3, vsync: this);
@@ -73,38 +68,38 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
         barrierDismissible: false, // user must tap button!
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: customThemeData.backgroundColor,
+            backgroundColor: Theme.of(context).backgroundColor,
             title: Text(
               'Sign out?',
-              style: customThemeData.textTheme.h5,
+              style: Theme.of(context).textTheme.display3,
             ),
             content: SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
                   Text(
                     'Are you sure that you want to sign out?',
-                    style: customThemeData.textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.subtitle,
                   ),
                 ],
               ),
             ),
             actions: <Widget>[
               FlatButton(
-                textColor: customThemeData.primaryColor,
+                textColor: Theme.of(context).primaryColor,
                 child: Text(
                   'Cancel',
-                  style: customThemeData.textTheme.button,
+                  style: Theme.of(context).textTheme.button,
                 ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
               ),
               FlatButton(
-                textColor: customThemeData.thirdContrast,
+                textColor: Theme.of(context).focusColor,
                 child: Text('Sign out',
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        color: customThemeData.thirdContrast,
+                        color: Theme.of(context).cursorColor,
                         fontSize: 18.0)),
                 onPressed: () {
                   print(Navigator.of(context).toString());
@@ -119,7 +114,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     }
 
     return Container(
-      color: customThemeData.backgroundColor,
+      color: Theme.of(context).backgroundColor,
       width: double.infinity,
       height: double.infinity,
       child: DefaultTabController(
@@ -136,7 +131,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               child: Drawer(
                 child: Container(
                   decoration: BoxDecoration(
-                      color: customThemeData.canvasColor,
+                      color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(8.0),
                           bottomRight: Radius.circular(8.0))),
@@ -153,7 +148,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               IconButton(
                                 icon: Icon(Icons.arrow_left),
                                 iconSize: 24.0,
-                                color: customThemeData.primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 onPressed: () {
                                   print(Navigator.of(context).toString());
                                   Navigator.pop(context);
@@ -161,7 +156,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               ),
                               Text(
                                 "BACK",
-                                style: customThemeData.textTheme.button,
+                                style: Theme.of(context).textTheme.button,
                               )
                             ],
                           ),
@@ -246,13 +241,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
             child: AppBar(
                 centerTitle: true,
                 shape: appBarBorder,
-                backgroundColor: customThemeData.canvasColor,
-                title: Text("smartmoney", style: customThemeData.textTheme.h6),
+                backgroundColor: Theme.of(context).canvasColor,
+                title: Text("smartmoney",
+                    style: Theme.of(context).textTheme.display4),
                 actions: <Widget>[
                   IconButton(
                     iconSize: 24.0,
                     icon: Icon(Icons.search), //todo: add icon from icons8
-                    color: customThemeData.primaryColor,
+                    color: Theme.of(context).primaryColor,
                     onPressed: () {
                       print("todo: open search");
                       print("$_screenWidth");
@@ -262,7 +258,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 leading: IconButton(
                   iconSize: 24.0,
                   icon: Icon(Icons.menu), //todo: add icon from icons8
-                  color: customThemeData.primaryColor,
+                  color: Theme.of(context).primaryColor,
                   onPressed: () {
                     _scaffoldKey.currentState.openDrawer();
                   },
@@ -272,8 +268,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   child: Column(
                     children: <Widget>[
                       TabBar(
+                        indicatorColor: Theme.of(context).primaryColor,
                         controller: topController,
-                        labelColor: customThemeData.firstContrast,
+                        labelColor: Theme.of(context).dividerColor,
                         tabs: <Widget>[
                           Tab(
                             text: "BROWSE",
@@ -285,7 +282,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       ),
                       TabBar(
                         controller: bottomController,
-                        labelColor: customThemeData.firstContrast,
+                        indicatorColor: Theme.of(context).primaryColor,
+                        labelColor: Theme.of(context).dividerColor,
                         tabs: <Widget>[
                           Tab(
                             text: "TRADES",
@@ -351,9 +349,3 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     );
   }
 }
-
-ThemeData theme = ThemeData(
-  textTheme: TextTheme(
-    
-  )
-);

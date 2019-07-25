@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
 import 'package:smartmoney/android/components/order_card.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
-import '.././logic/theme/themebloc.dart';
 
 /*
 EndlessOrderColumn is a styled container with TradeCards arranged horizontally. 
@@ -21,8 +19,6 @@ class _EndlessOrderColumnState extends State<EndlessOrderColumn> {
 
   @override
   Widget build(BuildContext context) {
-
-    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return StyledContainer(
       

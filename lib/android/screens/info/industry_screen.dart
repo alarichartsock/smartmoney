@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/industry_row.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/menu_button.dart';
@@ -26,7 +24,6 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
     double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
     const double _padding = 8.0;
 
-    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -34,7 +31,7 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
             bottomRight: Radius.circular(8.0)));
 
     return Container(
-        color: customThemeData.backgroundColor,
+        color: Theme.of(context).backgroundColor,
         width: double.infinity,
         height: double.infinity,
         child: Scaffold(
@@ -43,13 +40,13 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
               child: AppBar(
                 centerTitle: true,
                 shape: appBarBorder,
-                backgroundColor: customThemeData.canvasColor,
+                backgroundColor: Theme.of(context).canvasColor,
                 title: Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Column(
                     children: <Widget>[
-                      Text("Robotics", style: customThemeData.textTheme.h4),
-                      Text("122 stocks", style: customThemeData.textTheme.subtitle1),
+                      Text("Robotics", style: Theme.of(context).textTheme.display2),
+                      Text("122 stocks", style: Theme.of(context).textTheme.subtitle),
                     ],
                   ),
                 ),
@@ -58,7 +55,7 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
                     iconSize: 24.0,
                     icon:
                         Icon(Icons.remove_red_eye), //todo: add icon from icons8
-                    color: customThemeData.primaryColor,
+                    color: Theme.of(context).primaryColor,
                     onPressed: () {
                       print("todo: open search");
                       print("$_screenWidth");
@@ -67,7 +64,7 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
                   IconButton(
                     iconSize: 24.0,
                     icon: Icon(Icons.search), //todo: add icon from icons8
-                    color: customThemeData.primaryColor,
+                    color: Theme.of(context).primaryColor,
                     onPressed: () {
                       print("todo: open search");
                       print("$_screenWidth");
@@ -77,7 +74,7 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
                 leading: IconButton(
                   iconSize: 36.0,
                   icon: Icon(Icons.arrow_left), //todo: add icon from icons8
-                  color: customThemeData.primaryColor,
+                  color: Theme.of(context).primaryColor,
                   onPressed: () {
                     print("pressed.");
                   },
@@ -107,9 +104,9 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
                                     children: <Widget>[
                                       Padding(
                                         padding: const EdgeInsets.only(bottom: 6.0),
-                                        child: Text("Robotics", style: customThemeData.textTheme.h3,),
+                                        child: Text("Robotics", style: Theme.of(context).textTheme.display1,),
                                       ),
-                                      Text("View robotics related stocks", style: customThemeData.textTheme.subtitle1,),
+                                      Text("View robotics related stocks", style: Theme.of(context).textTheme.subtitle,),
                                     ],
                                   ),
                                 ),
@@ -117,7 +114,7 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
                                   padding: const EdgeInsets.only(top: 10.0, right: 16.0),
                                   child: IconButton(
                                     icon: Icon(Icons.settings),
-                                    color: customThemeData.primaryColor,
+                                    color: Theme.of(context).primaryColor,
                                     onPressed: () {
                                       print("pressed");
                                     },

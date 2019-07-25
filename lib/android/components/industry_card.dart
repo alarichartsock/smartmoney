@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
-import '.././logic/theme/themebloc.dart';
-
 /*
 * The IndustryCard class contains parameters relating to size and color.
 * Displays a particular industry and on tap it should open a OrderCardColumnScreen.
@@ -50,7 +46,6 @@ class _IndustryCardState extends State<IndustryCard> {
 
   @override
   Widget build(BuildContext context) {
-    CustomThemeData themeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return Padding(
       padding: EdgeInsets.only(left: externalLeftPadding),
@@ -65,10 +60,10 @@ class _IndustryCardState extends State<IndustryCard> {
             child: Container(
               decoration: BoxDecoration(
                   border: Border.all(
-                      color: themeData.thirdContrast,
+                      color: Theme.of(context).focusColor,
                       width: 1.25,
                       style: BorderStyle.solid),
-                  color: themeData.canvasColor,
+                  color: Theme.of(context).canvasColor,
                   borderRadius: BorderRadius.all(Radius.circular(8.0))),
               height: size,
               width: size,
@@ -83,12 +78,12 @@ class _IndustryCardState extends State<IndustryCard> {
                       icon: icon,
                       iconSize: iconSize,
                       color: (isGreen == true)
-                          ? themeData.primaryColor
-                          : themeData.accentColor,
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).accentColor,
                     ),
                     Text(
                       "$industryName",
-                      style: themeData.textTheme.subtitle1
+                      style: Theme.of(context).textTheme.subtitle
                     )
                   ],
                 ),

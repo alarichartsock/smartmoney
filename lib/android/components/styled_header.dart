@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
-import '.././logic/theme/themebloc.dart';
 import '../components/styled_container.dart';
 
 /*
@@ -24,8 +22,6 @@ class StyledHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CustomThemeData themeData =
-        BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
 
     return StyledContainer(
         width: _width,
@@ -40,11 +36,11 @@ class StyledHeader extends StatelessWidget {
           children: <Widget>[
             Text(
               "$_title",
-              style: themeData.textTheme.h5,
+              style: Theme.of(context).textTheme.display3,
             ),
             Padding(
               padding: EdgeInsets.only(top: _padding / 2),
-              child: Text("$_subtitle", style: themeData.textTheme.subtitle1),
+              child: Text("$_subtitle", style: Theme.of(context).textTheme.subtitle),
             ),
           ],
         ));

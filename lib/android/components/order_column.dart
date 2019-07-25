@@ -3,8 +3,6 @@ import 'dart:math' as math;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/order_card.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
-import '.././logic/theme/themebloc.dart';
 import '../logic/data/order.dart';
 
 /*
@@ -131,8 +129,6 @@ class _OrderColumnState extends State<OrderColumn>
       }
     }
 
-    CustomThemeData themeData =
-        BlocProvider.of<ThemeBloc>(context).currentState; //Fetching Theme data.
 
     return Card(
       margin: EdgeInsets.all(0.0),
@@ -144,7 +140,7 @@ class _OrderColumnState extends State<OrderColumn>
           curve: Curves.easeInOut,
           duration: Duration(milliseconds: 500),
           decoration: BoxDecoration(
-              color: themeData.canvasColor,
+              color: Theme.of(context).canvasColor,
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           width: width,
           height: height + 8,
@@ -157,14 +153,14 @@ class _OrderColumnState extends State<OrderColumn>
                     padding: const EdgeInsets.only(top: 16, left: 16.0),
                     child: Text(
                       "$title",
-                      style: themeData.textTheme.h5,
+                      style: Theme.of(context).textTheme.display3,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 4.0, left: 16.0),
                     child: Text(
                       "$subtitle",
-                      style: themeData.textTheme.subtitle1,
+                      style: Theme.of(context).textTheme.subtitle,
                     ),
                   ),
                   Padding(
@@ -193,7 +189,7 @@ class _OrderColumnState extends State<OrderColumn>
                     child: Container(
                       width: width - 16.0,
                       height: 50.0,
-                      color: themeData.canvasColor,
+                      color: Theme.of(context).canvasColor,
                       child: GestureDetector(
                         onTap: () {
                           print("should be opening");
@@ -204,7 +200,7 @@ class _OrderColumnState extends State<OrderColumn>
                           children: <Widget>[
                             Text(
                               "SEE MORE",
-                              style: themeData.textTheme.button,
+                              style: Theme.of(context).textTheme.button,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(
@@ -218,7 +214,7 @@ class _OrderColumnState extends State<OrderColumn>
                                       angle: _rotateController.value * math.pi,
                                       child: IconButton(
                                         icon: Icon(Icons.arrow_drop_down),
-                                        color: themeData.primaryColor,
+                                        color: Theme.of(context).primaryColor,
                                         iconSize: 40,
                                         onPressed: () {
                                           print("should be opening");

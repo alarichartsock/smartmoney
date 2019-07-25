@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/industry_row.dart';
-import 'package:smartmoney/android/logic/theme/custom_theme.dart';
 
-import '.././../logic/theme/themebloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../components/menu_button.dart';
@@ -38,7 +36,6 @@ class _InfoScreenState extends State<InfoScreen> {
     double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
     const double _padding = 8.0;
 
-    CustomThemeData customThemeData = BlocProvider.of<ThemeBloc>(context).currentState;
 
     return Scaffold(
       
