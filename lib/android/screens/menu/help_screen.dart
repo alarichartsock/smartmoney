@@ -54,7 +54,10 @@ class _HelpState extends State<Help> {
             centerTitle: true,
             shape: appBarBorder,
             backgroundColor: Theme.of(context).canvasColor,
-            title: Text("smartmoney", style: Theme.of(context).textTheme.display4),
+            title: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text("smartmoney", style: Theme.of(context).textTheme.display4),
+            ),
             leading: IconButton(
               iconSize: 24.0,
               icon: Icon(Icons.arrow_back), //todo: add icon from icons8

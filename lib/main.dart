@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart'; //import libraries/"dependencies"
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/logic/theme/customTheme.dart';
 import 'package:smartmoney/android/logic/theme/themes.dart';
 import 'package:smartmoney/android/screens/menu/help_screen.dart';
@@ -50,7 +49,7 @@ class Smartmoney extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Onboarding(showImages: true,),
+        home: Onboarding(showImages: true),
         theme: CustomTheme.of(context),
         darkTheme: MyThemes.darkTheme,
         title: "Smartmoney Android",

@@ -143,7 +143,7 @@ class _OrderColumnState extends State<OrderColumn>
               color: Theme.of(context).canvasColor,
               borderRadius: BorderRadius.all(Radius.circular(8.0))),
           width: width,
-          height: height + 8,
+          height: height + 16,
           child: Stack(
             children: <Widget>[
               Column(

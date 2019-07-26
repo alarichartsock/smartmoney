@@ -66,7 +66,7 @@ class _SignInState extends State<SignIn> {
                 children: <Widget>[
                   StyledContainer(
                     width: _containerWidth,
-                    height: _containerWidth - (_margin * 2.0),
+                    //height: _containerWidth - (_margin * 2.0),
                     child: Padding(
                       padding: const EdgeInsets.all(_margin),
                       child: Column(

@@ -8,11 +8,27 @@ import 'package:smartmoney/android/logic/theme/themes.dart';
 
 
 class Settings extends StatefulWidget {
+
+  bool darkThemeOn;
+
+  Settings({ 
+    this.darkThemeOn
+  });
+
   @override
-  _SettingsState createState() => _SettingsState();
+  _SettingsState createState() => _SettingsState(
+    darkThemeOn: darkThemeOn
+  );
 }
 
 class _SettingsState extends State<Settings> {
+
+  _SettingsState({
+    this.darkThemeOn
+  });
+
+  bool darkThemeOn;
+
   bool switchValue = false;
 
   @override
@@ -40,7 +56,10 @@ class _SettingsState extends State<Settings> {
               centerTitle: true,
               shape: appBarBorder,
               backgroundColor: Theme.of(context).canvasColor,
-              title: Text("Settings", style: Theme.of(context).textTheme.display4),
+              title: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Text("Settings", style: Theme.of(context).textTheme.display4),
+              ),
               leading: IconButton(
                 iconSize: 24.0,
                 icon: Icon(Icons.arrow_back), //todo: add icon from icons8
@@ -70,14 +89,16 @@ class _SettingsState extends State<Settings> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Switch(
-
+                      SwitchListTile(
+                        title: Text("Dark mode"),
                         activeColor: Theme.of(context).primaryColor,
                         value: switchValue,
                         onChanged: (bool newValue) {
                           setState(() {
                            switchValue = newValue;
-                           CustomTheme.instanceOf(context).changeTheme(MyThemeKeys.DARK);
+                           (newValue == true) ?
+                           CustomTheme.instanceOf(context).changeTheme(MyThemeKeys.DARK) :
+                           CustomTheme.instanceOf(context).changeTheme(MyThemeKeys.LIGHT);
                           });
                           
                         },

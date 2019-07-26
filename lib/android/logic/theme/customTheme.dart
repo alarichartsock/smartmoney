@@ -28,6 +28,9 @@ class CustomTheme extends StatefulWidget {
 }
 
 class _CustomThemeState extends State<CustomTheme> {
+
+  bool darkThemeOn;
+
   ThemeData _theme;
 
   ThemeData get theme => _theme;
@@ -35,6 +38,8 @@ class _CustomThemeState extends State<CustomTheme> {
   @override
   void initState() {
     _theme = MyThemes.getThemeFromKey(widget.initialThemeKey);
+    (_theme == MyThemes.darkTheme) ? darkThemeOn = true : darkThemeOn = false;
+    print("$darkThemeOn");
     super.initState();
   }
 

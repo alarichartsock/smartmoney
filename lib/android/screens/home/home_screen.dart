@@ -8,8 +8,6 @@ import 'package:smartmoney/android/screens/menu/settings_screen.dart';
 import '../menu/feedback_screen.dart' as feedback;
 import '../menu/help_screen.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../components/menu_button.dart';
 
 class SlideRightRoute extends PageRouteBuilder {
@@ -163,15 +161,15 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: _screenHeight * 1 / 50),
+                        padding: EdgeInsets.only(top: _screenHeight * 1 / 100),
                         child: Container(
                           width: _screenWidth * 1 / 3,
-                          height: _screenHeight - (_screenHeight * 9 / 50),
+                          height: _screenHeight * 0.83,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               MenuButton(
-                                size: 100,
+                                size: 95,
                                 icon: Icon(Icons.home),
                                 title: "HOME",
                                 onPressed: () {
@@ -181,18 +179,20 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 selected: true,
                               ),
                               MenuButton(
-                                size: 100,
+                                size: 95,
                                 icon: Icon(Icons.settings),
                                 title: "SETTINGS",
                                 onPressed: () {
                                   print(Navigator.of(context).toString());
-                                  Navigator.push(context,
-                                      SlideRightRoute(widget: Settings()));
+                                  Navigator.push(
+                                      context,
+                                      SlideRightRoute(
+                                          widget: Settings(darkThemeOn: true)));
                                 },
                                 selected: false,
                               ),
                               MenuButton(
-                                size: 100,
+                                size: 95,
                                 icon: Icon(Icons.feedback),
                                 title: "FEEDBACK",
                                 onPressed: () {
@@ -205,7 +205,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 selected: false,
                               ),
                               MenuButton(
-                                size: 100,
+                                size: 95,
                                 icon: Icon(Icons.help),
                                 title: "HELP",
                                 onPressed: () {
@@ -216,7 +216,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                 selected: false,
                               ),
                               MenuButton(
-                                size: 100,
+                                size: 95,
                                 icon: Icon(Icons.exit_to_app),
                                 title: "SIGN OUT",
                                 onPressed: () {
@@ -242,8 +242,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 centerTitle: true,
                 shape: appBarBorder,
                 backgroundColor: Theme.of(context).canvasColor,
-                title: Text("smartmoney",
-                    style: Theme.of(context).textTheme.display4),
+                title: Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text("smartmoney",
+                      style: Theme.of(context).textTheme.display4),
+                ),
                 actions: <Widget>[
                   IconButton(
                     iconSize: 24.0,
@@ -306,7 +309,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           body: ListView(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: 16.0),
+                padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[

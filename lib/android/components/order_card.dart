@@ -76,7 +76,7 @@ class _OrderCardState extends State<OrderCard> {
                     Text(order.getCompany(),
                         style: TextStyle(
                             color: Theme.of(context).cursorColor,
-                            fontSize: 16.0,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w400)),
                   ],
                 ),

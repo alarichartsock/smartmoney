@@ -149,8 +149,8 @@ class _OnboardingPageState extends State<OnboardingPage>
                           Column(
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: _margin * 2,
+                                padding: EdgeInsets.only(
+                                    top: (2/48 * screenHeight),
                                     left: _margin,
                                     right: _margin),
                                 child: Text(
@@ -178,7 +178,7 @@ class _OnboardingPageState extends State<OnboardingPage>
                           Row(
                             children: <Widget>[
                               Padding(
-                                padding: EdgeInsets.only(top: 32, bottom: 40.0),
+                                padding: EdgeInsets.only(top: 2/45 * screenHeight, bottom: 1/24 * screenHeight),
                                 child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -253,7 +253,9 @@ class _OnboardingPageState extends State<OnboardingPage>
                               ),
                             ],
                           ),
-                        ])),
+                        ]
+                        )
+                        ),
               ),
             ),
           ],
@@ -327,7 +329,7 @@ class _PromptScreenState extends State<PromptScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 32),
+                        padding: EdgeInsets.only(top: 1/45 * screenHeight),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
