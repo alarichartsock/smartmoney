@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1006869464442",
+    "firebase_url": "https://smartmoney-7d260.firebaseio.com",
+    "project_id": "smartmoney-7d260",
+    "storage_bucket": "smartmoney-7d260.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1006869464442:android:c638ad967d7a5b77",
+        "android_client_info": {
+          "package_name": "com.example.smartmoney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1006869464442-c2psup13c46ofu46lh9j1bca3100glhi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartmoney",
+            "certificate_hash": "2a432adbd8805ec681797c42edf409037d105e17"
+          }
+        },
+        {
+          "client_id": "1006869464442-58gigebjenuc4e0tomcl3r5amgbe79gu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBL2wjX95gKoDXqIWHgqgTevWkx4zbF5HY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1006869464442-58gigebjenuc4e0tomcl3r5amgbe79gu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
