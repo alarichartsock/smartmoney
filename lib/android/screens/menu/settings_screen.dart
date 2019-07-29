@@ -58,7 +58,7 @@ class _SettingsState extends State<Settings> {
               backgroundColor: Theme.of(context).canvasColor,
               title: Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: Text("Settings", style: Theme.of(context).textTheme.display4),
+                child: Text("Settings", style: Theme.of(context).textTheme.title),
               ),
               leading: IconButton(
                 iconSize: 24.0,
@@ -90,7 +90,7 @@ class _SettingsState extends State<Settings> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       SwitchListTile(
-                        title: Text("Dark mode"),
+                        title: Text("Dark mode", style: Theme.of(context).textTheme.display4,),
                         activeColor: Theme.of(context).primaryColor,
                         value: switchValue,
                         onChanged: (bool newValue) {

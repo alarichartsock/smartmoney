@@ -86,7 +86,7 @@ class _HelpState extends State<Help> {
                     padding: const EdgeInsets.only(top: 18.0),
                     child: Text(
                       "Help",
-                      style: Theme.of(context).textTheme.display4,
+                      style: Theme.of(context).textTheme.title,
                       textAlign: TextAlign.center,
                     ),
                   ),

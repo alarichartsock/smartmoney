@@ -245,7 +245,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 title: Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text("smartmoney",
-                      style: Theme.of(context).textTheme.display4),
+                      style: Theme.of(context).textTheme.title),
                 ),
                 actions: <Widget>[
                   IconButton(
@@ -306,46 +306,54 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           resizeToAvoidBottomInset: false,
           extendBody: false,
           backgroundColor: Colors.transparent,
-          body: ListView(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    TitleCard(
-                      width: _containerWidth,
+          body: ScrollConfiguration(
+            behavior: ScrollBehavior(),
+            child: GlowingOverscrollIndicator(
+              //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
+              axisDirection: AxisDirection.down,
+              color: Theme.of(context).primaryColor,
+              child: ListView(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        TitleCard(
+                          width: _containerWidth,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: OrderColumn(
+                            width: _containerWidth,
+                            title: "For you",
+                            subtitle: "Trades based on what you've saved.",
+                            orders: <Order>[],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: IndustryRow(
+                            width: _screenWidth,
+                            height: _screenWidth * 11 / 20,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: OrderColumn(
+                            width: _containerWidth,
+                            title: "Largest trades",
+                            subtitle: "Trades ordered on volume.",
+                            orders: <Order>[],
+                          ),
+                        ),
+                        EndlessOrderColumn()
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: OrderColumn(
-                        width: _containerWidth,
-                        title: "For you",
-                        subtitle: "Trades based on what you've saved.",
-                        orders: <Order>[],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: IndustryRow(
-                        width: _screenWidth,
-                        height: _screenWidth * 11 / 20,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: OrderColumn(
-                        width: _containerWidth,
-                        title: "Largest trades",
-                        subtitle: "Trades ordered on volume.",
-                        orders: <Order>[],
-                      ),
-                    ),
-                    EndlessOrderColumn()
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

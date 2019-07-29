@@ -29,6 +29,11 @@ class MyThemes {
             color: Color(0xFF000000), //#000000
             fontWeight: FontWeight.w400,
             fontSize: 16.0),
+        title: TextStyle(
+            color: Color(0xFF000000), //#000000,
+            fontWeight: FontWeight.w400,
+            fontSize: 20.0
+        ),
         subtitle: TextStyle(
           color: Color(0xFF000000), //#000000
           fontWeight: FontWeight.w300,
@@ -75,6 +80,11 @@ class MyThemes {
             color: Color(0xFFFFFFFF), //#ffffff
             fontWeight: FontWeight.w400,
             fontSize: 16.0),
+        title: TextStyle(
+            color: Color(0xFFFFFFFF), //#ffffff
+            fontWeight: FontWeight.w400,
+            fontSize: 20.0
+        ),
         subtitle: TextStyle(
           color: Color(0xFFFFFFFF), //#ffffff
           fontWeight: FontWeight.w300,
