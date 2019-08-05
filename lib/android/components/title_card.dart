@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
 
 class TitleCard extends StatefulWidget {
   final double width;
+  final String title;
+  final String description;
 
   TitleCard({
     this.width,
+    this.title,
+    this.description
   });
 
   @override
-  _TitleCardState createState() => _TitleCardState(width: width);
+  _TitleCardState createState() => _TitleCardState(width: width, title: title, description: description);
 }
 
 class _TitleCardState extends State<TitleCard> {
   double width;
+  String title;
+  String description;
 
   _TitleCardState({
     this.width,
+    this.title,
+    this.description
   });
 
   @override
@@ -37,12 +46,15 @@ class _TitleCardState extends State<TitleCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "Browse trades",
+                  "$title",
                   style: Theme.of(context).textTheme.display3,
                 ),
-                Text(
-                  "View largest trades on the stock market.",
-                  style: Theme.of(context).textTheme.subtitle,
+                Padding(
+                  padding: const EdgeInsets.only(top: 4.0),
+                  child: Text(
+                    "$description",
+                    style: Theme.of(context).textTheme.subtitle,
+                  ),
                 ),
               ],
             ),

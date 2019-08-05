@@ -55,6 +55,8 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     TabController topController = TabController(length: 2, vsync: this);
     TabController bottomController = TabController(length: 3, vsync: this);
 
+    topController.addListener(() {print("helo");});
+
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(8.0),
@@ -292,7 +294,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                             text: "TRADES",
                           ),
                           Tab(
-                            text: "OPTIONS",
+                            text: "STOCKS",
                           ),
                           Tab(
                             text: "INSIDERS",
@@ -306,55 +308,186 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           resizeToAvoidBottomInset: false,
           extendBody: false,
           backgroundColor: Colors.transparent,
-          body: ScrollConfiguration(
-            behavior: ScrollBehavior(),
-            child: GlowingOverscrollIndicator(
-              //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
-              axisDirection: AxisDirection.down,
-              color: Theme.of(context).primaryColor,
-              child: ListView(
+          body: TabBarView(
+            controller: topController,
+            children: <Widget>[
+              TabBarView(
+                controller: bottomController,
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        TitleCard(
-                          width: _containerWidth,
+                ScrollConfiguration(
+                behavior: ScrollBehavior(),
+                child: GlowingOverscrollIndicator(
+                  //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
+                  axisDirection: AxisDirection.down,
+                  color: Theme.of(context).primaryColor,
+                  child: ListView(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            TitleCard(
+                              width: _containerWidth,
+                              title: "Browse Trades",
+                              description: "Browse the largest stock trades on Wall Street",
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16.0),
+                              child: OrderColumn(
+                                width: _containerWidth,
+                                title: "Trades For you",
+                                subtitle: "Trades based on what you've saved.",
+                                orders: <Order>[],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: IndustryRow(
+                                description: "Trades on industry specific stocks and indexes.",
+                                width: _screenWidth,
+                                height: _screenWidth * 11 / 20,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: OrderColumn(
+                                width: _containerWidth,
+                                title: "Largest Trades",
+                                subtitle: "Trades ordered on volume.",
+                                orders: <Order>[],
+                              ),
+                            ),
+                            EndlessOrderColumn()
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
-                          child: OrderColumn(
-                            width: _containerWidth,
-                            title: "For you",
-                            subtitle: "Trades based on what you've saved.",
-                            orders: <Order>[],
-                          ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+                ScrollConfiguration(
+                behavior: ScrollBehavior(),
+                child: GlowingOverscrollIndicator(
+                  //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
+                  axisDirection: AxisDirection.down,
+                  color: Theme.of(context).primaryColor,
+                  child: ListView(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            TitleCard(
+                              width: _containerWidth,
+                              title: "Browse Stocks",
+                              description: "View which stocks are getting attention from large investors",
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16.0),
+                              child: OrderColumn(
+                                width: _containerWidth,
+                                title: "Stocks for you",
+                                subtitle: "Stocks based on what you've saved.",
+                                orders: <Order>[],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: IndustryRow(
+                                description: "Trending stocks categorized by industry",
+                                width: _screenWidth,
+                                height: _screenWidth * 11 / 20,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: OrderColumn(
+                                width: _containerWidth,
+                                title: "Hottest Stocks",
+                                subtitle: "Stocks with lots of unusual investor activity.",
+                                orders: <Order>[],
+                              ),
+                            ),
+                            EndlessOrderColumn()
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: IndustryRow(
-                            width: _screenWidth,
-                            height: _screenWidth * 11 / 20,
-                          ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+                ScrollConfiguration(
+                behavior: ScrollBehavior(),
+                child: GlowingOverscrollIndicator(
+                  //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
+                  axisDirection: AxisDirection.down,
+                  color: Theme.of(context).primaryColor,
+                  child: ListView(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            TitleCard(
+                              width: _containerWidth,
+                              title: "Browse Insider Trades",
+                              description: "View legal insider trades filed with the SEC",
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16.0),
+                              child: OrderColumn(
+                                width: _containerWidth,
+                                title: "Insider Trades For you",
+                                subtitle: "Trades based on what you've saved.",
+                                orders: <Order>[],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: IndustryRow(
+                                description: "Insider trades ordered based on sector.",
+                                width: _screenWidth,
+                                height: _screenWidth * 11 / 20,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: OrderColumn(
+                                width: _containerWidth,
+                                title: "Largest Insider Transactions",
+                                subtitle: "Transactions ordered on volume.",
+                                orders: <Order>[],
+                              ),
+                            ),
+                            EndlessOrderColumn()
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: OrderColumn(
-                            width: _containerWidth,
-                            title: "Largest trades",
-                            subtitle: "Trades ordered on volume.",
-                            orders: <Order>[],
-                          ),
-                        ),
-                        EndlessOrderColumn()
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+                ],
+              ),
+              TabBarView(
+                controller: bottomController,
+                children: <Widget>[
+                  Center(
+                    child: IconButton(icon: Icon(Icons.timer,)), //todo: fill in
+                  ),
+                  Center(
+                    child: IconButton(icon: Icon(Icons.toc,)), //todo: fill in
+                  ),
+                  Center(
+                    child: IconButton(icon: Icon(Icons.train,)), //todo: fill in
                   ),
                 ],
               ),
-            ),
-          ),
+            ],
+          )
         ),
       ),
     );

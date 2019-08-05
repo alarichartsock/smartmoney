@@ -8,23 +8,26 @@ class IndustryRow extends StatefulWidget {
   List cardList = <IndustryCard>[];
   final double height;
   final double width;
+  final String description;
 
-  IndustryRow({this.cardList, this.height, this.width});
+  IndustryRow({this.cardList, this.height, this.width, this.description});
 
   @override
   _IndustryRowState createState() =>
-      _IndustryRowState(cardList: cardList, height: height, width: width);
+      _IndustryRowState(cardList: cardList, height: height, width: width, description: description);
 }
 
 class _IndustryRowState extends State<IndustryRow> {
   List cardList = <IndustryCard>[];
   double height;
   double width;
+  String description;
 
   _IndustryRowState({
     this.cardList,
     this.height,
     this.width,
+    this.description,
   });
 
   IndustryCard card1 = IndustryCard(
@@ -134,7 +137,7 @@ class _IndustryRowState extends State<IndustryRow> {
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0),
                       child: Text(
-                        "Trades on specific stocks and indexes.",
+                        "$description",
                         style: Theme.of(context).textTheme.subtitle,
                       ),
                     ),

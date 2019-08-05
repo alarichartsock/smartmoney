@@ -12,9 +12,6 @@ import 'android/screens/onboarding_screen.dart';
 import 'android/screens/menu/feedback_screen.dart' as FeedBackScreen; // Material has a class called Feedback, so importing as feedBackScreen
 import 'android/screens/signin/sign_in_screen.dart'; 
 
-
-
-
 bool runAndroid = true;
 
 void main() => runApp(
@@ -37,7 +34,7 @@ class SmartMoneyAndroid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: FeedBackScreen.Feedback(),
+        home: Home(),
         theme: CustomTheme.of(context),
         darkTheme: MyThemes.darkTheme,
         title: "Smartmoney Android",
