@@ -41,7 +41,7 @@ android {
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -59,12 +59,13 @@ flutter {
 
 dependencies {
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.google.firebase:firebase-core:17.0.1' // Firebase core
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1' // Firebase crashlytics
     implementation 'com.google.firebase:firebase-perf:18.0.1' // Firebase performance
-
+    //implementation 'com.firebaseui:firebase-ui-auth:4.3.1' 
+    compile 'com.android.support:support-v4:25.1.1'
 
 }
 

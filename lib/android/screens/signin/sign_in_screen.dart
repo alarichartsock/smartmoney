@@ -25,8 +25,8 @@ class _SignInState extends State<SignIn> {
       FirebaseUser user = (await FirebaseAuth.instance
               .signInWithEmailAndPassword(email: _email, password: _password))
           .user;
-      //print("{$user.iud}");
-      //print("$user");
+      print("{$user.iud}");
+      print("$user");
     } catch (e) {
       print(e.toString());
     }

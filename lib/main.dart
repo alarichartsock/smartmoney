@@ -34,7 +34,7 @@ class SmartMoneyAndroid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: FeedBackScreen.Feedback(),
+        home: SignIn(),
         theme: CustomTheme.of(context),
         darkTheme: MyThemes.darkTheme,
         title: "Smartmoney Android",
