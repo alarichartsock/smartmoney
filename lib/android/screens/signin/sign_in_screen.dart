@@ -1,6 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
-import '../../components/styled_text_field.dart';
 import '../../components/styled_container.dart';
 
 class SignIn extends StatefulWidget {
@@ -11,6 +11,28 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  String _email;
+  String _password;
+
+  bool _isLoading = false;
+
+  Future<void> signIn() async {
+    final formState = _formKey.currentState;
+
+    if(formState.validate()) {
+      try {
+      print("{$_email},{$_password}");
+      FirebaseUser user = (await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: _email, password: _password))
+          .user;
+      //print("{$user.iud}");
+      //print("$user");
+    } catch (e) {
+      print(e.toString());
+    }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //Fetching height and width values of device
@@ -18,9 +40,6 @@ class _SignInState extends State<SignIn> {
     //Left and right margins of the screen.
     const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
-
-    String _email;
-    String _password;
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -39,11 +58,24 @@ class _SignInState extends State<SignIn> {
           color: const Color(0xFFBEC0C0), //#f45531
         ));
 
+    Widget _showCircularProgress() {
+      if (_isLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else {
+        return Container(
+          height: 0.0,
+          width: 0.0,
+        );
+      }
+    }
+
     return Container(
-      color: Theme.of(context).backgroundColor,
-      width: double.infinity,
-      height: double.infinity,
-      child: Scaffold(
+        color: Theme.of(context).backgroundColor,
+        width: double.infinity,
+        height: double.infinity,
+        child: Scaffold(
           appBar: PreferredSize(
             preferredSize: Size(double.infinity, 56.0),
             child: AppBar(
@@ -101,6 +133,7 @@ class _SignInState extends State<SignIn> {
                                     }
                                   },
                                   onSaved: (String input) => _email = input,
+                                  onChanged: (String input) => _email = input,
                                   decoration: InputDecoration(
                                     fillColor: Theme.of(context).canvasColor,
                                     enabled: true,
@@ -117,6 +150,10 @@ class _SignInState extends State<SignIn> {
                             Padding(
                                 padding: const EdgeInsets.only(top: _margin),
                                 child: TextFormField(
+                                  onSaved: (String input) => _password = input,
+                                  onChanged: (String input) =>
+                                      _password = input,
+
                                   validator: (String input) {
                                     if (input.isEmpty) {
                                       return "please enter a password";
@@ -146,11 +183,11 @@ class _SignInState extends State<SignIn> {
                                   width: _containerWidth - _margin,
                                   height: 48.0,
                                   onPressed: () {
-                                    print(Navigator.of(context).toString());
-                                    Navigator.of(context)
-                                        .popUntil(ModalRoute.withName('/'));
-                                    Navigator.of(context).pushNamed('/home');
-                                    
+                                    signIn();
+                                    // print(Navigator.of(context).toString());
+                                    // Navigator.of(context)
+                                    //     .popUntil(ModalRoute.withName('/'));
+                                    // Navigator.of(context).pushNamed('/home');
                                   },
                                 )),
                             Padding(
@@ -188,7 +225,7 @@ class _SignInState extends State<SignIn> {
                 ],
               ),
             ),
-          )),
-    );
+          ),
+        ));
   }
 }
