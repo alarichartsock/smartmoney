@@ -49,8 +49,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     double _screenWidth = MediaQuery.of(context).size.width;
     const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
-    double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
-    const double _padding = 8.0;
 
     TabController topController = TabController(length: 2, vsync: this);
     TabController bottomController = TabController(length: 3, vsync: this);
@@ -255,8 +253,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     icon: Icon(Icons.search), //todo: add icon from icons8
                     color: Theme.of(context).primaryColor,
                     onPressed: () {
-                      print("todo: open search");
-                      print("$_screenWidth");
+                      Navigator.of(context).pushNamed('/search');
                     },
                   )
                 ],

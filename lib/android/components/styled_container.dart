@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../components/styled_text_field.dart';
-
 /*
 StyledMaterial returns a styled Container with a color of themeData.canvas, 
 a height & width of the height and width provided, and a elevation of 7.0.

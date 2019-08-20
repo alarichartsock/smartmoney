@@ -156,7 +156,7 @@ class _SignInState extends State<SignIn> {
 
                                   validator: (String input) {
                                     if (input.isEmpty) {
-                                      return "please enter a password";
+                                      return "Please enter a password";
                                     } else {
                                       return null;
                                     }

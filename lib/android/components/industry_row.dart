@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'package:smartmoney/android/components/styled_container.dart';
 import './industry_card.dart';
 
 class IndustryRow extends StatefulWidget {
