@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smartmoney/android/components/info_column.dart';
-import 'package:smartmoney/android/logic/data/order.dart';
-import '../../components/order_column.dart';
-import 'dart:math' as math;
+import 'package:smartmoney/android/components/stock_info_column.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 class StockScreen extends StatefulWidget {
   StockScreen({this.ticker});
@@ -15,15 +13,15 @@ class StockScreen extends StatefulWidget {
 
 class _StockScreenState extends State<StockScreen>
     with SingleTickerProviderStateMixin {
+
   _StockScreenState({this.ticker});
 
   String ticker;
 
   Animation<double> _rotateAnimation;
   AnimationController _rotateController;
-
   bool isOpen = false;
-  bool onWatchList = false;
+  bool onWatchList;
 
   double heightClosed = 250;
   double heightOpened = 300;
@@ -31,6 +29,19 @@ class _StockScreenState extends State<StockScreen>
 
   Icon watchlistIcon = Icon(Icons.remove_red_eye);
 
+  static String fulldescription = "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA.";
+  static String trimmedDescription = fulldescription.replaceRange(5, null, "");
+  static String currentDescription = trimmedDescription;
+
+  Future<String> getKey() async {
+    RemoteConfig remoteConfig = await RemoteConfig.instance;
+    await remoteConfig.fetch(expiration: Duration(hours: 1));
+    await remoteConfig.activateFetched();
+
+    String key = remoteConfig.getValue('key').asString();
+    print("$key");
+    return key;
+  }
 
   @override
   void initState() {
@@ -44,10 +55,9 @@ class _StockScreenState extends State<StockScreen>
     );
   }
 
-
-
   @override
   Widget build(BuildContext context) {
+    
     double _screenHeight = MediaQuery.of(context).size.height;
     double _screenWidth = MediaQuery.of(context).size.width;
     const double _margin = 16.0;
@@ -79,7 +89,7 @@ class _StockScreenState extends State<StockScreen>
         if (isOpen == false) {
           isOpen = true;
           setState(() {
-           currentHeight = heightOpened; 
+            currentHeight = heightOpened;
           });
         } else {
           isOpen = false;
@@ -120,6 +130,9 @@ class _StockScreenState extends State<StockScreen>
                   icon: watchlistIcon,
                   color: Theme.of(context).primaryColor,
                   onPressed: () {
+                    setState(() {
+                      getKey();
+                    });
                     if (onWatchList == false) {
                       setState(() {
                         onWatchList = true;
@@ -137,6 +150,7 @@ class _StockScreenState extends State<StockScreen>
             ),
           ),
           body: ScrollConfiguration(
+            behavior: ScrollBehavior(),
             child: GlowingOverscrollIndicator(
               axisDirection: AxisDirection.down,
               color: Theme.of(context).primaryColor,
@@ -161,7 +175,14 @@ class _StockScreenState extends State<StockScreen>
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 8.0),
                                 child: Text(
-                                  "By the numbers",
+                                  "Apple Incorporated",
+                                  style: Theme.of(context).textTheme.title,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  "\$42.81",
                                   style: Theme.of(context).textTheme.title,
                                 ),
                               ),
@@ -180,10 +201,83 @@ class _StockScreenState extends State<StockScreen>
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                     child: Material(
-                      elevation: 5.0,
+                        elevation: 5.0,
+                        borderRadius:
+                            BorderRadius.all(const Radius.circular(8.0)),
+                        child: StockInfoColumn(
+                          width: _screenWidth,
+                        )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Material(
                       borderRadius:
                           BorderRadius.all(const Radius.circular(8.0)),
-                      child: InfoColumn(width: _screenWidth,)
+                      elevation: 5.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).canvasColor,
+                            borderRadius:
+                                BorderRadius.all(const Radius.circular(8.0))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  "Earnings",
+                                  style: Theme.of(context).textTheme.title,
+                                ),
+                              ),
+                              //todo: add graph
+                              Container(
+                                color: Colors.red,
+                                width: _containerWidth,
+                                height: _containerWidth / 2,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                    child: Material(
+                      borderRadius:
+                          BorderRadius.all(const Radius.circular(8.0)),
+                      elevation: 5.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Theme.of(context).canvasColor,
+                            borderRadius:
+                                BorderRadius.all(const Radius.circular(8.0))),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  "About Apple Incorporated",
+                                  style: Theme.of(context).textTheme.title,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  "$currentDescription",
+                                  style: Theme.of(context).textTheme.title,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],

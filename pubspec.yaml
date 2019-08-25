@@ -23,6 +23,7 @@ dependencies:
   toast: ^0.1.5
   charts_flutter: ^0.6.0
   firebase_auth: ^0.14.0
+  firebase_remote_config: ^0.2.0+6
   
 
   # The following adds the Cupertino Icons font to your application.

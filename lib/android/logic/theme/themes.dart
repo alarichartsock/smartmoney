@@ -9,7 +9,7 @@ class MyThemes {
       canvasColor: Color(0xFFFFFFFF), //#ffffff
       backgroundColor: Color(0xFFE6EAEF), //#ffe6eaef
       dividerColor: Color(0xFF343436), //#343436 substitute for first contrast
-      cursorColor:Color(0xFF676767), //#676767 subtitute for secondary contrast
+      cursorColor: Color(0xFF676767), //#676767 subtitute for secondary contrast
       focusColor: Color(0xFF707070), //#707070 substitute for third contrast
       hintColor: Color(0xFF8D8D8D), //#8d8d8d substitute for fourth contrast
       textTheme: TextTheme(

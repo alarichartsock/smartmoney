@@ -121,7 +121,7 @@ class _OrderColumnState extends State<OrderColumn>
       ),
     ];
 
-    Widget addItems() {
+    Widget addOrder() {
       if (isOpen == true) {
         return hi[0];
       } else {
@@ -176,9 +176,9 @@ class _OrderColumnState extends State<OrderColumn>
                 left: 14.0,
                 child: Column(
                   children: <Widget>[
-                    addItems(),
-                    addItems(),
-                    addItems(),
+                    addOrder(),
+                    addOrder(),
+                    addOrder(),
                   ],
                 ),
               ),

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-class InfoColumn extends StatefulWidget {
+class OrderInfoColumn extends StatefulWidget {
   double width;
 
-  InfoColumn({this.width});
+  OrderInfoColumn({this.width});
 
   @override
-  _InfoColumnState createState() => _InfoColumnState(width: width);
+  _OrderInfoColumnState createState() => _OrderInfoColumnState(width: width);
 }
 
-class _InfoColumnState extends State<InfoColumn>
+class _OrderInfoColumnState extends State<OrderInfoColumn>
     with SingleTickerProviderStateMixin {
-  _InfoColumnState({this.width});
+  _OrderInfoColumnState({this.width});
 
   double width;
 
@@ -26,9 +26,9 @@ class _InfoColumnState extends State<InfoColumn>
   bool isOpen = false;
   bool onWatchList = false;
 
-  double heightClosed = 250;
-  double heightOpened = 300;
-  double currentHeight;
+  double heightClosed = 170;
+  double heightOpened = 270;
+  double currentHeight = 170;
 
   Icon watchlistIcon = Icon(Icons.remove_red_eye);
 
@@ -64,63 +64,140 @@ class _InfoColumnState extends State<InfoColumn>
         }
         if (isOpen == false) {
           isOpen = true;
-          setState(() {
-            currentHeight = heightOpened;
-          });
+          currentHeight = heightOpened;
         } else {
           isOpen = false;
-          setState(() {
-            currentHeight = heightClosed;
-          });
           currentHeight = heightClosed;
         }
       });
     }
 
-    Widget addItems() {
+    List<Widget> addItems() {
       if (isOpen == true) {
-        return Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
+        return [
+          Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                //color: Colors.red,
+                width: (width - 64) / 2,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Container(
-                      //color: Colors.red,
-                      width: (width - 64) / 2,
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Price: ",
-                            style: Theme.of(context).textTheme.display4,
-                          ),
-                          Text(
-                            "186.5",
-                            style: Theme.of(context).textTheme.display4,
-                          )
-                        ],
-                      ),
+                    Text(
+                      "Price: ",
+                      style: Theme.of(context).textTheme.display4,
                     ),
-                    Container(
-                      //color: Colors.green,
-                      width: (width - 64) / 2,
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Volume: ",
-                            style: Theme.of(context).textTheme.display4,
-                          ),
-                          Text(
-                            "10000",
-                            style: Theme.of(context).textTheme.display4,
-                          ),
-                        ],
-                      ),
+                    Text(
+                      "186.5",
+                      style: Theme.of(context).textTheme.display4,
                     )
                   ],
                 ),
-              );
+              ),
+              Container(
+                //color: Colors.green,
+                width: (width - 64) / 2,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "Volume: ",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                    Text(
+                      "10000",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+          Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                //color: Colors.red,
+                width: (width - 64) / 2,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "Price: ",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                    Text(
+                      "186.5",
+                      style: Theme.of(context).textTheme.display4,
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                //color: Colors.green,
+                width: (width - 64) / 2,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "Volume: ",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                    Text(
+                      "10000",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+          Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                //color: Colors.red,
+                width: (width - 64) / 2,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "Price: ",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                    Text(
+                      "186.5",
+                      style: Theme.of(context).textTheme.display4,
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                //color: Colors.green,
+                width: (width - 64) / 2,
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      "Volume: ",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                    Text(
+                      "10000",
+                      style: Theme.of(context).textTheme.display4,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+        ];
       } else {
-        return Container();
+        return [];
       }
     }
 
@@ -134,13 +211,14 @@ class _InfoColumnState extends State<InfoColumn>
           borderRadius: BorderRadius.all(const Radius.circular(80))),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: Stack(children: <Widget>[
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Text(
-                  "By the numbers",
+                  "Stats",
                   style: Theme.of(context).textTheme.title,
                 ),
               ),
@@ -261,32 +339,55 @@ class _InfoColumnState extends State<InfoColumn>
                   ),
                 ],
               ),
-              addItems(),
-              Padding(
-                padding: const EdgeInsets.only(
-                    bottom: 8.0), //todo: align iconbutton in a different way
-                child: Center(
-                  child: AnimatedBuilder(
-                      // rotates the top icon
-                      animation: _rotateAnimation,
-                      builder: (context, child) {
-                        return Transform.rotate(
-                          //todo: make the iconbutton look less fucking silly lol
-                          angle: _rotateController.value * math.pi,
-                          child: IconButton(
-                            icon: Icon(Icons.arrow_drop_down),
-                            color: Theme.of(context).primaryColor,
-                            iconSize: 40,
-                            onPressed: () {
-                              print("should be opening");
-                              handleTap();
-                            },
-                          ),
-                        );
-                      }),
+            ],
+          ),
+          Positioned(
+            top: 110.0, //
+            // left: 14.0,
+            child: Column(
+              children: addItems()
+            ),
+          ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Center(
+                    child: Container(
+                      width: width - 16.0,
+                      height: 30.0,
+                      child: GestureDetector(
+                        onTap: () {
+                          handleTap();
+                        },
+                          child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("SEE MORE", style: Theme.of(context).textTheme.button,),
+                            AnimatedBuilder(
+                                // rotates the top icon
+                                animation: _rotateAnimation,
+                                builder: (context, child) {
+                                  return Transform.rotate(
+                                    //todo: make the iconbutton look less fucking silly lol
+                                    angle: _rotateController.value * math.pi,
+                                    child: IconButton(
+                                      icon: Icon(Icons.arrow_drop_down),
+                                      color: Theme.of(context).primaryColor,
+                                      iconSize: 40,
+                                      onPressed: () {
+                                        handleTap();
+                                      },
+                                    ),
+                                  );
+                                }),
+                          ],
+                        ),
+                      ),
+                  ),
                 ),
-              )
-            ]),
+              ],
+            ),
+        ]),
       ),
     );
   }
