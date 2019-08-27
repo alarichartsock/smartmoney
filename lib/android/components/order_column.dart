@@ -17,7 +17,7 @@ class OrderColumn extends StatefulWidget {
   String subtitle;
   List<Order> orders;
 
-  OrderColumn({ this.width, this.title, this.subtitle, this.orders});
+  OrderColumn({this.width, this.title, this.subtitle, this.orders});
 
   @override
   _OrderColumnState createState() =>
@@ -26,8 +26,8 @@ class OrderColumn extends StatefulWidget {
 
 class _OrderColumnState extends State<OrderColumn>
     with TickerProviderStateMixin {
-
-  Order genericOrder = Order( //todo: couple OrderColumn for practical use.
+  Order genericOrder = Order(
+    //todo: couple OrderColumn for practical use.
     time: "June 22 2019",
     volume: 200000,
     purchaser: "unknown",
@@ -41,10 +41,14 @@ class _OrderColumnState extends State<OrderColumn>
   double expandedHeight;
   List<Order> orders;
 
+  String seeLess = "SEE LESS";
+  String seeMore = "SEE MORE";
+  String currentButtonText = "SEE MORE";
+
   _OrderColumnState(
       double width, String title, String subtitle, List<Order> orders) {
     this.width = width;
-    this.height = width * 19 / 20; // Applying aspect ratio.
+    this.height = width + width * 1 / 20; // Applying aspect ratio.
     this.title = title;
     this.subtitle = subtitle;
     this.orders = orders;
@@ -94,145 +98,164 @@ class _OrderColumnState extends State<OrderColumn>
           break;
       }
       if (isOpen == false) {
+        currentButtonText = seeLess;
         isOpen = true;
-        height = height * 16 / 10;
+        height = height * 18 / 11;
       } else {
+        currentButtonText = seeMore;
         isOpen = false;
-        height = width * 19 / 20;
+        height = width + width * 1 / 20;
       }
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
-    List<Widget> hi = [
-      Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: OrderCard(
-            order: genericOrder,
-            internalPadding: 18,
-            width: width - 32,
-          ),
-        ),
-      ),
-    ];
-
-    Widget addOrder() {
-      if (isOpen == true) {
-        return hi[0];
-      } else {
-        return Container();
-      }
-    }
-
-
-    return Card(
-      margin: EdgeInsets.all(0.0),
-      shape: RoundedRectangleBorder(
-          side: BorderSide.none,
-          borderRadius: BorderRadius.all(const Radius.circular(8.0))),
-      elevation: 5.0,
-      child: AnimatedContainer(
-          curve: Curves.easeInOut,
-          duration: Duration(milliseconds: 500),
-          decoration: BoxDecoration(
-              color: Theme.of(context).canvasColor,
-              borderRadius: BorderRadius.all(Radius.circular(8.0))),
-          width: width,
-          height: height + 16,
-          child: Stack(
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 16, left: 16.0),
-                    child: Text(
-                      "$title",
-                      style: Theme.of(context).textTheme.display3,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 4.0, left: 16.0),
-                    child: Text(
-                      "$subtitle",
-                      style: Theme.of(context).textTheme.subtitle,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: hi[0],
-                  ),
-                  hi[0],
-                  hi[0],
-                ],
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        Widget addOrder() {
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: OrderCard(
+                order: genericOrder,
+                internalPadding: 18,
               ),
-              Positioned(
-                top: 300.0, //
-                left: 14.0,
-                child: Column(
-                  children: <Widget>[
-                    addOrder(),
-                    addOrder(),
-                    addOrder(),
-                  ],
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+            ),
+          );
+        }
+
+        Widget addExtraOrders() {
+          if(isOpen == true) {
+            return addOrder();
+          } else {
+            Container();
+          }
+        }
+
+        return Card(
+          margin: EdgeInsets.all(0.0),
+          shape: RoundedRectangleBorder(
+              side: BorderSide.none,
+              borderRadius: BorderRadius.all(const Radius.circular(8.0))),
+          elevation: 5.0,
+          child: AnimatedContainer(
+              curve: Curves.easeInOut,
+              duration: Duration(milliseconds: 500),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.all(Radius.circular(8.0))),
+              width: MediaQuery.of(context).size.width - 32,
+              height: height + 16,
+              child: Stack(
                 children: <Widget>[
-                  Center(
-                    child: Container(
-                      width: width - 16.0,
-                      height: 50.0,
-                      color: Theme.of(context).canvasColor,
-                      child: GestureDetector(
-                        onTap: () {
-                          print("should be opening");
-                          handleTap();
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "SEE MORE",
-                              style: Theme.of(context).textTheme.button,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  bottom:
-                                      8.0), //todo: align iconbutton in a different way
-                              child: AnimatedBuilder(
-                                  // rotates the top icon
-                                  animation: _rotateAnimation,
-                                  builder: (context, child) {
-                                    return Transform.rotate( //todo: make the iconbutton look less fucking silly lol
-                                      angle: _rotateController.value * math.pi,
-                                      child: IconButton(
-                                        icon: Icon(Icons.arrow_drop_down),
-                                        color: Theme.of(context).primaryColor,
-                                        iconSize: 40,
-                                        onPressed: () {
-                                          print("should be opening");
-                                          handleTap();
-                                        },
-                                      ),
-                                    );
-                                  }),
-                            )
-                          ],
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16, left: 16.0),
+                        child: Text(
+                          "$title",
+                          style: Theme.of(context).textTheme.display3,
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0, left: 16.0),
+                        child: Text(
+                          "$subtitle",
+                          style: Theme.of(context).textTheme.subtitle,
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: addOrder()),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: OrderCard(
+                            order: genericOrder,
+                            internalPadding: 18,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: OrderCard(
+                            order: genericOrder,
+                            internalPadding: 18,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  Positioned(
+                    top: 300.0, //
+                    left: 14.0,
+                    child: Column(
+                      children: <Widget>[
+                        (isOpen == true) ? addOrder() : Container(),
+                        (isOpen == true) ? addOrder() : Container(),
+                        (isOpen == true) ? addOrder() : Container()
+                      ],
                     ),
                   ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Center(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width - 16.0,
+                          height: 50.0,
+                          color: Theme.of(context).canvasColor,
+                          child: GestureDetector(
+                            onTap: () {
+                              print("should be opening");
+                              handleTap();
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(
+                                  "$currentButtonText",
+                                  style: Theme.of(context).textTheme.button,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      bottom:
+                                          8.0), //todo: align iconbutton in a different way
+                                  child: AnimatedBuilder(
+                                      // rotates the top icon
+                                      animation: _rotateAnimation,
+                                      builder: (context, child) {
+                                        return Transform.rotate(
+                                          //todo: make the iconbutton look less fucking silly lol
+                                          angle:
+                                              _rotateController.value * math.pi,
+                                          child: IconButton(
+                                            icon: Icon(Icons.arrow_drop_down),
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            iconSize: 40,
+                                            onPressed: () {
+                                              print("should be opening");
+                                              handleTap();
+                                            },
+                                          ),
+                                        );
+                                      }),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
-              ),
-            ],
-          )),
+              )),
+        );
+      },
     );
   }
 }

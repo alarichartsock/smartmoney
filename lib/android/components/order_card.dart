@@ -9,13 +9,11 @@ import '../logic/data/order.dart';
 class OrderCard extends StatefulWidget {
   final Order order;
   final double internalPadding;
-  final double width;
   final double height;
 
   OrderCard({
     this.order,
     this.internalPadding,
-    this.width,
     this.height,
   });
 
@@ -23,32 +21,32 @@ class OrderCard extends StatefulWidget {
   _OrderCardState createState() => _OrderCardState(
         order: order,
         internalPadding: internalPadding,
-        width: width,
         height: height,
       );
 }
 
 class _OrderCardState extends State<OrderCard> {
   final double internalPadding;
-  final double width;
   final double height;
   final Order order;
 
   _OrderCardState({
     this.order,
     this.internalPadding,
-    this.width,
     this.height,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+
+
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return Material(
       borderRadius: BorderRadius.all(const Radius.circular(8.0)),
       elevation: 5.0,
       child: Container(
-        
-        width: width,
+        width: MediaQuery.of(context).size.width - 64,
         height: height,
         decoration: BoxDecoration(
             color: Theme.of(context).canvasColor,
@@ -56,9 +54,10 @@ class _OrderCardState extends State<OrderCard> {
             border: Border.all(color: Color(0xFFBEC0C0), width: 1.25, style: BorderStyle.solid),
             ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
-              width: width / 2 - 3.25,
+              //width: MediaQuery.of(context).size.width - 64,
               height: 65,
               child: Padding(
                 padding: EdgeInsets.only(left: internalPadding),
@@ -81,7 +80,7 @@ class _OrderCardState extends State<OrderCard> {
               ),
             ),
             Container(
-              width: width / 2 - 3.25,
+              //width: MediaQuery.of(context).size.width - 64,
               height: 65,
               child: Padding(
                 padding: EdgeInsets.only(right: internalPadding),
@@ -109,5 +108,9 @@ class _OrderCardState extends State<OrderCard> {
         ),
       ),
     );
+      },
+    );
+    
+    
   }
 }

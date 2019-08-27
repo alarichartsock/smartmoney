@@ -68,7 +68,9 @@ class _IndustryRowState extends State<IndustryRow> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return Container(
       color: Colors.transparent,
       width: width,
       height: height,
@@ -169,5 +171,9 @@ class _IndustryRowState extends State<IndustryRow> {
         ],
       ),
     );
+      },
+    );
+    
+    
   }
 }

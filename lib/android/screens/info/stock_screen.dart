@@ -13,7 +13,6 @@ class StockScreen extends StatefulWidget {
 
 class _StockScreenState extends State<StockScreen>
     with SingleTickerProviderStateMixin {
-
   _StockScreenState({this.ticker});
 
   String ticker;
@@ -29,9 +28,14 @@ class _StockScreenState extends State<StockScreen>
 
   Icon watchlistIcon = Icon(Icons.remove_red_eye);
 
-  static String fulldescription = "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA.";
-  static String trimmedDescription = fulldescription.replaceRange(5, null, "");
+  static String fulldescription =
+      "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA.";
+  static String trimmedDescription = fulldescription.replaceRange(90, null, "..");
   static String currentDescription = trimmedDescription;
+  bool descriptionOpen = false;
+  String seeMore = "Show more";
+  String seeLess = "Show less";
+  String expandText = "Show more";
 
   Future<String> getKey() async {
     RemoteConfig remoteConfig = await RemoteConfig.instance;
@@ -57,7 +61,6 @@ class _StockScreenState extends State<StockScreen>
 
   @override
   Widget build(BuildContext context) {
-    
     double _screenHeight = MediaQuery.of(context).size.height;
     double _screenWidth = MediaQuery.of(context).size.width;
     const double _margin = 16.0;
@@ -205,7 +208,7 @@ class _StockScreenState extends State<StockScreen>
                         borderRadius:
                             BorderRadius.all(const Radius.circular(8.0)),
                         child: StockInfoColumn(
-                          width: _screenWidth,
+                          screenWidth: _screenWidth,
                         )),
                   ),
                   Padding(
@@ -271,9 +274,38 @@ class _StockScreenState extends State<StockScreen>
                                 padding: const EdgeInsets.only(bottom: 8.0),
                                 child: Text(
                                   "$currentDescription",
-                                  style: Theme.of(context).textTheme.title,
+                                  style: Theme.of(context).textTheme.display4,
                                 ),
                               ),
+                              GestureDetector(
+                                onTap: () {
+                                  if(descriptionOpen == true) {
+                                    setState(() {
+                                      currentDescription = trimmedDescription;
+                                      descriptionOpen = false;
+                                      expandText = seeMore;
+                                    });} else {
+                                      setState(() {
+                                       currentDescription = fulldescription;
+                                       descriptionOpen = true; 
+                                       expandText = seeLess;
+                                      });
+                                    }
+                                  print("See more pressed");
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: Text(
+                                    "$expandText",
+                                    style: Theme.of(context).textTheme.button,
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                height: 5.0,
+                                thickness: 2.0,
+                                color: Theme.of(context).hintColor,
+                              )
                             ],
                           ),
                         ),

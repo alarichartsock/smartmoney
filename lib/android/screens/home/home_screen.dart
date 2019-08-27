@@ -7,6 +7,7 @@ import 'package:smartmoney/android/logic/data/order.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
 import '../menu/feedback_screen.dart' as feedback;
 import '../menu/help_screen.dart';
+import 'package:flutter/services.dart';
 
 import '../../components/menu_button.dart';
 
@@ -42,6 +43,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
   GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+      SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+  ]);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -330,7 +341,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 TitleCard(
-                                  width: _containerWidth,
                                   title: "Browse Trades",
                                   description: "Browse the largest stock trades on Wall Street",
                                 ),
@@ -382,7 +392,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 TitleCard(
-                                  width: _containerWidth,
                                   title: "Browse Stocks",
                                   description: "View which stocks are getting attention from large investors",
                                 ),
@@ -434,12 +443,11 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 TitleCard(
-                                  width: _containerWidth,
                                   title: "Browse Insider Trades",
                                   description: "View legal insider trades filed with the SEC",
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
+                                  padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
                                   child: OrderColumn(
                                     width: _containerWidth,
                                     title: "Insider Trades For you",

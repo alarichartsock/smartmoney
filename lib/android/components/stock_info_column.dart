@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class StockInfoColumn extends StatefulWidget {
-  double width;
+  double screenWidth;
 
-  StockInfoColumn({this.width});
+  StockInfoColumn({this.screenWidth});
 
   @override
-  _StockInfoColumnState createState() => _StockInfoColumnState(width: width);
+  _StockInfoColumnState createState() => _StockInfoColumnState(screenWidth: screenWidth);
 }
 
 class _StockInfoColumnState extends State<StockInfoColumn>
     with SingleTickerProviderStateMixin {
-  _StockInfoColumnState({this.width});
+  _StockInfoColumnState({this.screenWidth});
 
-  double width;
+  double screenWidth;
 
   Key key;
 
@@ -87,7 +87,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
               children: <Widget>[
                 Container(
                   //color: Colors.red,
-                  width: (width - 64) / 2,
+                  width: (screenWidth - 64) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -107,7 +107,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                 ),
                 Container(
                   //color: Colors.green,
-                  width: (width - 64) / 2,
+                  width: (screenWidth - 64) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -125,6 +125,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
               ],
             ),
           ),
+          
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Row(
@@ -132,7 +133,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
               children: <Widget>[
                 Container(
                   //color: Colors.red,
-                  width: (width - 64) / 2,
+                  width: (screenWidth - 64) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -152,7 +153,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                 ),
                 Container(
                   //color: Colors.green,
-                  width: (width - 64) / 2,
+                  width: (screenWidth - 64) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -177,7 +178,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
               children: <Widget>[
                 Container(
                   //color: Colors.red,
-                  width: (width - 64) / 2,
+                  width: (screenWidth - 64) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -197,7 +198,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                 ),
                 Container(
                   //color: Colors.green,
-                  width: (width - 64) / 2,
+                  width: (screenWidth - 64) / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
@@ -243,13 +244,13 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
+                padding: const EdgeInsets.only(bottom: 4.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
                       //color: Colors.red,
-                      width: (width - 64) / 2,
+                      width: (screenWidth - 64) / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -262,6 +263,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                             child: Text(
                               "11:51:30",
                               style: Theme.of(context).textTheme.display4,
+                              
                             ),
                           )
                         ],
@@ -269,13 +271,16 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                     ),
                     Container(
                       //color: Colors.green,
-                      width: (width - 64) / 2,
+                      width: (screenWidth - 64) / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
-                            "VOLUME: ",
-                            style: dataStyle,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "VOLUME: ",
+                              style: dataStyle,
+                            ),
                           ),
                           Text(
                             "8/19/2019",
@@ -288,13 +293,38 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                          height: 2.5,
+                          color: Theme.of(context).hintColor,
+                      ),
+                        ),
+                    ),
+                    Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Container(
+                          height: 2.5,
+                          color:Theme.of(context).hintColor
+                      ),
+                        ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Container(
                       //color: Colors.red,
-                      width: (width - 64) / 2,
+                      width: (screenWidth - 64) / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
@@ -314,13 +344,16 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                     ),
                     Container(
                       //color: Colors.green,
-                      width: (width - 64) / 2,
+                      width: (screenWidth - 64) / 2,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(
-                            "AVG VOL: ",
-                            style: dataStyle,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "AVG VOL: ",
+                              style: dataStyle,
+                            ),
                           ),
                           Text(
                             "10000",
@@ -332,50 +365,107 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                   ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Container(
-                    //color: Colors.red,
-                    width: (width - 64) / 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          "LOW: ",
-                          style: dataStyle,
-                        ),
-                        Padding(
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
-                          child: Text(
-                            "1600000\$",
+                          child: Container(
+                          height: 2.5,
+                          color: Theme.of(context).hintColor,
+                      ),
+                        ),
+                    ),
+                    Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Container(
+                          height: 2.5,
+                          color:Theme.of(context).hintColor
+                      ),
+                        ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      //color: Colors.red,
+                      width: (screenWidth - 64) / 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            "LOW: ",
+                            style: dataStyle,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text(
+                              "1600000\$",
+                              style: Theme.of(context).textTheme.display4,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      //color: Colors.green,
+                      width: (screenWidth - 64) / 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              "MKT CAP: ",
+                              style: dataStyle,
+                            ),
+                          ),
+                          Text(
+                            "5.2M\$",
                             style: Theme.of(context).textTheme.display4,
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    //color: Colors.green,
-                    width: (width - 64) / 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          "MKT CAP: ",
-                          style: dataStyle,
+                  ],
+                ),
+              ),
+                            Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                          height: 3.0,
+                          color: Theme.of(context).hintColor,
+                      ),
                         ),
-                        Text(
-                          "5.2M\$",
-                          style: Theme.of(context).textTheme.display4,
-                        ),
-                      ],
                     ),
-                  ),
-                ],
+                    Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Container(
+                          height: 3.0,
+                          color:Theme.of(context).hintColor
+                      ),
+                        ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
+          
           Positioned(
             top: 110.0, //
             // left: 14.0,
@@ -386,7 +476,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
             children: <Widget>[
               Center(
                 child: Container(
-                  width: width - 16.0,
+                  width: screenWidth - 16.0,
                   height: 30.0,
                   child: GestureDetector(
                     onTap: () {
