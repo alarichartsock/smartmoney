@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:smartmoney/android/logic/theme/customTheme.dart';
 import 'package:smartmoney/android/logic/theme/themes.dart';
-import 'package:smartmoney/android/screens/info/order_screen.dart';
-import 'android/screens/info/stock_screen.dart';
+import 'package:smartmoney/android/screens/info/stock_screen.dart';
 import 'package:smartmoney/android/screens/menu/help_screen.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
 import 'package:smartmoney/android/screens/signup/sign_up_screen.dart';
@@ -15,7 +14,6 @@ import 'android/screens/menu/feedback_screen.dart' as FeedBackScreen; // Materia
 import 'android/screens/signin/sign_in_screen.dart'; 
 import 'android/screens/terms.dart';
 import 'android/screens/search_screen.dart';
-import 'android/logic/data/order.dart';
 
 bool runAndroid = true;
 
@@ -29,7 +27,7 @@ class SmartMoneyIOS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      home: Onboarding(),
+      home: StockScreen(),
       theme: CupertinoThemeData(),
     );
   }
@@ -39,7 +37,7 @@ class SmartMoneyAndroid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Home(),
+        home: StockScreen(),
         theme: CustomTheme.of(context),
         darkTheme: MyThemes.darkTheme,
         title: "Smartmoney Android",

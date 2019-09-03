@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/stock_info_column.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
+import 'package:flutter/rendering.dart';
+import 'package:fl_chart/fl_chart.dart';
+
+/// Sample time series data type.
+class TimeSeriesSales {
+  final DateTime time;
+  final int sales;
+
+  TimeSeriesSales(this.time, this.sales);
+}
 
 class StockScreen extends StatefulWidget {
   StockScreen({this.ticker});
 
-  String ticker;
+  final String ticker;
 
   @override
   _StockScreenState createState() => _StockScreenState(ticker: ticker);
@@ -20,7 +30,7 @@ class _StockScreenState extends State<StockScreen>
   Animation<double> _rotateAnimation;
   AnimationController _rotateController;
   bool isOpen = false;
-  bool onWatchList;
+  bool onWatchList = false;
 
   double heightClosed = 250;
   double heightOpened = 300;
@@ -30,12 +40,18 @@ class _StockScreenState extends State<StockScreen>
 
   static String fulldescription =
       "Apple, Inc. engages in the design, manufacture, and marketing of mobile communication, media devices, personal computers, and portable digital music players. It operates through the following geographical segments: Americas, Europe, Greater China, Japan, and Rest of Asia Pacific. The Americas segment includes North and South America. The Europe segment consists of European countries, as well as India, the Middle East, and Africa. The Greater China segment comprises of China, Hong Kong, and Taiwan. The Rest of Asia Pacific segment includes Australia and Asian countries. The company was founded by Steven Paul Jobs, Ronald Gerald Wayne, and Stephen G. Wozniak on April 1, 1976 and is headquartered in Cupertino, CA.";
-  static String trimmedDescription = fulldescription.replaceRange(90, null, "..");
+  static String trimmedDescription =
+      fulldescription.replaceRange(90, null, "..");
   static String currentDescription = trimmedDescription;
   bool descriptionOpen = false;
   String seeMore = "Show more";
   String seeLess = "Show less";
   String expandText = "Show more";
+
+  List<Color> gradientColors = [
+    Color(0xff23b6e6),
+    Color(0xff02d39a),
+  ];
 
   Future<String> getKey() async {
     RemoteConfig remoteConfig = await RemoteConfig.instance;
@@ -65,44 +81,11 @@ class _StockScreenState extends State<StockScreen>
     double _screenWidth = MediaQuery.of(context).size.width;
     const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
-    double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
-    const double _padding = 8.0;
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(8.0),
             bottomRight: Radius.circular(8.0)));
-
-    void handleTap() {
-      setState(() {
-        switch (_rotateController.status) {
-          case AnimationStatus.forward:
-            _rotateController.reverse();
-            break;
-          case AnimationStatus.reverse:
-            _rotateController.forward();
-            break;
-          case AnimationStatus.dismissed:
-            _rotateController.forward();
-            break;
-          case AnimationStatus.completed:
-            _rotateController.reverse();
-            break;
-        }
-        if (isOpen == false) {
-          isOpen = true;
-          setState(() {
-            currentHeight = heightOpened;
-          });
-        } else {
-          isOpen = false;
-          setState(() {
-            currentHeight = heightClosed;
-          });
-          currentHeight = heightClosed;
-        }
-      });
-    }
 
     return Container(
       color: Theme.of(context).backgroundColor,
@@ -133,9 +116,6 @@ class _StockScreenState extends State<StockScreen>
                   icon: watchlistIcon,
                   color: Theme.of(context).primaryColor,
                   onPressed: () {
-                    setState(() {
-                      getKey();
-                    });
                     if (onWatchList == false) {
                       setState(() {
                         onWatchList = true;
@@ -191,10 +171,47 @@ class _StockScreenState extends State<StockScreen>
                               ),
                               //todo: add graph
                               Container(
-                                color: Colors.red,
+                                color: Theme.of(context).canvasColor,
                                 width: _containerWidth,
                                 height: _containerWidth / 2,
-                              ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: FlChart(
+                                    chart: LineChart(
+                                      LineChartData(
+                                      minX: 0,
+                                      maxX: 11,
+                                      minY: 0,
+                                      maxY: 6,
+                                      lineBarsData: [
+                                        LineChartBarData(
+                                          spots: [
+                                            FlSpot(0, 3),
+                                            FlSpot(2.6, 2),
+                                            FlSpot(4.9, 5),
+                                            FlSpot(6.8, 3.1),
+                                            FlSpot(8, 4),
+                                            FlSpot(9.5, 3),
+                                            FlSpot(11, 4),
+                                          ],
+                                          isCurved: true,
+                                          colors: gradientColors,
+                                          barWidth: 5,
+                                          isStrokeCapRound: true,
+                                          dotData: FlDotData(
+                                            show: false,
+                                          ),
+                                          belowBarData: BelowBarData(
+                                              show: false,
+                                              colors: [
+                                                Theme.of(context).primaryColor
+                                              ]),
+                                        ),
+                                      ],
+                                    )),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -202,45 +219,62 @@ class _StockScreenState extends State<StockScreen>
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                    child: Material(
-                        elevation: 5.0,
-                        borderRadius:
-                            BorderRadius.all(const Radius.circular(8.0)),
-                        child: StockInfoColumn(
-                          screenWidth: _screenWidth,
-                        )),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding:
+                        EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
                     child: Material(
                       borderRadius:
                           BorderRadius.all(const Radius.circular(8.0)),
                       elevation: 5.0,
                       child: Container(
                         decoration: BoxDecoration(
-                            color: Theme.of(context).canvasColor,
                             borderRadius:
-                                BorderRadius.all(const Radius.circular(8.0))),
+                                BorderRadius.all(const Radius.circular(8.0)),
+                            color: Theme.of(context).canvasColor),
+                        child: StockInfoColumn(
+                          screenWidth: _screenWidth,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                    child: Material(
+                      borderRadius: BorderRadius.all(const Radius.circular(8.0)),
+                      elevation: 5.0,
+                      child: Container(
+                        width: _screenWidth,
+                        height: _screenWidth,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).canvasColor,
+                          borderRadius: BorderRadius.all(const Radius.circular(8.0))
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  "Earnings",
-                                  style: Theme.of(context).textTheme.title,
-                                ),
-                              ),
-                              //todo: add graph
-                              Container(
-                                color: Colors.red,
-                                width: _containerWidth,
-                                height: _containerWidth / 2,
-                              ),
-                            ],
+                          child: FlChart(
+                            chart: BarChart(
+                              BarChartData(
+                                barGroups: [
+                                  BarChartGroupData(
+                                    x: 1,
+                                    barsSpace: 2,
+                                    barRods: [
+                                      BarChartRodData(
+                                        y: 5.0,
+                                        width: 2.0,
+                                        color: Colors.red
+                                      ),
+                                      BarChartRodData(
+                                        y: 5.0,
+                                        width: 2.0,
+                                        color: Colors.red
+                                      ),
+                                    ]
+                                  )
+                                ],
+                                backgroundColor: Colors.transparent,
+                                
+                              )
+                            ),
                           ),
                         ),
                       ),
@@ -279,18 +313,19 @@ class _StockScreenState extends State<StockScreen>
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  if(descriptionOpen == true) {
+                                  if (descriptionOpen == true) {
                                     setState(() {
                                       currentDescription = trimmedDescription;
                                       descriptionOpen = false;
                                       expandText = seeMore;
-                                    });} else {
-                                      setState(() {
-                                       currentDescription = fulldescription;
-                                       descriptionOpen = true; 
-                                       expandText = seeLess;
-                                      });
-                                    }
+                                    });
+                                  } else {
+                                    setState(() {
+                                      currentDescription = fulldescription;
+                                      descriptionOpen = true;
+                                      expandText = seeLess;
+                                    });
+                                  }
                                   print("See more pressed");
                                 },
                                 child: Padding(

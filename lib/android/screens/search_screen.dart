@@ -78,12 +78,21 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
               children: <Widget>[
                 IconButton(
                   icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+
+                  },
                 ),
                 IconButton(
                   icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+
+                  },
                 ),
                 IconButton(
                   icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    
+                  },
                 )
               ],
             )),

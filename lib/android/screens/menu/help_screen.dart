@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 class Help extends StatefulWidget {
   @override
   _HelpState createState() => _HelpState();

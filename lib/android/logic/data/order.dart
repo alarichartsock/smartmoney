@@ -103,5 +103,5 @@ class Option extends Order {
 class Stock extends Order {
   Stock(String time, int volume, String purchaser, double price, bool alertUser,
       bool call, bool buy, int strikePrice)
-      : super(time: time, volume: volume, purchaser: purchaser, price: price) {}
+      : super(time: time, volume: volume, purchaser: purchaser, price: price);
 }

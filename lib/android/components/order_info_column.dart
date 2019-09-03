@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class OrderInfoColumn extends StatefulWidget {
-  double width;
+  final double width;
 
   OrderInfoColumn({this.width});
 

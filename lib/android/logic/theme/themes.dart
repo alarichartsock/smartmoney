@@ -100,7 +100,7 @@ class MyThemes {
             fontWeight: FontWeight.w400,
             fontSize: 14.0),
         button: TextStyle(
-            color: Color(0xFFFFFFFF), //#21ce99
+            color: Color(0xFF21ce99), //#21ce99
             fontWeight: FontWeight.w700,
             fontSize: 18.0),
       ));

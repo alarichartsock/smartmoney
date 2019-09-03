@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class StockInfoColumn extends StatefulWidget {
-  double screenWidth;
+  final double screenWidth;
 
   StockInfoColumn({this.screenWidth});
 
@@ -26,9 +26,9 @@ class _StockInfoColumnState extends State<StockInfoColumn>
   bool isOpen = false;
   bool onWatchList = false;
 
-  double heightClosed = 170;
-  double heightOpened = 270;
-  double currentHeight = 170;
+  double heightClosed = 200;
+  double heightOpened = 290;
+  double currentHeight = 200;
 
   Icon watchlistIcon = Icon(Icons.remove_red_eye);
 
@@ -105,27 +105,58 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                     ],
                   ),
                 ),
-                Container(
-                  //color: Colors.green,
-                  width: (screenWidth - 64) / 2,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "P/E RATIO: ",
-                        style: dataStyle,
-                      ),
-                      Text(
-                        "5.04",
-                        style: Theme.of(context).textTheme.display4,
-                      ),
-                    ],
+                 Container(
+                    //color: Colors.green,
+                    width: (screenWidth - 64) / 2,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            "P/E RATIO: ",
+                            style: dataStyle,
+                          ),
+                        ),
+                        Text(
+                          "5.04",
+                          style: Theme.of(context).textTheme.display4,
+                        ),
+                      ],
+                    ),
                   ),
-                )
+                
               ],
             ),
           ),
-          
+          Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            width: screenWidth / 2 - 36,
+                          height: 3.0,
+                          color: Theme.of(context).hintColor,
+                      ),
+                        ),
+                    ),
+                    Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Container(
+                          width: screenWidth / 2 - 36,
+                          height: 3.0,
+                          color:Theme.of(context).hintColor
+                      ),
+                        ),
+                    ),
+                  ],
+                ),
+              ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Row(
@@ -157,9 +188,12 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        "DIV/YIELD: ",
-                        style: dataStyle,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          "DIV/YIELD: ",
+                          style: dataStyle,
+                        ),
                       ),
                       Text(
                         "0.0",
@@ -171,6 +205,34 @@ class _StockInfoColumnState extends State<StockInfoColumn>
               ],
             ),
           ),
+                    Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            width: screenWidth / 2 - 36,
+                          height: 3.0,
+                          color: Theme.of(context).hintColor,
+                      ),
+                        ),
+                    ),
+                    Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Container(
+                          width: screenWidth / 2 - 36,
+                          height: 3.0,
+                          color:Theme.of(context).hintColor
+                      ),
+                        ),
+                    ),
+                  ],
+                ),
+              ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Row(
@@ -202,9 +264,12 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        "Volume: ",
-                        style: dataStyle,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          "Volume: ",
+                          style: dataStyle,
+                        ),
                       ),
                       Text(
                         "10000",
@@ -212,10 +277,40 @@ class _StockInfoColumnState extends State<StockInfoColumn>
                       ),
                     ],
                   ),
-                )
+                ),
+                
               ],
             ),
+            
           ),
+                    Padding(
+                padding: const EdgeInsets.only(bottom: 4.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            width: screenWidth / 2 - 36,
+                          height: 3.0,
+                          color: Theme.of(context).hintColor,
+                      ),
+                        ),
+                    ),
+                    Flexible(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Container(
+                          width: screenWidth / 2 - 36,
+                          height: 3.0,
+                          color:Theme.of(context).hintColor
+                      ),
+                        ),
+                    ),
+                  ],
+                ),
+              ),
         ];
       } else {
         return [];
@@ -234,6 +329,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
         padding: const EdgeInsets.all(16.0),
         child: Stack(children: <Widget>[
           Column(
+            
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Padding(
@@ -467,9 +563,11 @@ class _StockInfoColumnState extends State<StockInfoColumn>
           ),
           
           Positioned(
-            top: 110.0, //
-            // left: 14.0,
-            child: Column(children: addItems()),
+            top: 120.0, //
+            left: -5.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: addItems()),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -477,7 +575,7 @@ class _StockInfoColumnState extends State<StockInfoColumn>
               Center(
                 child: Container(
                   width: screenWidth - 16.0,
-                  height: 30.0,
+                  height: 40.0,
                   child: GestureDetector(
                     onTap: () {
                       handleTap();

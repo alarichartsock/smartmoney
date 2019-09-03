@@ -46,7 +46,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
       SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -488,13 +487,25 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 controller: bottomController,
                 children: <Widget>[
                   Center(
-                    child: IconButton(icon: Icon(Icons.timer,)), //todo: fill in
+                    child: IconButton(icon: Icon(Icons.timer,),
+                    onPressed: () {
+
+                    },
+                    ), //todo: fill in
                   ),
                   Center(
-                    child: IconButton(icon: Icon(Icons.toc,)), //todo: fill in
+                    child: IconButton(icon: Icon(Icons.toc,),
+                    onPressed: () {
+
+                    },
+                    ), //todo: fill in
                   ),
                   Center(
-                    child: IconButton(icon: Icon(Icons.train,)), //todo: fill in
+                    child: IconButton(icon: Icon(Icons.train,),
+                    onPressed: () {
+
+                    },
+                    ), //todo: fill in
                   ),
                 ],
               ),

@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smartmoney/android/components/industry_row.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../components/menu_button.dart';
-import '../../logic/data/order.dart';
 
 class OrderCardColumnScreen extends StatefulWidget {
 
@@ -22,7 +16,6 @@ class _OrderCardColumnScreenState extends State<OrderCardColumnScreen> {
     const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
     double _containerHeight = _screenHeight - 56.0 - (_margin * 4);
-    const double _padding = 8.0;
 
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
