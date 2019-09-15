@@ -47,10 +47,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-      SystemChrome.setPreferredOrientations([
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
-  ]);
+    ]);
   }
 
   @override
@@ -60,10 +60,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
 
-    TabController topController = TabController(length: 2, vsync: this);
-    TabController bottomController = TabController(length: 3, vsync: this);
-
-    topController.addListener(() {print("helo");});
+    TabController tabController = TabController(length: 2, vsync: this);
 
     RoundedRectangleBorder appBarBorder = new RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -246,271 +243,65 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
             ),
           ),
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, 150.0),
-            child: AppBar(
-                centerTitle: true,
-                shape: appBarBorder,
-                backgroundColor: Theme.of(context).canvasColor,
-                title: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text("smartmoney",
-                      style: Theme.of(context).textTheme.title),
+          appBar: AppBar(
+            centerTitle: true,
+            shape: appBarBorder,
+            backgroundColor: Theme.of(context).canvasColor,
+            title: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child:
+                  Text("smartmoney", style: Theme.of(context).textTheme.title),
+            ),
+            actions: <Widget>[
+              IconButton(
+                iconSize: 24.0,
+                icon: Icon(Icons.search), //todo: add icon from icons8
+                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/search');
+                },
+              )
+            ],
+            leading: IconButton(
+              iconSize: 24.0,
+              icon: Icon(Icons.menu), //todo: add icon from icons8
+              color: Theme.of(context).primaryColor,
+              onPressed: () {
+                _scaffoldKey.currentState.openDrawer();
+              },
+            ),
+            bottom: TabBar(
+              labelColor: Theme.of(context).textTheme.display4.color,
+              indicatorColor: Theme.of(context).primaryColor,
+              labelStyle: TextStyle(
+                  color: Theme.of(context).textTheme.display4.color,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w400),
+              controller: tabController,
+              tabs: <Widget>[
+                
+                Tab(
+                  text: "Portfolio",
                 ),
-                actions: <Widget>[
-                  IconButton(
-                    iconSize: 24.0,
-                    icon: Icon(Icons.search), //todo: add icon from icons8
-                    color: Theme.of(context).primaryColor,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('/search');
-                    },
-                  )
-                ],
-                leading: IconButton(
-                  iconSize: 24.0,
-                  icon: Icon(Icons.menu), //todo: add icon from icons8
-                  color: Theme.of(context).primaryColor,
-                  onPressed: () {
-                    _scaffoldKey.currentState.openDrawer();
-                  },
-                ),
-                bottom: PreferredSize(
-                  preferredSize: Size(_screenWidth, 150),
-                  child: Column(
-                    children: <Widget>[
-                      TabBar(
-                        indicatorColor: Theme.of(context).primaryColor,
-                        controller: topController,
-                        labelColor: Theme.of(context).dividerColor,
-                        tabs: <Widget>[
-                          Tab(
-                            text: "BROWSE",
-                          ),
-                          Tab(
-                            text: "WATCHLIST",
-                          ),
-                        ],
-                      ),
-                      TabBar(
-                        controller: bottomController,
-                        indicatorColor: Theme.of(context).primaryColor,
-                        labelColor: Theme.of(context).dividerColor,
-                        tabs: <Widget>[
-                          Tab(
-                            text: "TRADES",
-                          ),
-                          Tab(
-                            text: "STOCKS",
-                          ),
-                          Tab(
-                            text: "INSIDERS",
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                )),
+                Tab(
+                  text: "Marketplace",
+                )
+              ],
+            ),
           ),
           resizeToAvoidBottomInset: false,
           extendBody: false,
           backgroundColor: Colors.transparent,
-          body: TabBarView(
-            controller: topController,
-            children: <Widget>[
-              ScrollConfiguration(
-                behavior: ScrollBehavior(),
-                child: GlowingOverscrollIndicator(
+          body: ScrollConfiguration(
+              behavior: ScrollBehavior(),
+              child: GlowingOverscrollIndicator(
+                  //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
                   axisDirection: AxisDirection.right,
                   color: Theme.of(context).primaryColor,
-                                child: TabBarView(
-                    controller: bottomController,
-                    children: <Widget>[
-                    ScrollConfiguration(
-                    behavior: ScrollBehavior(),
-                    child: GlowingOverscrollIndicator(
-                      //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
-                      axisDirection: AxisDirection.down,
-                      color: Theme.of(context).primaryColor,
-                      child: ListView(
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                TitleCard(
-                                  title: "Browse Trades",
-                                  description: "Browse the largest stock trades on Wall Street",
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
-                                  child: OrderColumn(
-                                    width: _containerWidth,
-                                    title: "Trades For you",
-                                    subtitle: "Trades based on what you've saved.",
-                                    orders: <Order>[],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: IndustryRow(
-                                    description: "Trades on industry specific stocks and indexes.",
-                                    width: _screenWidth,
-                                    height: _screenWidth * 11 / 20,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: OrderColumn(
-                                    width: _containerWidth,
-                                    title: "Largest Trades",
-                                    subtitle: "Trades ordered on volume.",
-                                    orders: <Order>[],
-                                  ),
-                                ),
-                                EndlessOrderColumn()
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                    ScrollConfiguration(
-                    behavior: ScrollBehavior(),
-                    child: GlowingOverscrollIndicator(
-                      //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
-                      axisDirection: AxisDirection.down,
-                      color: Theme.of(context).primaryColor,
-                      child: ListView(
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                TitleCard(
-                                  title: "Browse Stocks",
-                                  description: "View which stocks are getting attention from large investors",
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
-                                  child: OrderColumn(
-                                    width: _containerWidth,
-                                    title: "Stocks for you",
-                                    subtitle: "Stocks based on what you've saved.",
-                                    orders: <Order>[],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: IndustryRow(
-                                    description: "Trending stocks categorized by industry",
-                                    width: _screenWidth,
-                                    height: _screenWidth * 11 / 20,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: OrderColumn(
-                                    width: _containerWidth,
-                                    title: "Hottest Stocks",
-                                    subtitle: "Stocks with lots of unusual investor activity.",
-                                    orders: <Order>[],
-                                  ),
-                                ),
-                                EndlessOrderColumn()
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                    ScrollConfiguration(
-                    behavior: ScrollBehavior(),
-                    child: GlowingOverscrollIndicator(
-                      //The purpose of the GlowingOverScrollIndicator and ScrollConfiguration is to change the overscoll color on the listview to be the primary color of our theme.
-                      axisDirection: AxisDirection.down,
-                      color: Theme.of(context).primaryColor,
-                      child: ListView(
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(top: 16.0, bottom: 16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                TitleCard(
-                                  title: "Browse Insider Trades",
-                                  description: "View legal insider trades filed with the SEC",
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-                                  child: OrderColumn(
-                                    width: _containerWidth,
-                                    title: "Insider Trades For you",
-                                    subtitle: "Trades based on what you've saved.",
-                                    orders: <Order>[],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: IndustryRow(
-                                    description: "Insider trades ordered based on sector.",
-                                    width: _screenWidth,
-                                    height: _screenWidth * 11 / 20,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: OrderColumn(
-                                    width: _containerWidth,
-                                    title: "Largest Insider Transactions",
-                                    subtitle: "Transactions ordered on volume.",
-                                    orders: <Order>[],
-                                  ),
-                                ),
-                                EndlessOrderColumn()
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                    ],
-                  ),
-                ),
-              ),
-              TabBarView(
-                controller: bottomController,
-                children: <Widget>[
-                  Center(
-                    child: IconButton(icon: Icon(Icons.timer,),
-                    onPressed: () {
-
-                    },
-                    ), //todo: fill in
-                  ),
-                  Center(
-                    child: IconButton(icon: Icon(Icons.toc,),
-                    onPressed: () {
-
-                    },
-                    ), //todo: fill in
-                  ),
-                  Center(
-                    child: IconButton(icon: Icon(Icons.train,),
-                    onPressed: () {
-
-                    },
-                    ), //todo: fill in
-                  ),
-                ],
-              ),
-            ],
-          )
+                  child: TabBarView(
+                    controller: tabController,
+                    children: <Widget>[Container(), Container()],
+                  ))),
         ),
       ),
     );

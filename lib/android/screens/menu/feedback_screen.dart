@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smartmoney/android/components/styled_button.dart';
 import 'package:smartmoney/android/components/styled_container.dart';
 
-//import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:toast/toast.dart';
 
 class Feedback extends StatefulWidget {

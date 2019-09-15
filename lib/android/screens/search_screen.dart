@@ -20,7 +20,7 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
     const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
 
-    TabController searchController = TabController(length: 3, vsync: this);
+    TabController searchController = TabController(length: 2, vsync: this);
 
     return Container(
       color: Theme.of(context).backgroundColor,
@@ -53,49 +53,11 @@ class _SearchState extends State<Search> with TickerProviderStateMixin {
                       Navigator.of(context).pop();
                     },
                   ),
-                  bottom: TabBar(
-                    controller: searchController,
-                    indicatorColor: Theme.of(context).primaryColor,
-                    labelColor: Theme.of(context).dividerColor,
-                    tabs: <Widget>[
-                      Tab(
-                        text: "TRADES",
-                      ),
-                      Tab(
-                        text: "STOCKS",
-                      ),
-                      Tab(
-                        text: "INSIDERS",
-                      ),
-                    ],
-                  )
             ),
             resizeToAvoidBottomInset: false,
             extendBody: false,
             backgroundColor: Colors.transparent,
-            body: TabBarView(
-              controller: searchController,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-
-                  },
-                ),
-                IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    
-                  },
-                )
-              ],
-            )),
+            body: Container()),
       ),
     );
   }
