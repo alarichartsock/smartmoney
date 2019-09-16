@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 /*
  * Returns a Raised Button with the specifications that we want for Smartmoney.
  * onPressed, width, and height are required.

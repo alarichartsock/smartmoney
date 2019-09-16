@@ -26,12 +26,6 @@ class _HelpState extends State<Help> {
           width: 1.0,
           color: const Color(0xFFBEC0C0), //#bec0c0
         ));
-    OutlineInputBorder greenBorder = OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        borderSide: const BorderSide(
-          width: 1.0,
-          color: const Color(0xFF00E690), //#00e690
-        ));
     OutlineInputBorder redBorder = OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
         borderSide: const BorderSide(

@@ -8,12 +8,13 @@ class IndustryRow extends StatefulWidget {
   final double height;
   final double width;
   final String description;
+  final String title;
 
-  IndustryRow({this.cardList, this.height, this.width, this.description});
+  IndustryRow({this.cardList, this.height, this.width, this.description, this.title});
 
   @override
   _IndustryRowState createState() =>
-      _IndustryRowState(cardList: cardList, height: height, width: width, description: description);
+      _IndustryRowState(cardList: cardList, height: height, width: width, description: description, title: title);
 }
 
 class _IndustryRowState extends State<IndustryRow> {
@@ -21,12 +22,15 @@ class _IndustryRowState extends State<IndustryRow> {
   double height;
   double width;
   String description;
+  String title;
 
   _IndustryRowState({
     this.cardList,
     this.height,
     this.width,
     this.description,
+    this.title
+
   });
 
   IndustryCard card1 = IndustryCard(
@@ -128,7 +132,7 @@ class _IndustryRowState extends State<IndustryRow> {
                                   print("todo: route to total list");
                                 },
                                 color: Theme.of(context).primaryColor,
-                                iconSize: 16.0,
+                                iconSize: 25.0,
                               ),
                             ],
                           ),

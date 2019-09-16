@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:smartmoney/android/components/bot_card.dart';
+import 'package:smartmoney/android/components/bot_column.dart';
 import 'package:smartmoney/android/components/industry_row.dart';
-import 'package:smartmoney/android/components/order_column.dart';
 import 'package:smartmoney/android/components/title_card.dart';
-import 'package:smartmoney/android/components/trade_endless_column.dart';
-import 'package:smartmoney/android/logic/data/order.dart';
+import 'package:smartmoney/android/logic/data/bot.dart';
 import 'package:smartmoney/android/screens/menu/settings_screen.dart';
 import '../menu/feedback_screen.dart' as feedback;
 import '../menu/help_screen.dart';
@@ -260,6 +260,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 onPressed: () {
                   Navigator.of(context).pushNamed('/search');
                 },
+              ),
+              IconButton(
+                iconSize: 24.0,
+                icon: Icon(Icons.shopping_cart), //todo: add icon from icons8
+                color: Theme.of(context).primaryColor,
+                onPressed: () {
+                  //Navigator.of(context).pushNamed('/search');
+                },
               )
             ],
             leading: IconButton(
@@ -279,7 +287,6 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   fontWeight: FontWeight.w400),
               controller: tabController,
               tabs: <Widget>[
-                
                 Tab(
                   text: "Portfolio",
                 ),
@@ -300,7 +307,113 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   color: Theme.of(context).primaryColor,
                   child: TabBarView(
                     controller: tabController,
-                    children: <Widget>[Container(), Container()],
+                    children: <Widget>[
+                      ScrollConfiguration(
+                        behavior: ScrollBehavior(),
+                        child: GlowingOverscrollIndicator(
+                          color: Theme.of(context).primaryColor,
+                          axisDirection: AxisDirection.down,
+                          child: ListView(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Material(
+                                  borderRadius: BorderRadius.all(
+                                      const Radius.circular(8.0)),
+                                  elevation: 5.0,
+                                  child: Container(
+                                    width: _containerWidth,
+                                    height: 450.0,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).canvasColor,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8.0)),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text("My Portfolio", style: Theme.of(context).textTheme.display3,),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top:4.0),
+                                            child: Text("\$25,100 +2.3%", style: Theme.of(context).textTheme.display3,),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 8.0),
+                                            child: BotCard(),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      ScrollConfiguration(
+                        behavior: ScrollBehavior(),
+                        child: GlowingOverscrollIndicator(
+                          color: Theme.of(context).primaryColor,
+                          axisDirection: AxisDirection.down,
+                          child: ListView(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
+                                child: TitleCard(
+                                  title: "Browse trading bots",
+                                  description: "These bots can pay for themselves by passively trading stocks for you. Choose bots that have a proven return on investment.",
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: BotColumn(
+                                  title: "Featured",
+                                  description: "Popular bots that caught our attention",
+                                  bots: [
+                                    Bot(),
+                                    Bot(),
+                                    Bot(),
+                                  ],
+                                ),
+                              ),
+                              IndustryRow(
+                                width: _screenWidth,
+                                height: 250.0,
+                                title: "By category",
+                                description: "Browse bots by category.",
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                                child: BotColumn(
+                                  title: "For you",
+                                  description: "Bots selected for you based on your interests",
+                                  bots: [
+                                    Bot(),
+                                    Bot(),
+                                    Bot(),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:16.0, right: 16.0, bottom: 16.0),
+                                child: BotColumn(
+                                  title: "Trending",
+                                  description: "Bots with recent popularity",
+                                  bots: [
+                                    Bot(),
+                                    Bot(),
+                                    Bot(),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ))),
         ),
       ),

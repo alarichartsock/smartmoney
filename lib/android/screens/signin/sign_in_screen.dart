@@ -58,19 +58,6 @@ class _SignInState extends State<SignIn> {
           color: const Color(0xFFBEC0C0), //#f45531
         ));
 
-    Widget _showCircularProgress() {
-      if (_isLoading) {
-        return Center(
-          child: CircularProgressIndicator(),
-        );
-      } else {
-        return Container(
-          height: 0.0,
-          width: 0.0,
-        );
-      }
-    }
-
     return Container(
         color: Theme.of(context).backgroundColor,
         width: double.infinity,

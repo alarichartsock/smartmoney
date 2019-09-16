@@ -100,7 +100,6 @@ class _OnboardingPageState extends State<OnboardingPage>
     //Left and right margins of the screen.
     const double _margin = 16.0;
     double _containerWidth = _screenWidth - (_margin * 2);
-    const double _padding = 8.0;
 
 
     return Scaffold(

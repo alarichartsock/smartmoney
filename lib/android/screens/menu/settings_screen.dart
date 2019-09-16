@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:smartmoney/android/components/styled_button.dart';
-import 'package:smartmoney/android/components/styled_container.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:smartmoney/android/logic/theme/customTheme.dart';
 import 'package:smartmoney/android/logic/theme/themes.dart';
 
